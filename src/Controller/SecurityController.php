@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Form\RegistrationType;
-use App\Form\Type\ChangePasswordType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,8 +23,8 @@ class SecurityController extends AbstractController
         ]);
     }
 
-    /** @Route("/signup", name="app_signup") */
-    public function signup(Request $request): Response
+    /** @Route("/register", name="app_register") */
+    public function register(Request $request): Response
     {
         $form = $this->createForm(RegistrationType::class);
 
@@ -37,36 +36,38 @@ class SecurityController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('notice', 'The account was successfully created !');
+
             return $this->redirectToRoute('figure_index');
         }
 
-        return $this->render('security/signup.html.twig', [
+        return $this->render('security/register.html.twig', [
             'registration' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/change-password", methods="GET|POST", name="user_change_password")
+     * @Route("/password", methods="GET|POST", name="app_password")
      */
     public function changePassword(Request $request, UserPasswordEncoderInterface $encoder): Response
     {
         $user = $this->getUser();
 
-        $form = $this->createForm(ChangePasswordType::class);
+        $form = $this->createForm(RegistrationType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $user->setPassword($encoder->encodePassword($user, $form->get('newPassword')->getData()));
-
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('security_logout');
+            $this->addFlash('notice','Please reconnect to try your fresh new password');
+
+            return $this->redirectToRoute('app_logout');
         }
 
-        return $this->render('user/change_password.html.twig', [
-            'form' => $form->createView(),
+        return $this->render('security/change_password.html.twig', [
+            'password' => $form->createView(),
         ]);
     }
+
     /** @Route("/logout", name="app_logout") */
     public function logout(): void { }
 }
