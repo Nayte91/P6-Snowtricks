@@ -50,16 +50,15 @@ class AppFixtures extends Fixture
         $manager->flush();
     }
 
+    /* Actually, 1 user */
     protected function loadUsers(ObjectManager $manager)
     {
-        for ($i = 0; $i < 10; $i++) {
-            $user = new User;
-            $user->setUsername('user'.$i);
-            $user->setPassword($this->passwordEncoder->encodePassword($user, 'azerty'));
+        $user = new User;
+        $user->setUsername('usertest');
+        $user->setEmail('user.test@example.com');
+        $user->setPassword($this->passwordEncoder->encodePassword($user, 'azerty'));
 
-            $manager->persist($user);
-        }
-
+        $manager->persist($user);
         $manager->flush();
     }
 
