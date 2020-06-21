@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\traits\EntityIdTrait;
 use Doctrine\ORM\Mapping as ORM;
 use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordRequestInterface;
 use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordRequestTrait;
@@ -11,14 +12,7 @@ use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordRequestTrait;
  */
 class ResetPasswordRequest implements ResetPasswordRequestInterface
 {
-    use ResetPasswordRequestTrait;
-
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+    use ResetPasswordRequestTrait, EntityIdTrait;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User")

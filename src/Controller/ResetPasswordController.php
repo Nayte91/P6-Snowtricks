@@ -18,9 +18,7 @@ use SymfonyCasts\Bundle\ResetPassword\Controller\ResetPasswordControllerTrait;
 use SymfonyCasts\Bundle\ResetPassword\Exception\ResetPasswordExceptionInterface;
 use SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface;
 
-/**
- * @Route("/reset-password")
- */
+/** @Route("/reset-password") */
 class ResetPasswordController extends AbstractController
 {
     use ResetPasswordControllerTrait;
@@ -49,7 +47,7 @@ class ResetPasswordController extends AbstractController
             );
         }
 
-        return $this->render('reset_password/request.html.twig', [
+        return $this->render('security/reset_password/request.html.twig', [
             'requestForm' => $form->createView(),
         ]);
     }
@@ -66,7 +64,7 @@ class ResetPasswordController extends AbstractController
             return $this->redirectToRoute('app_forgot_password_request');
         }
 
-        return $this->render('reset_password/check_email.html.twig', [
+        return $this->render('security/reset_password/check_email.html.twig', [
             'tokenLifetime' => $this->resetPasswordHelper->getTokenLifetime(),
         ]);
     }
@@ -122,10 +120,10 @@ class ResetPasswordController extends AbstractController
             // The session is cleaned up after the password has been changed.
             $this->cleanSessionAfterReset();
 
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('figure_index');
         }
 
-        return $this->render('reset_password/reset.html.twig', [
+        return $this->render('security/reset_password/reset.html.twig', [
             'resetForm' => $form->createView(),
         ]);
     }
@@ -159,7 +157,7 @@ class ResetPasswordController extends AbstractController
             ->from(new Address('robic.julien@free.fr', 'Julien Robic'))
             ->to($user->getEmail())
             ->subject('Your password reset request')
-            ->htmlTemplate('reset_password/email.html.twig')
+            ->htmlTemplate('security/reset_password/email.html.twig')
             ->context([
                 'resetToken' => $resetToken,
                 'tokenLifetime' => $this->resetPasswordHelper->getTokenLifetime(),

@@ -3,6 +3,7 @@
 
 namespace App\Entity\traits;
 
+use Doctrine\ORM\Mapping as ORM;
 
 trait EntityIdTrait
 {

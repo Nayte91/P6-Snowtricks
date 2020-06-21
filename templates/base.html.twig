@@ -8,7 +8,6 @@
         <link rel="stylesheet" href="{{ asset('assets/css/snowtricks.css') }}">
         {% block stylesheets %}{% endblock %}
         <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-
     </head>
 
     <body>
@@ -52,7 +51,7 @@
                         <a class="nav-link" href="{{ path('app_login') }}">Log in</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Sign up</a>
+                        <a class="nav-link" href="{{ path('app_register') }}">Sign up</a>
                     </li>
                 {% endif %}
             </ul>
