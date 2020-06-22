@@ -138,9 +138,7 @@ class ResetPasswordController extends AbstractController
         $this->setCanCheckEmailInSession();
 
         // Do not reveal whether a user account was found or not.
-        if (!$user) {
-            return $this->redirectToRoute('app_check_email');
-        }
+        if (!$user) return $this->redirectToRoute('app_check_email');
 
         try {
             $resetToken = $this->resetPasswordHelper->generateResetToken($user);
@@ -154,7 +152,7 @@ class ResetPasswordController extends AbstractController
         }
 
         $email = (new TemplatedEmail())
-            ->from(new Address('robic.julien@free.fr', 'Julien Robic'))
+            ->from(new Address('nayte91@gmail.com', 'Julien Robic'))
             ->to($user->getEmail())
             ->subject('Your password reset request')
             ->htmlTemplate('security/reset_password/email.html.twig')
