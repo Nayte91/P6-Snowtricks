@@ -60,9 +60,7 @@ class ResetPasswordController extends AbstractController
     public function checkEmail(): Response
     {
         // We prevent users from directly accessing this page
-        if (!$this->canCheckEmail()) {
-            return $this->redirectToRoute('app_forgot_password_request');
-        }
+        if (!$this->canCheckEmail()) return $this->redirectToRoute('app_forgot_password_request');
 
         return $this->render('security/reset_password/check_email.html.twig', [
             'tokenLifetime' => $this->resetPasswordHelper->getTokenLifetime(),
@@ -85,9 +83,7 @@ class ResetPasswordController extends AbstractController
         }
 
         $token = $this->getTokenFromSession();
-        if (null === $token) {
-            throw $this->createNotFoundException('No reset password token found in the URL or in the session.');
-        }
+        if (null === $token) throw $this->createNotFoundException('No reset password token found in the URL or in the session.');
 
         try {
             $user = $this->resetPasswordHelper->validateTokenAndFetchUser($token);
