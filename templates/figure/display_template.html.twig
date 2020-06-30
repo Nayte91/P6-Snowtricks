@@ -14,11 +14,13 @@
         </div>
 
         <div class="imgheader col-12" style="background-image: url('{{ asset('assets/images/card-default.jpg') }}');">
+            {% if figure.pictures|length > 0 %}
             <div class="float-right border border-dark">
                 <div class="my-2 px-3">
                     {% block header_edition %}{% endblock %}
                 </div>
             </div>
+            {% endif %}
             <div class="container h-100">
                 <div class="row h-100 align-items-center">
                     <div class="col-12 text-center">
@@ -30,30 +32,28 @@
         <div class="col-12">
             <h3>Images et vidéos</h3>
             <div class="row">
-            {% if figure.videos|length > 0 or figure.pictures|length > 0 %}
-                <div class="col-sm-4">
-                    {% for picture in figure.pictures %}
-                        <div{% if null %} class="border-primary"{% endif %}>
-                            <img src="{{ asset(picture.webPath) }}" alt="{{ picture.alt }}" width="350">
-                        </div>
-                        {% block picture_edition %}{% endblock %}
-                    {% endfor %}
-                    {% for video in figure.videos %}
-                        <div class="video-block">
-                            {% if video.platform == 'youtube' or video.platform == 'vimeo' %}
-                                <div><iframe width="350" height="210" src="{{ video.url }}" allowfullscreen></iframe></div>
-                            {% elseif video.platform == 'dailymotion' %}
-                                <div><iframe width="350" height="210" src="{{ video.url }}" allowfullscreen></iframe></div>
-                            {% endif %}
-                            {% block video_edition %}{% endblock %}
-                        </div>
-                    {% endfor %}
+                {% if figure.videos|length > 0 or figure.pictures|length > 0 %}
+                    <div class="col-sm-4">
+                        {% for picture in figure.pictures %}
+                            <div{% if null %} class="border-primary"{% endif %}>
+                                <img src="{{ asset(picture.webPath) }}" alt="{{ picture.alt }}" width="350">
+                            </div>
+                            {% block picture_edition %}{% endblock %}
+                        {% endfor %}
+                        {% for video in figure.videos %}
+                            <div class="video-block">
+                                    <div><iframe width="350" height="210" src="{{ video.url }}" allowfullscreen></iframe></div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="col-12">
+                        <p>Il n'y a pas encore d'images ou de vidéos pour illustrer cette figure.</p>
+                    </div>
+                {% endif %}
+                <div class="col-10 border border-dark">
+                    {% block picture_addition %}{% endblock %}
                 </div>
-            {% else %}
-                <div class="col-12">
-                    <p>Il n'y a pas encore d'images ou de vidéos pour illustrer cette figure.</p>
-                </div>
-            {% endif %}
             </div>
         </div>
 
@@ -80,6 +80,7 @@
             {% block figure_description %}{% endblock %}
         </div>
 
+        {# A editer pour activer les commentaires en temps utile #}
         {% if (true == false) %}
         <div class="col-8 d-flex">
             <h1>Commentaires</h1>

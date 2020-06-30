@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Figure;
 use App\Form\FigureType;
+use App\Form\PictureType;
 use App\Repository\FigureRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -65,9 +66,11 @@ class FigureController extends AbstractController
     public function edit(Request $request, Figure $figure): Response
     {
         $form = $this->createForm(FigureType::class, $figure);
-        $form->handleRequest($request);
 
+        $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $uploadedFile = $form['imageFile']->getData();
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('figure_index');

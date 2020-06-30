@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
@@ -192,7 +193,7 @@ class SecurityController extends AbstractController
             $resetToken = $this->resetPasswordHelper->generateResetToken($user);
         } catch (ResetPasswordExceptionInterface $e) {
             $this->addFlash('reset_password_error', sprintf(
-                'There was a problem handling your password reset request - %s',
+                'There was a problem handling your reset request - %s',
                 $e->getReason()
             ));
 
@@ -210,7 +211,12 @@ class SecurityController extends AbstractController
             ])
         ;
 
-        $mailer->send($email);
+        try {
+            $mailer->send($email);
+        } catch (TransportExceptionInterface $e) {
+            $this->addFlash('reset_password_error','there was a problem validating your reset request - SMTP unavaiable');
+            return $this->redirectToRoute('app_forgot_password_request');
+        }
 
         return $this->redirectToRoute('app_check_email');
     }

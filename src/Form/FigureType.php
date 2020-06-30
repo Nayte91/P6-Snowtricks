@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Category;
 use App\Entity\Figure;
+use App\Entity\Picture;
 use App\Entity\Video;
 use App\Service\VideoPlatformParser;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -34,21 +35,7 @@ class FigureType extends AbstractType
             ->add('description')
             ->add('category', EntityType::class, [
                 'class' => Category::class,
-            ]) /*
-            ->add('pictures', CollectionType::class, [
-                'entry_type' => PictureType::class,
-                'by_reference' => false,
-                'allow_add' => true,
-                'allow_delete' => true,
-                'prototype' => true,
             ])
-            ->add('videos', CollectionType::class, [
-                'entry_type' => VideoType::class,
-                'by_reference' => false,
-                'allow_add' => true,
-                'allow_delete' => true,
-                'prototype' => true,
-            ]) */
             ->add('url', UrlType::class, [
                 'trim' => true,
                 'mapped' => false,
