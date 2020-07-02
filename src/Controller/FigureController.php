@@ -39,7 +39,7 @@ class FigureController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $picture = new Picture;
-            $picture->setFile($form->get('picture')->getData());
+            $picture->setFile($form->get('pictures')->getData());
 
             if ($picture->getFile()) {
                 $picture->setFigure($figure);

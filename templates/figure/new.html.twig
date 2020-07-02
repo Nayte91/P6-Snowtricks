@@ -24,9 +24,9 @@
                 </div>
             </div>
             <div>
-                <button type="button" class="btn btn-outline-success add_picture_link"><i class="fas fa-plus"></i>Ajouter une image<i class="fas fa-image"></i></button>
-                {{ form_widget(form.picture) }}
+                <button id="addFile" type="button" class="btn btn-outline-success add_picture_link"><i class="fas fa-plus"></i>Ajouter une image<i class="fas fa-image"></i></button>
             </div>
+
         </div>
 
         <div class="col-sm-8">
@@ -54,6 +54,7 @@
             </div>
         </div>
 
+        <div>{{ form_widget(form.pictures) }}</div>
 
         <div class="d-flex col-10">
             <div class="mr-auto p-2">
@@ -64,6 +65,8 @@
             </div>
 
         </div>
+    </div>
+    <div id="imgContainer">
     </div>
     {{ form_end(form) }}
 {% endblock %}

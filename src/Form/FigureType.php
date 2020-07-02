@@ -44,10 +44,17 @@ class FigureType extends AbstractType
                 'label' => 'Ajouter une nouvelle vidéo',
                 'attr' => ['placeholder' => 'Youtube, Dailymotion ou Vimeo'],
             ])
+            ->add('pictures', CollectionType::class, [
+                'entry_type' => PictureType::class,
+                'allow_add'	=> true,
+                'label'	=> false,
+            ])
+            /*
             ->add('picture', FileType::class, [
                 'required' => false,
                 'mapped' => false,
-            ])
+            ])*/
+
             ->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
                 /** @var Figure */
                 $figure = $event->getData();
