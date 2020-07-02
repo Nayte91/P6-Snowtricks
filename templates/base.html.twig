@@ -57,10 +57,6 @@
             </ul>
         </header>
 
-        <nav>
-            {# TODO : déplacer le menu mobile ici. #}
-        </nav>
-
         <main class="container-fluid row justify-content-center" id="main">
         {% for message in app.flashes('success') %}
             <div class="alert alert-success">
@@ -77,6 +73,8 @@
             <div class="col-12">Copyright Julien Robic © 2020</div>
         </footer>
 
-        {% block javascripts %}{% endblock %}
+        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+        {% block javascripts %}
+        {% endblock %}
     </body>
 </html>

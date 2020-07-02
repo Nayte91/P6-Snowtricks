@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Figure;
+use App\Entity\Picture;
 use App\Form\FigureType;
 use App\Form\PictureType;
 use App\Repository\FigureRepository;
@@ -31,20 +32,32 @@ class FigureController extends AbstractController
      */
     public function new(Request $request): Response
     {
-        $form = $this->createForm(FigureType::class);
+        $figure = new Figure;
+        $form = $this->createForm(FigureType::class, $figure);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $figure = $form->getData();
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($figure);
-            $entityManager->flush();
+            $picture = new Picture;
+            $picture->setFile($form->get('picture')->getData());
 
-            $this->addFlash('notice', 'La figure a bien été enregistrée !');
-            return $this->redirectToRoute('figure_index');
+            if ($picture->getFile()) {
+                $picture->setFigure($figure);
+                $entityManager->persist($picture);
+            }
+
+        $figure->setCreatedAt(new \DateTime);
+
+        $entityManager->persist($figure);
+        $entityManager->flush();
+
+        $this->addFlash('notice', 'La figure a bien été enregistrée !');
+
+        return $this->redirectToRoute('figure_index');
         }
 
         return $this->render('figure/new.html.twig', [
+            'post' => $figure,
             'form' => $form->createView(),
         ]);
     }

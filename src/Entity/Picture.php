@@ -19,9 +19,17 @@ class Picture
     const UPLOAD_ROOT_DIR = __DIR__.'/../../public/'.self::UPLOAD_DIR;
 
     /**
+     * Figure's post this picture is related to.
+     *
+     * @ORM\ManyToOne(targetEntity="App\Entity\Figure", inversedBy="pictures")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $figure;
+
+    /**
      * Extension of the file as the user originally uploaded.
      *
-     * @ORM\Column(type="string", length=5)
+     * @ORM\Column(type="string", length=50)
      */
     private $extension;
 
@@ -33,24 +41,21 @@ class Picture
     private $alt;
 
     /**
-     * Figure's post this picture is related to.
-     *
-     * @ORM\ManyToOne(targetEntity="App\Entity\Figure", inversedBy="pictures")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $figure;
-
-    /**
      * @var UploadedFile $file
      */
     private $file;
 
-    /**
-     * Simple buffer variable in order to manage the filename during upload.
-     *
-     * @var string
-     */
-    private $tempFileName;
+    public function getFigure(): ?Figure
+    {
+        return $this->figure;
+    }
+
+    public function setFigure(?Figure $figure): self
+    {
+        $this->figure = $figure;
+
+        return $this;
+    }
 
     public function getExtension(): ?string
     {
@@ -76,18 +81,6 @@ class Picture
         return $this;
     }
 
-    public function getFigure(): ?Figure
-    {
-        return $this->figure;
-    }
-
-    public function setFigure(?Figure $figure): self
-    {
-        $this->figure = $figure;
-
-        return $this;
-    }
-
     public function getWebPath(): string
     {
         return self::UPLOAD_DIR.'/'.$this->id.'.'.$this->extension;
@@ -101,18 +94,9 @@ class Picture
         return $this->file;
     }
 
-    /**
-     * @param mixed $file
-     */
-    public function setFile($file): self
+    public function setFile(UploadedFile $file): self
     {
         $this->file = $file;
-
-        if ($this->extension) {
-            $this->tempFileName = $this->extension;
-        }
-
-        $this->extension = $this->alt = null;
 
         return $this;
     }
@@ -123,12 +107,10 @@ class Picture
      */
     public function preUploadFile(): void
     {
-        if (!$this->file) {
-            return;
-        }
+        if (!$this->file) return;
 
-        $this->extension = $this->file->getClientOriginalExtension();
         $this->alt = explode('.', $this->file->getClientOriginalName())[0];
+        $this->extension = $this->file->getClientOriginalExtension();
     }
 
     /**
@@ -137,35 +119,8 @@ class Picture
      */
     public function uploadFile(): void
     {
-        if (!$this->file) {
-            return;
-        }
-
-        if ($this->tempFileName) {
-            $oldFile = self::UPLOAD_ROOT_DIR.'/'.$this->id.'.'.$this->tempFileName;
-            if (file_exists($oldFile)) {
-                unlink($oldFile);
-            }
-        }
+        if (!$this->file) return;
 
         $this->file->move(self::UPLOAD_ROOT_DIR, $this->id.'.'.$this->extension);
-    }
-
-    /**
-     * @ORM\PreRemove
-     */
-    public function preRemoveFile(): void
-    {
-        $this->tempFileName = $this->id.'.'.$this->extension;
-    }
-
-    /**
-     * @ORM\PostRemove
-     */
-    public function removeFile(): void
-    {
-        if (file_exists(self::UPLOAD_ROOT_DIR.'/'.$this->tempFileName)) {
-            unlink(self::UPLOAD_ROOT_DIR.'/'.$this->tempFileName);
-        }
     }
 }

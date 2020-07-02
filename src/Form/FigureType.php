@@ -10,6 +10,7 @@ use App\Service\VideoPlatformParser;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -39,8 +40,13 @@ class FigureType extends AbstractType
             ->add('url', UrlType::class, [
                 'trim' => true,
                 'mapped' => false,
+                'required' => false,
                 'label' => 'Ajouter une nouvelle vidéo',
                 'attr' => ['placeholder' => 'Youtube, Dailymotion ou Vimeo'],
+            ])
+            ->add('picture', FileType::class, [
+                'required' => false,
+                'mapped' => false,
             ])
             ->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
                 /** @var Figure */
