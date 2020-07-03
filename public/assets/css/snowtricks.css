@@ -11,8 +11,7 @@ body {
             "hd";
 }
 
-header
-{
+header {
     padding: 10px;
     grid-area: hd;
     display: flex;
@@ -20,15 +19,15 @@ header
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: baseline;
+    background-color: whitesmoke;
 }
 
-main
-{
+main {
     width: 100%;
     min-height: auto;
     grid-area: mn;
     background-image: url('/assets/images/Snowtricks-background.jpg');
-    background-size: auto;
+    background-size: 100% auto;
     background-position: top;
     background-repeat: no-repeat;
 }
@@ -55,9 +54,20 @@ main
     footer {
         grid-area: ft;
         display: flex;
+        flex-wrap: nowrap;
         align-items: center;
         justify-content: space-around;
         font-size: 0.90rem;
+        background-color: whitesmoke;
+    }
+
+    article {
+        margin-top: 100px;
+        margin-bottom: 100px;
+        margin-right: 10%;
+        margin-left: 10%;
+        border-style: solid;
+        background-color: white;
     }
 
     .app-computer {

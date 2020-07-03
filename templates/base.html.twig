@@ -11,7 +11,7 @@
     </head>
 
     <body>
-        <header class="navbar navbar-expand navbar-light bg-light flex-row">
+        <header class="navbar navbar-expand navbar-light flex-row">
             <a class="navbar-brand app-computer" href="{{ path('figure_index') }}">
                 <img src="{{ asset('assets/images/Snowtricks-logo.jpg') }}"  height="35" class="align-top" alt="logo">
             </a>
@@ -57,18 +57,18 @@
             </ul>
         </header>
 
-        <main class="container-fluid row justify-content-center" id="main">
-        {% for message in app.flashes('success') %}
-            <div class="alert alert-success">
-                {{ message }}
-            </div>
-        {% endfor %}
-            <div class="col-12 m-5 container-fluid">
+        <main>
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
             {% block main %}{% endblock %}
-            </div>
         </main>
 
-        <footer class="bg-light row text-center app-computer">
+        <footer class="flex-row text-center app-computer">
             <div class="col-12">Ce site est un projet d'étude réalisé avec le framework Symfony dans le cadre du parcours de formation d'OpenClassRooms : Développeur d'application PHP/Symfony.</div>
             <div class="col-12">Copyright Julien Robic © 2020</div>
         </footer>

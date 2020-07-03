@@ -47,14 +47,8 @@ class FigureType extends AbstractType
             ->add('pictures', CollectionType::class, [
                 'entry_type' => PictureType::class,
                 'allow_add'	=> true,
-                'label'	=> false,
+                'entry_options' => ['label'	=> false],
             ])
-            /*
-            ->add('picture', FileType::class, [
-                'required' => false,
-                'mapped' => false,
-            ])*/
-
             ->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
                 /** @var Figure */
                 $figure = $event->getData();
