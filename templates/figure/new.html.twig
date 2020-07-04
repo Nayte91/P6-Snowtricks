@@ -4,30 +4,32 @@
 
 {% block main %}
     <article class="container">
-            {{ form_start(form) }}
-            <div class="row">
+        {{ form_start(form) }}
+            <div class="row justify-content-center">
                 <div class="col-12">
-                    <img src="{{ asset('assets/images/card-default.jpg') }}" alt="default" class="img-responsive text-center">
+                    <img src="{{ asset('assets/images/card-default.jpg') }}" alt="default" class="img-fluid mx-auto d-block">
                 </div>
 
                 <div class="col-12">
                     <h3 class="text-center">Pictures & Videos</h3>
                     <div class="row">
                         <div class="col-12">
-                            <p>
-                                Add your pictures or videos to illustrate this trick.
-                                <button type="button" class="btn btn-outline-success add_picture_link"><i class="fas fa-plus"></i>New image<i class="fas fa-image"></i></button>
-                                <button type="button" class="btn btn-outline-success add_picture_link"><i class="fas fa-plus"></i>New video<i class="fas fa-image"></i></button>
-                            </p>
-                            {{ form_row(form.url) }}
+                            <p class="text-center">Add your pictures or videos to illustrate this trick.</p>
+                        </div>
+                        <div class="col-6 pictures" data-prototype="{{ form_widget(form.pictures.vars.prototype)|e('html_attr') }}">
+                            <button type="button" class="btn add_picture_link"><i class="fas fa-plus"></i> Add a picture</button>
+                        </div>
+
+                        <div class="col-6">
+                            <p>Add a video</p>
+                            {{ form_widget(form.url) }}
                         </div>
                     </div>
 
-                    <div class="" data-prototype="{{ form_widget(form.pictures.vars.prototype)|e('html_attr') }}">
-                    </div>
+
                 </div>
 
-                <div class="col-sm-8">
+                <div class="col-sm-8 ">
                     <h3 class="text-center">About this trick</h3>
                     <table class="table">
                         <thead class="thead-dark">
@@ -64,9 +66,9 @@
 
                 </div>
             </div>
-            {{ form_end(form) }}
-        </div>
+        {{ form_end(form) }}
     </article>
+
 {% endblock %}
 
 {% block javascripts %}

@@ -105,7 +105,7 @@ class Picture
      * @ORM\PrePersist
      * @ORM\PreUpdate
      */
-    public function preUploadFile(): void
+    public function parseFilename(): void
     {
         if (!$this->file) return;
 
@@ -117,7 +117,7 @@ class Picture
      * @ORM\PostPersist
      * @ORM\PostUpdate
      */
-    public function uploadFile(): void
+    public function sortFile(): void
     {
         if (!$this->file) return;
 

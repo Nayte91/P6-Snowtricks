@@ -194,11 +194,10 @@ class Figure
         return $this->createdAt;
     }
 
-    public function setCreatedAt(?\DateTimeInterface $createdAt): self
+    /** @ORM\PrePersist */
+    public function setCreatedAt(): void
     {
-        $this->createdAt = $createdAt;
-
-        return $this;
+        $this->createdAt = new \DateTimeImmutable;
     }
 
     public function getLastModified(): ?\DateTimeInterface
@@ -211,5 +210,14 @@ class Figure
         $this->lastModified = $lastModified;
 
         return $this;
+    }
+
+    /** @ORM\PrePersist */
+    public function preUploadFile(): void
+    {
+        if (!$this->file) return;
+
+        $this->alt = explode('.', $this->file->getClientOriginalName())[0];
+        $this->extension = $this->file->getClientOriginalExtension();
     }
 }

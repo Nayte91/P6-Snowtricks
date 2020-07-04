@@ -21,7 +21,6 @@ class FigureController extends AbstractController
      */
     public function index(FigureRepository $figureRepository, Profiler $profiler): Response
     {
-        $profiler->enable();
         return $this->render('figure/index.html.twig', [
             'figures' => $figureRepository->findAll(),
         ]);
@@ -46,8 +45,6 @@ class FigureController extends AbstractController
                 $picture->setFigure($figure);
                 $entityManager->persist($picture);
             }
-
-        $figure->setCreatedAt(new \DateTime);
 
         $entityManager->persist($figure);
         $entityManager->flush();

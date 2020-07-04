@@ -3,7 +3,7 @@
 {% block title %}Log in!{% endblock %}
 
 {% block main %}
-    <div class="container text-center">
+    <article class="container text-center">
         <form method="post">
             {% if error %}
                 <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -30,6 +30,6 @@
             </button>
         </form>
         <div class="mt-3 app-mobile"><a href="#">Register</a></div>
-        <div class="mt-3"><a href="{{ path('app_forgot_password_request') }}">Forgot Password ?</a></div>
-    </div>
+        <div class="my-3"><a href="{{ path('app_forgot_password_request') }}">Forgot Password ?</a></div>
+    </article>
 {% endblock %}
