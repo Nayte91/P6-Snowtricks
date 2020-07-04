@@ -26,10 +26,17 @@ main {
     width: 100%;
     min-height: auto;
     grid-area: mn;
-    background-image: url('/assets/images/Snowtricks-background.jpg');
+    background-image: url('/../../assets/images/Snowtricks-background.jpg');
     background-size: 100% auto;
     background-position: top;
     background-repeat: no-repeat;
+}
+
+article {
+    margin: 15vh auto;
+    padding: 2em;
+    background-color: white;
+    border: 1px solid whitesmoke;
 }
 
 .app-computer {
@@ -38,6 +45,13 @@ main {
 
 .app-mobile {
     display: inherit;
+}
+
+#formHolder {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 400px;
 }
 
 /* Here for large screens like computer */
@@ -62,12 +76,7 @@ main {
     }
 
     article {
-        margin-top: 100px;
-        margin-bottom: 100px;
-        margin-right: 10%;
-        margin-left: 10%;
-        border-style: solid;
-        background-color: white;
+        max-width: 700px;
     }
 
     .app-computer {
