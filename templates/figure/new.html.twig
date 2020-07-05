@@ -16,14 +16,16 @@
                         <div class="col-12">
                             <p class="text-center">Add your pictures or videos to illustrate this trick.</p>
                         </div>
-                        <div class="col-6 pictures" data-prototype="{{ form_widget(form.pictures.vars.prototype)|e('html_attr') }}">
+                        <div class="col-6 pictures" data-prototype="">
                             <button type="button" class="btn add_picture_link"><i class="fas fa-plus"></i> Add a picture</button>
+                            {{ form_widget(form.pictures.vars.prototype) }}
                         </div>
 
-                        <div class="col-6">
-                            <p>Add a video</p>
+                        <div class="col-6 videos">
+                            <button type="button" class="btn add_video_link"><i class="fas fa-plus"></i> Add a video</button>
                             {{ form_widget(form.url) }}
                         </div>
+
                     </div>
                 </div>
 
