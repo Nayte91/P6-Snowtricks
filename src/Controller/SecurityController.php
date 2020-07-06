@@ -93,12 +93,8 @@ class SecurityController extends AbstractController
         $form = $this->createForm(ResetPasswordRequestFormType::class);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            return $this->processSendingPasswordResetEmail(
-                $form->get('email')->getData(),
-                $mailer
-            );
-        }
+        if ($form->isSubmitted() && $form->isValid())
+            return $this->processSendingPasswordResetEmail($form->get('email')->getData(), $mailer);
 
         return $this->render('security/reset_password/request.html.twig', [
             'requestForm' => $form->createView(),
@@ -200,7 +196,7 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('app_forgot_password_request');
         }
 
-        $email = (new TemplatedEmail())
+        $email = (new TemplatedEmail)
             ->from(new Address('nayte91@gmail.com', 'Julien Robic'))
             ->to($user->getEmail())
             ->subject('Your password reset request')
