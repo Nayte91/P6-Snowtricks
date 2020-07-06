@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\ChangePasswordFormType;
+use App\Form\NewPasswordFormType;
 use App\Form\RegistrationFormType;
 use App\Form\ResetPasswordRequestFormType;
 use App\Security\LoginFormAuthenticator;
@@ -60,7 +60,7 @@ class SecurityController extends AbstractController
             $user->setPassword(
                 $passwordEncoder->encodePassword(
                     $user,
-                    $form->get('plainPassword')->getData()
+                    $form->get('plainPassword')->get('plainPassword')->getData()
                 )
             );
 
@@ -146,7 +146,7 @@ class SecurityController extends AbstractController
         }
 
         // The token is valid; allow the user to change their password.
-        $form = $this->createForm(ChangePasswordFormType::class);
+        $form = $this->createForm(NewPasswordFormType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
