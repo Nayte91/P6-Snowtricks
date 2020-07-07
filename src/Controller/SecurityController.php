@@ -111,6 +111,10 @@ class SecurityController extends AbstractController
         // We prevent users from directly accessing this page
         if (!$this->canCheckEmail()) return $this->redirectToRoute('app_forgot_password_request');
 
+        $this->addFlash('warning', sprintf(
+            'An email has been sent that contains a link that you can click to reset your password. This link will expire in %d hour(s).',
+            $this->resetPasswordHelper->getTokenLifetime()));
+
         return $this->render('security/reset_password/check_email.html.twig', [
             'tokenLifetime' => $this->resetPasswordHelper->getTokenLifetime(),
         ]);
@@ -137,7 +141,7 @@ class SecurityController extends AbstractController
         try {
             $user = $this->resetPasswordHelper->validateTokenAndFetchUser($token);
         } catch (ResetPasswordExceptionInterface $e) {
-            $this->addFlash('reset_password_error', sprintf(
+            $this->addFlash('danger', sprintf(
                 'There was a problem validating your reset request - %s',
                 $e->getReason()
             ));
