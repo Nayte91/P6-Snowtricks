@@ -49,6 +49,7 @@ class FigureType extends AbstractType
                 'allow_add'	=> true,
                 'allow_delete' => true,
                 'entry_options' => ['label'	=> false],
+                'label' => false,
             ])
             ->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
                 /** @var Figure */

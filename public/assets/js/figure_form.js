@@ -1,45 +1,46 @@
 var $collectionHolder;
 
-var prototype = $('div.pictures').data('prototype');
-var $button = $('button.add_picture_link');
+// setup an "add a picture" link
+var $addPictureButton = $('<button type="button" class="btn add_picture_link"><i class="fas fa-plus"></i> Add a picture</button>');
+var $newLinkLi = $('<div></div>').append($addPictureButton);
 
 jQuery(document).ready(function() {
-    $collectionHolder = $('div.pictures');
-    $button.on('click', function() {
+    // Get the ul that holds the collection of pictures
+    $collectionHolder = $('#figure_pictures');
 
-        // add a new tag form (see next code block)
-        addTagForm($collectionHolder);
+    // add the "add a picture" anchor and li to the pictures ul
+    $collectionHolder.append($newLinkLi);
+
+    // count the current form inputs we have (e.g. 2), use that as the new
+    // index when inserting a new item (e.g. 2)
+    $collectionHolder.data('index', $collectionHolder.find('input').length);
+
+    $addPictureButton.on('click', function(e) {
+        // add a new picture form (see next code block)
+        addPictureForm($collectionHolder, $newLinkLi);
     });
 });
 
-function addTagForm($collectionHolder) {
+function addPictureForm($collectionHolder, $newLinkLi) {
     // Get the data-prototype explained earlier
-    //var prototype = $collectionHolder.data('prototype');
+    var prototype = $collectionHolder.data('prototype');
 
     // get the new index
     var index = $collectionHolder.data('index');
 
     var newForm = prototype;
-    // You need this only if you didn't set 'label' => false in your tags field in TaskType
-    // Replace '__name__label__' in the prototype's HTML to
-    // instead be a number based on how many items we have
-    // newForm = newForm.replace(/__name__label__/g, index);
 
-    // Replace '__name__' in the prototype's HTML to
-    // instead be a number based on how many items we have
+    // You need this only if you didn't set 'label' => false in your pictures field in FigureType
+    // Replace '__name__label__' in the prototype's HTML to instead be a number based on how many items we have
+    //newForm = newForm.replace(/__name__label__/g, index);
+
+    // Replace '__name__' in the prototype's HTML to instead be a number based on how many items we have
     newForm = newForm.replace(/__name__/g, index);
 
     // increase the index with one for the next item
     $collectionHolder.data('index', index + 1);
 
-
-    var $newFormMarkups = $('<div></div>').append(newForm);
-    $button.after($newFormMarkups);
+    // Display the form in the page in an div, after the "Add a picture" link div
+    $newFormLi = $('<div></div>').append(newForm);
+    $newLinkLi.append($newFormLi);
 }
-
-$('.custom-file-input').on('change', function(event) {
-    var inputFile = event.currentTarget;
-    $(inputFile).parent()
-        .find('.custom-file-label')
-        .html(inputFile.files[0].name);
-});

@@ -6,6 +6,7 @@ use App\Entity\Figure;
 use App\Entity\Picture;
 use App\Form\FigureType;
 use App\Repository\FigureRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -35,16 +36,42 @@ class FigureController extends AbstractController
         $figure = new Figure;
         $form = $this->createForm(FigureType::class, $figure);
 
+        $originalPictures = new ArrayCollection();
+
+        // Create an ArrayCollection of the current Tag objects in the database
+        foreach ($figure->getPictures() as $tag) {
+            $originalPictures->add($tag);
+        }
+
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
+            dd($request);
             $entityManager = $this->getDoctrine()->getManager();
             $picture = new Picture;
-            $picture->setFile($form->get('pictures')->getData());
+            //$picture->setFile($form->get('pictures')->getData());
 
+            foreach ($originalPictures as $picture) {
+                if (false === $figure->getPictures()->contains($picture)) {
+                    // remove the Task from the Tag
+                    $picture->getfigures()->removeElement($picture);
+
+                    // if it was a many-to-one relationship, remove the relationship like this
+                    // $tag->setTask(null);
+
+                    $entityManager->persist($picture);
+
+                    // if you wanted to delete the Tag entirely, you can also do that
+                    // $entityManager->remove($tag);
+                }
+            }
+
+            /*
             if ($picture->getFile()) {
                 $picture->setFigure($figure);
                 $entityManager->persist($picture);
             }
+            */
 
         $entityManager->persist($figure);
         $entityManager->flush();

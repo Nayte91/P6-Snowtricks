@@ -20,12 +20,18 @@
                     <p class="text-center">Add your pictures or videos to illustrate this trick.</p>
                 </div>
             </div>
-            <div class="row justify-content-center">
-                <div class="col-12 col-lg-5 pictures" data-prototype="">
-                    <button type="button" class="btn add_picture_link"><i class="fas fa-plus"></i> Add a picture</button>
-                    {{ form_widget(form.pictures.vars.prototype) }}
+            <div class="row justify-content-center pictures-block">
+                <div class="col-12 col-lg-5">
+                    {{ form_row(form.pictures) }}
+                    {#
+                    <ul class="pictures" data-prototype="{{ form_widget(form.pictures.vars.prototype)|e('html_attr') }}">
+                        {% for picture in form.pictures %}
+                            <li>{{ form_row(picture.name) }}</li>
+                        {% endfor %}
+                    </ul>
+                    #}
                 </div>
-                <div class="col-12 col-lg-5 offset-lg-1 videos">
+                <div class="col-12 col-lg-5 offset-lg-1 videos-block">
                     <button type="button" class="btn add_video_link"><i class="fas fa-plus"></i> Add a video</button>
                     {{ form_widget(form.url) }}
                 </div>
@@ -69,7 +75,6 @@
             </div>
         {{ form_end(form) }}
     </article>
-
 {% endblock %}
 
 {% block javascripts %}
