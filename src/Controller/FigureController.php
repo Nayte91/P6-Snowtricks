@@ -19,9 +19,12 @@ class FigureController extends AbstractController
     /** @Route("/", name="figure_index", methods={"GET"}) */
     public function index(FigureRepository $figureRepository, Profiler $profiler): Response
     {
-        return $this->render('figure/index.html.twig', [
-            'figures' => $figureRepository->findAll(),
-        ]);
+        return $this->render(
+            'figure/index.html.twig',
+            [
+                'figures' => $figureRepository->findModified(),
+            ]
+        );
     }
 
     /**
@@ -35,9 +38,12 @@ class FigureController extends AbstractController
         $entityManager->persist($figure);
         $entityManager->flush();
 
-        return $this->redirectToRoute('figure_edit', [
-            'id' => $figure->getId(),
-        ]);
+        return $this->redirectToRoute(
+            'figure_edit',
+            [
+                'id' => $figure->getId(),
+            ]
+        );
     }
 
     /**
@@ -45,9 +51,12 @@ class FigureController extends AbstractController
      */
     public function show(Figure $figure): Response
     {
-        return $this->render('figure/show.html.twig', [
-            'figure' => $figure,
-        ]);
+        return $this->render(
+            'figure/show.html.twig',
+            [
+                'figure' => $figure,
+            ]
+        );
     }
 
     /**
@@ -60,17 +69,18 @@ class FigureController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $uploadedFile = $form['imageFile']->getData();
-
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('figure_index');
         }
 
-        return $this->render('figure/edit.html.twig', [
-            'figure' => $figure,
-            'form' => $form->createView(),
-        ]);
+        return $this->render(
+            'figure/edit.html.twig',
+            [
+                'figure' => $figure,
+                'form' => $form->createView(),
+            ]
+        );
     }
 
     /**

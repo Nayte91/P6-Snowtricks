@@ -206,10 +206,9 @@ class Figure
         return $this->lastModified;
     }
 
-    public function setLastModified(?\DateTimeInterface $lastModified): self
+    /** @ORM\PreUpdate */
+    public function setLastModified(): void
     {
-        $this->lastModified = $lastModified;
-
-        return $this;
+        $this->lastModified = new \DateTimeImmutable;
     }
 }
