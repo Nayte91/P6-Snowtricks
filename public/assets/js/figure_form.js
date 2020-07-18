@@ -6,7 +6,7 @@ var $newLinkLi = $('<div></div>').append($addPictureButton);
 
 jQuery(document).ready(function() {
     // Get the ul that holds the collection of pictures
-    $collectionHolder = $('#figure_pictures');
+    $collectionHolder = $('ul.pictures');
 
     // add the "add a picture" anchor and li to the pictures ul
     $collectionHolder.append($newLinkLi);

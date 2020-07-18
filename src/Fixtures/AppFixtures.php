@@ -43,7 +43,7 @@ class AppFixtures extends Fixture
         foreach ($this->getFiguresData() as $figureData) {
             $figure = new Figure;
             $category = $manager->getRepository(Category::class)->findOneByName($figureData['category']);
-            $figure->setName($figureData['name'])->setSlug($figureData['slug'])->setCreatedAt(new \DateTime($figureData['createdAt']))->setDescription($figureData['description'])->setCategory($category);
+            $figure->setName($figureData['name'])->setSlug($figureData['slug'])->setDescription($figureData['description'])->setCategory($category);
             $manager->persist($figure);
         }
 

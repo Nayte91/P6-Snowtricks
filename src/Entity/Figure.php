@@ -11,25 +11,26 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\FigureRepository")
- * @UniqueEntity("name")
+ * @ORM\HasLifecycleCallbacks()
+ * @UniqueEntity("id")
  */
 class Figure
 {
     use EntityIdTrait;
 
     /**
-     * @ORM\Column(type="string", length=100, unique=true)
+     * @ORM\Column(type="string", length=100, nullable=true)
      * @Assert\NotBlank
      */
     private $name;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=100, unique=true)
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
     private $slug;
 
@@ -210,14 +211,5 @@ class Figure
         $this->lastModified = $lastModified;
 
         return $this;
-    }
-
-    /** @ORM\PrePersist */
-    public function preUploadFile(): void
-    {
-        if (!$this->file) return;
-
-        $this->alt = explode('.', $this->file->getClientOriginalName())[0];
-        $this->extension = $this->file->getClientOriginalExtension();
     }
 }

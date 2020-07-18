@@ -6,7 +6,6 @@ use App\Entity\Figure;
 use App\Entity\Picture;
 use App\Form\FigureType;
 use App\Repository\FigureRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,9 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /** @Route("/") */
 class FigureController extends AbstractController
 {
-    /**
-     * @Route("/", name="figure_index", methods={"GET"})
-     */
+    /** @Route("/", name="figure_index", methods={"GET"}) */
     public function index(FigureRepository $figureRepository, Profiler $profiler): Response
     {
         return $this->render('figure/index.html.twig', [
@@ -34,56 +31,12 @@ class FigureController extends AbstractController
     public function new(Request $request): Response
     {
         $figure = new Figure;
-        $form = $this->createForm(FigureType::class, $figure);
-
-        $originalPictures = new ArrayCollection();
-
-        // Create an ArrayCollection of the current Tag objects in the database
-        foreach ($figure->getPictures() as $tag) {
-            $originalPictures->add($tag);
-        }
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            dd($request);
-            $entityManager = $this->getDoctrine()->getManager();
-            $picture = new Picture;
-            //$picture->setFile($form->get('pictures')->getData());
-
-            foreach ($originalPictures as $picture) {
-                if (false === $figure->getPictures()->contains($picture)) {
-                    // remove the Task from the Tag
-                    $picture->getfigures()->removeElement($picture);
-
-                    // if it was a many-to-one relationship, remove the relationship like this
-                    // $tag->setTask(null);
-
-                    $entityManager->persist($picture);
-
-                    // if you wanted to delete the Tag entirely, you can also do that
-                    // $entityManager->remove($tag);
-                }
-            }
-
-            /*
-            if ($picture->getFile()) {
-                $picture->setFigure($figure);
-                $entityManager->persist($picture);
-            }
-            */
-
+        $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($figure);
         $entityManager->flush();
 
-        $this->addFlash('notice', 'La figure a bien été enregistrée !');
-
-        return $this->redirectToRoute('figure_index');
-        }
-
-        return $this->render('figure/new.html.twig', [
-            'post' => $figure,
-            'form' => $form->createView(),
+        return $this->redirectToRoute('figure_edit', [
+            'id' => $figure->getId(),
         ]);
     }
 

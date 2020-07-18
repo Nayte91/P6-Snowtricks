@@ -1,50 +1,79 @@
-{% extends 'figure/display_template.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}Edit {{ figure.name }}{% endblock %}
 
-{% block header_edition %}
-    <a href="#" style="color: black;"><i class="fas fa-pencil-alt"></i></a>
-    <a href="#" class="pl-3" style="color: black;"><i class="fas fa-trash-alt"></i></a>
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/css/trickform.css') }}">
 {% endblock %}
 
-{% block picture_edition %}
-
-{% endblock %}
-
-{% block video_edition %}
-    <a class="video-remove" data-title="{{ video.id }}" href="#"><i class="fa fa-trash"></i></a>
-{% endblock %}
-
-{% block picture_addition %}
-{% endblock %}
-
-{% block figure_name %}
-    {{ form_widget(form.name) }}
-{% endblock %}
-
-{% block figure_category %}
-    {{ form_widget(form.category) }}
-{% endblock %}
-
-{% block figure_description %}
-    {{ form_widget(form.description) }}
-{% endblock %}
-
-{% block buttons %}
-    <div class="d-flex">
-        <div class="mr-auto p-2">
-            <a href="{{ path('figure_show', {'id': figure.id}) }}" class="btn btn-dark">Annuler</a>
+{% block main %}
+    <article id="trickForm">
+        {{ form_start(form) }}
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <img src="{{ asset('assets/images/card-default.jpg') }}" alt="default" class="img-fluid mx-auto d-block">
+            </div>
         </div>
-        <div class="p-2">
-            <input type="submit" class="btn btn-success" value="Sauvegarder">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <h3 class="text-center">Pictures & Videos</h3>
+                <p class="text-center">Add your pictures or videos to illustrate this trick.</p>
+            </div>
         </div>
-        <div class="p-2">
-            {{ include('figure/_delete_form.html.twig') }}
+        <div class="row justify-content-center pictures-block">
+            <div class="col-12 col-lg-5">
+                <ul class="pictures" data-prototype="{{ form_widget(form.pictures.vars.prototype)|e('html_attr') }}">
+                    {% for picture in form.pictures %}
+                        <li>{{ form_row(picture.name) }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-12 col-lg-5 offset-lg-1 videos-block">
+                <button type="button" class="btn add_video_link"><i class="fas fa-plus"></i> Add a video</button>
+                {{ form_widget(form.url) }}
+            </div>
         </div>
-    </div>
+        <div class="row">
+            <div class="col-12">
+                <h3 class="text-center">About this trick</h3>
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-5">
+                        <p>Name</p>
+                    </div>
+                    <div class="col-12 col-lg-5 offset-lg-1">
+                        <p>Category</p>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-5">
+                        {{ form_widget(form.name) }}
+                    </div>
+                    <div class="col-12 col-lg-5 offset-lg-1">
+                        {{ form_widget(form.category) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-11">
+                <h3 class="text-center">Describe it</h3>
+                <p>{{ form_widget(form.description) }}</p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="d-flex col-10">
+                <div class="mr-auto p-2">
+                    <a href="{{ path('figure_index') }}" class="btn btn-dark">Cancel</a>
+                </div>
+                <div class="p-2">
+                    <button class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </article>
 {% endblock %}
 
 {% block javascripts %}
     <script src="{{ asset('assets/js/figure_form.js') }}"></script>
-    <script src="{{ asset('assets/js/figure_edit.js') }}"></script>
 {% endblock %}
