@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Figure;
-use App\Entity\Picture;
 use App\Form\FigureType;
 use App\Repository\FigureRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;

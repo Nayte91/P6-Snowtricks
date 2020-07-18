@@ -1,32 +1,58 @@
-{% extends 'figure/display_template.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}{{ figure.name }}{% endblock %}
 
-{% block header_edition %}
-    <a href="{{ path('figure_edit', {'id': figure.id}) }}" style="color: black;"><i class="fas fa-pencil-alt"></i></a>
-    <a href="#" class="pl-3" style="color: black;"><i class="fas fa-trash-alt"></i></a>
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/css/trickform.css') }}">
 {% endblock %}
 
-{% block picture_edition %}{% endblock %}
-
-{% block video_edition %}{% endblock %}
-
-{% block figure_name %}
-    {{ figure.name }}
-{% endblock %}
-
-{% block figure_category %}
-    {{ figure.category }}
-{% endblock %}
-
-{% block figure_description %}
-    {{ figure.description }}
-{% endblock %}
-
-{% block figure_comments %}
-    {% if (true == false) %}
-        <div class="d-flex">
-            <h1>Commentaires</h1>
+{% block main %}
+    <article id="trickForm">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <img src="{{ asset('assets/images/card-default.jpg') }}" alt="default" class="img-fluid mx-auto d-block">
+            </div>
         </div>
-    {% endif %}
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <h3 class="text-center">Pictures & Videos</h3>
+                <p class="text-center">No picture or video yet.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h3 class="text-center">About this trick</h3>
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-5">
+                        <p>Name</p>
+                    </div>
+                    <div class="col-12 col-lg-5 offset-lg-1">
+                        <p>Category</p>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-5">
+                        {{ figure.name }}
+                    </div>
+                    <div class="col-12 col-lg-5 offset-lg-1">
+                        {{ figure.category }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-11">
+                <h3 class="text-center">Describe it</h3>
+                <p>{{ figure.description }}</p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="d-flex col-10">
+                <div class="mr-auto p-2">
+                    <a href="{{ path('figure_index') }}" class="btn btn-dark">Return to index</a>
+                </div>
+            </div>
+        </div>
+    </article>
 {% endblock %}
+

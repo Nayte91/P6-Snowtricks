@@ -8,7 +8,6 @@
 
 {% block main %}
     <article id="trickForm">
-        {{ form_start(form) }}
         <div class="row justify-content-center">
             <div class="col-12">
                 <img src="{{ asset('assets/images/card-default.jpg') }}" alt="default" class="img-fluid mx-auto d-block">
@@ -22,17 +21,23 @@
         </div>
         <div class="row justify-content-center pictures-block">
             <div class="col-12 col-lg-5">
-                <ul class="pictures" data-prototype="{{ form_widget(form.pictures.vars.prototype)|e('html_attr') }}">
-                    {% for picture in form.pictures %}
-                        <li>{{ form_row(picture.name) }}</li>
-                    {% endfor %}
-                </ul>
+                    <div class="form-group">
+                        <div class="custom-file">
+                            <label for="file" class="custom-file-label">File</label>
+                            <input id="file" class="custom-file-input" type="file" name="picture">
+                            <input type="submit" class="btn btn-light">
+                        </div>
+                    </div>
+                <p>Progress: <span id="progress-value"></span>%</p>
+                <p id="upload-complete"></p>
+                <p id="errors"></p>
             </div>
             <div class="col-12 col-lg-5 offset-lg-1 videos-block">
                 <button type="button" class="btn add_video_link"><i class="fas fa-plus"></i> Add a video</button>
                 {{ form_widget(form.url) }}
             </div>
         </div>
+        {{ form_start(form) }}
         <div class="row">
             <div class="col-12">
                 <h3 class="text-center">About this trick</h3>

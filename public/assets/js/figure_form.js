@@ -6,10 +6,10 @@ var $newLinkLi = $('<div></div>').append($addPictureButton);
 
 jQuery(document).ready(function() {
     // Get the ul that holds the collection of pictures
-    $collectionHolder = $('ul.pictures');
+    $collectionHolder = $('#upload-form');
 
     // add the "add a picture" anchor and li to the pictures ul
-    $collectionHolder.append($newLinkLi);
+    $collectionHolder.before($newLinkLi);
 
     // count the current form inputs we have (e.g. 2), use that as the new
     // index when inserting a new item (e.g. 2)
@@ -44,3 +44,30 @@ function addPictureForm($collectionHolder, $newLinkLi) {
     $newFormLi = $('<div></div>').append(newForm);
     $newLinkLi.append($newFormLi);
 }
+
+$(".custom-file-input").on("change", function() {
+    var fileName = $(this).val().split("\\").pop();
+    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
+
+/**
+ * Simple (ugly) code to handle the comment vote up/down
+ */
+var $container = $('.custom-file');
+$container.find('input').on('click', function(e) {
+    e.preventDefault();
+    var $link = $(e.currentTarget);
+
+    var myFormData = new FormData();
+    myFormData.append('pictureFile', pictureInput.files[0]);
+    $.ajax({
+        url: window.location.protocol+"//"+window.location.host+"/"+window.location.pathname.split('/')[1]+"/pictures/create",
+        method: 'POST',
+        processData: false, // important
+        contentType: false, // important
+        dataType : 'json',
+        data: myFormData
+    }).then(function(response) {
+        console.log("toto");
+    });
+});
