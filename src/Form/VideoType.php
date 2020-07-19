@@ -26,7 +26,8 @@ class VideoType extends AbstractType
             ->add('url', UrlType::class, [
                 'trim' => true,
                 'mapped' => false,
-                'label' => 'Lien vers la vidéo',
+                'required' => false,
+                'label' => 'Ajouter une nouvelle vidéo',
                 'attr' => ['placeholder' => 'Youtube, Dailymotion ou Vimeo'],
             ])
             ->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {

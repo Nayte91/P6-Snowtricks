@@ -37,12 +37,12 @@ class FigureType extends AbstractType
             ->add('category', EntityType::class, [
                 'class' => Category::class,
             ])
-            ->add('url', UrlType::class, [
-                'trim' => true,
-                'mapped' => false,
-                'required' => false,
-                'label' => 'Ajouter une nouvelle vidéo',
-                'attr' => ['placeholder' => 'Youtube, Dailymotion ou Vimeo'],
+            ->add('videos', CollectionType::class, [
+                'entry_type' => VideoType::class,
+                'allow_add'	=> true,
+                'allow_delete' => true,
+                'label' => false,
+                'entry_options' => ['label'	=> false],
             ])
             ->add('pictures', CollectionType::class, [
                 'entry_type' => PictureType::class,

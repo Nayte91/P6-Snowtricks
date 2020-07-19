@@ -3,7 +3,7 @@
 {% block title %}Edit {{ figure.name }}{% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('assets/css/trickform.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/trick.css') }}">
 {% endblock %}
 
 {% block main %}
@@ -21,20 +21,14 @@
         </div>
         <div class="row justify-content-center pictures-block">
             <div class="col-12 col-lg-5">
-                    <div class="form-group">
-                        <div class="custom-file">
-                            <label for="file" class="custom-file-label">File</label>
-                            <input id="file" class="custom-file-input" type="file" name="picture">
-                            <input type="submit" class="btn btn-light">
-                        </div>
-                    </div>
-                <p>Progress: <span id="progress-value"></span>%</p>
-                <p id="upload-complete"></p>
-                <p id="errors"></p>
+                <div class="form-group">
+                    <input type="file" name="file" id="file" />
+                    <br />
+                    <span id="uploaded_image"></span>
+                </div>
             </div>
             <div class="col-12 col-lg-5 offset-lg-1 videos-block">
                 <button type="button" class="btn add_video_link"><i class="fas fa-plus"></i> Add a video</button>
-                {{ form_widget(form.url) }}
             </div>
         </div>
         {{ form_start(form) }}
@@ -80,5 +74,5 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script src="{{ asset('assets/js/figure_form.js') }}"></script>
+    <script src="{{ asset('assets/js/upload.js') }}"></script>
 {% endblock %}
