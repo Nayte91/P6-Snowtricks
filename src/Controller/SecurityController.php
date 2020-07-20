@@ -51,11 +51,26 @@ class SecurityController extends AbstractController
     /** @Route("/register", name="app_register") */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $authenticator): Response
     {
-        $user = new User();
-        $form = $this->createForm(RegistrationFormType::class, $user);
+        $user = new User;
+        $form = $this->createForm(RegistrationFormType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            /* Here, I expect something like :
+                App\DTO\RegisterObject {#944 ▼
+                -username: "toto"
+                -email: "toto@gmail.com"
+                -plainPassword: totototo
+            */
+            dd($form->getData());
+            /* But what I get is :
+              App\DTO\RegisterObject {#944 ▼
+              -username: "toto"
+              -email: "toto@gmail.com"
+              -plainPassword: null
+          */
+
+
             // encode the plain password
             $user->setPassword(
                 $passwordEncoder->encodePassword(
