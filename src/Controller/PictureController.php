@@ -7,7 +7,9 @@ use App\Entity\Picture;
 use App\Repository\PictureRepository;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
@@ -15,33 +17,33 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 
 /**
- * @Route("/{id}/pictures/")
+ * @Route("/{id}/pictures")
  */
 class PictureController extends AbstractController
 {
-    /** @Route("list", name="pictures_list") */
-    public function list(Figure $figure, PictureRepository $pictureRepository)
+    /** @Route("/", name="pictures_list", methods={"GET"}) */
+    public function listPictures(Figure $figure, PictureRepository $pictureRepository): Response
     {
         $pictures = $pictureRepository->findByFigure($figure);
 
-        $encoders = [new JsonEncoder()];
-        $normalizers = [new ObjectNormalizer()];
-
-        $serializer = new Serializer($normalizers, $encoders);
+        $serializer = new Serializer([new ObjectNormalizer()], [new JsonEncoder()]);
 
         $jsonContent = $serializer->serialize($pictures, 'json', [AbstractNormalizer::IGNORED_ATTRIBUTES => ['figure', 'file', 'extension', 'id']]);
 
-        return $this->json($jsonContent, 200);
+        $response = new Response($jsonContent);
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
     }
 
-    /** @Route("{picture}/delete", name="pictures_remove") */
-    public function pictureRemove(Figure $figure, $picture)
+    /** @Route("{picture}/delete", name="pictures_remove", methods={"DELETE"}) */
+    public function removePicture(Figure $figure, Picture $picture)
     {
         return $this->json('ok');
     }
 
-    /** @Route("add", name="pictures_add", methods={"POST"}) */
-    public function pictureAdd(Request $request, Figure $figure, LoggerInterface $logger)
+    /** @Route("/add", name="pictures_add", methods={"POST"}) */
+    public function addPicture(Request $request, Figure $figure)
     {
         $file = $request->files->get('file');
         $picture = new Picture;

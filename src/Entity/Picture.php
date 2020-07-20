@@ -123,4 +123,11 @@ class Picture
 
         $this->file->move(self::UPLOAD_ROOT_DIR, $this->id.'.'.$this->extension);
     }
+
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
 }

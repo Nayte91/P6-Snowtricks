@@ -37,6 +37,7 @@ class FigureType extends AbstractType
             ->add('category', EntityType::class, [
                 'class' => Category::class,
             ])
+            /*
             ->add('videos', CollectionType::class, [
                 'entry_type' => VideoType::class,
                 'allow_add'	=> true,
@@ -50,7 +51,7 @@ class FigureType extends AbstractType
                 'allow_delete' => true,
                 'entry_options' => ['label'	=> false],
                 'label' => false,
-            ])
+            ])*/
             ->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
                 /** @var Figure */
                 $figure = $event->getData();
