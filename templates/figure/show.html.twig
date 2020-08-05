@@ -16,7 +16,13 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 <h3 class="text-center">Pictures & Videos</h3>
-                <p class="text-center">No picture or video yet.</p>
+                <div id="picturesAndVideos" class="row"></div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-11">
+                <h3 class="text-center">Description</h3>
+                <p>{{ figure.description }}</p>
             </div>
         </div>
         <div class="row">
@@ -41,12 +47,6 @@
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-11">
-                <h3 class="text-center">Describe it</h3>
-                <p>{{ figure.description }}</p>
-            </div>
-        </div>
-        <div class="row justify-content-center">
             <div class="d-flex col-10">
                 <div class="mr-auto p-2">
                     <a href="{{ path('figure_index') }}" class="btn btn-dark">Return to index</a>
@@ -55,4 +55,10 @@
         </div>
     </article>
 {% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('assets/js/show.js') }}"></script>
+    <script src="{{ asset('assets/js/medias.js') }}"></script>
+{% endblock %}
+
 

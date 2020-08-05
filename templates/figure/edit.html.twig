@@ -16,21 +16,25 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 <h3 class="text-center">Pictures & Videos</h3>
-                <div id="picturesAndVideos">
-                    <p class="text-center">Add your pictures or videos to illustrate this trick.</p>
+                <div id="picturesAndVideos" class="row"></div>
+                <div class="row justify-content-center pictures-block">
+                    <div class="col-12 col-lg-5">
+                        <div class="form-group">
+                            <input type="file" name="file" id="file" />
+                            <br />
+                            <span id="uploaded_image"></span>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-5 offset-lg-1 videos-block">
+                        <button type="button" class="btn add_video_link"><i class="fas fa-plus"></i> Add a video</button>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center pictures-block">
-            <div class="col-12 col-lg-5">
-                <div class="form-group">
-                    <input type="file" name="file" id="file" />
-                    <br />
-                    <span id="uploaded_image"></span>
-                </div>
-            </div>
-            <div class="col-12 col-lg-5 offset-lg-1 videos-block">
-                <button type="button" class="btn add_video_link"><i class="fas fa-plus"></i> Add a video</button>
+        <div class="row justify-content-center my-3">
+            <div class="col-11">
+                <h3 class="text-center mb-3">Describe it</h3>
+                <p>{{ form_widget(form.description) }}</p>
             </div>
         </div>
         {{ form_start(form) }}
@@ -55,12 +59,6 @@
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center my-3">
-            <div class="col-11">
-                <h3 class="text-center mb-3">Describe it</h3>
-                <p>{{ form_widget(form.description) }}</p>
-            </div>
-        </div>
         <div class="row justify-content-center">
             <div class="d-flex col-10">
                 <div class="mr-auto p-2">
@@ -76,5 +74,6 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script src="{{ asset('assets/js/upload.js') }}"></script>
+    <script src="{{ asset('assets/js/edit.js') }}"></script>
+    <script src="{{ asset('assets/js/medias.js') }}"></script>
 {% endblock %}

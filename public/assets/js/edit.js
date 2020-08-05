@@ -11,16 +11,13 @@ $(document).ready(function(){
             contentType: false,
             cache: false,
             processData: false,
-            success:function()
-            {
+            success:function() {
                 $('#uploaded_image').html("Upload Success !");
             }
         });
     });
 });
 
-window.onload = function(){
-    $.getJSON(window.location.protocol+"//"+window.location.host+"/"+window.location.pathname.split('/')[1]+"/pictures", function($pictures) {
-            console.log($pictures);
-        });
-    };
+window.onload = function() {
+    listPictures(window.location.pathname.split('/')[1], true);
+}

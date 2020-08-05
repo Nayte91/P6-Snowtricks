@@ -56,21 +56,6 @@ class SecurityController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /* Here, I expect something like :
-                App\DTO\RegisterObject {#944 ▼
-                -username: "toto"
-                -email: "toto@gmail.com"
-                -plainPassword: totototo
-            */
-            dd($form->getData());
-            /* But what I get is :
-              App\DTO\RegisterObject {#944 ▼
-              -username: "toto"
-              -email: "toto@gmail.com"
-              -plainPassword: null
-          */
-
-
             // encode the plain password
             $user->setPassword(
                 $passwordEncoder->encodePassword(
@@ -127,8 +112,8 @@ class SecurityController extends AbstractController
         if (!$this->canCheckEmail()) return $this->redirectToRoute('app_forgot_password_request');
 
         $this->addFlash('warning', sprintf(
-            'An email has been sent that contains a link that you can click to reset your password. This link will expire in %d hour(s).',
-            $this->resetPasswordHelper->getTokenLifetime()));
+            'An email has been sent that contains a link that you can click to reset your password. Its link will expire in %d hour(s).',
+            floor($this->resetPasswordHelper->getTokenLifetime()/3600)));
 
         return $this->render('security/reset_password/check_email.html.twig', [
             'tokenLifetime' => $this->resetPasswordHelper->getTokenLifetime(),

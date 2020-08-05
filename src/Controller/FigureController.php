@@ -37,6 +37,8 @@ class FigureController extends AbstractController
         $entityManager->persist($figure);
         $entityManager->flush();
 
+        $this->addFlash('success', 'Your new trick is created ! Edit it and save it to make it public.');
+
         return $this->redirectToRoute(
             'figure_edit',
             [

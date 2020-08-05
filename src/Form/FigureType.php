@@ -37,14 +37,14 @@ class FigureType extends AbstractType
             ->add('category', EntityType::class, [
                 'class' => Category::class,
             ])
-            /*
+
             ->add('videos', CollectionType::class, [
                 'entry_type' => VideoType::class,
                 'allow_add'	=> true,
                 'allow_delete' => true,
                 'label' => false,
                 'entry_options' => ['label'	=> false],
-            ])
+            ])/*
             ->add('pictures', CollectionType::class, [
                 'entry_type' => PictureType::class,
                 'allow_add'	=> true,
