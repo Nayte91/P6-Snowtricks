@@ -27,7 +27,7 @@ main {
     min-height: auto;
     grid-area: mn;
     background-image: url('/../../assets/images/Snowtricks-background.jpg');
-    background-size: 100% auto;
+    background-size: cover;
     background-position: top;
     background-repeat: no-repeat;
 }

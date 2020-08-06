@@ -3,38 +3,44 @@
 {% block title %}Figure index{% endblock %}
 
 {% block main %}
-    <div class="col-12 container-fluid">
-        <div class="row align-items-center" style="height: 100vh">
-            <div class="col-12 text-center">
-                <h1 class="font-weight-bold" style="color:red;">Come and find your style</h1>
-                <a href="#index" class="rounded-circle btn btn-danger">
-                    <i class="fas fa-arrow-down"></i>
-                </a>
-            </div>
+    <div style="height: calc(100vw*9/16);">
+        <div class="text-center" style="position: relative; top: 40%;">
+            <h1 class="font-weight-bold" style="color:red;">Come and find your style</h1>
+            <a href="#index" class="rounded-circle btn btn-danger">
+                <i class="fas fa-arrow-down"></i>
+            </a>
         </div>
-        <section class="row py-5 mx-3" id="index">
-            {% for figure in figures %}
-                <div class="col-sm-2">
-                    <div class="card">
-                        <img src="{{ asset('assets/images/card-default.jpg') }}" class="card-img-top" alt="Default" height="100" style="object-fit: cover;">
-                        <div class="card-body">
-                            <div class="card-title">
-                                <div class="float-left">
-                                    <a href="{{ path('figure_show', {'id': figure.id}) }}" style="text-decoration: underline;">{{ figure.name }}</a>
-                                </div>
-                                <div class="float-right" >
-                                    <a href="{{ path('figure_edit', {'id': figure.id}) }}" style="color: black;"><i class="fas fa-pencil-alt"></i></a>
-                                    <a href="#" class="pl-3" style="color: black;"><i class="fas fa-trash-alt"></i></a>
-                                </div>
+    </div>
+    <section class="row py-5 mx-3" id="index">
+        {% for figure in figures %}
+            <div class="col-sm-2">
+                <div class="card">
+                    <img src="{{ asset('assets/images/card-default.jpg') }}" class="card-img-top" alt="Default" height="100" style="object-fit: cover;">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <div class="float-left">
+                                <a href="{{ path('figure_show', {'id': figure.id}) }}" style="text-decoration: underline;">{{ figure.name }}</a>
+                            </div>
+                            <div class="float-right" >
+                                <a href="{{ path('figure_edit', {'id': figure.id}) }}" style="color: black;"><i class="fas fa-pencil-alt"></i></a>
+                                <a href="#" class="pl-3" style="color: black;"><i class="fas fa-trash-alt"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
-            {% else %}
-                <tr>
-                    <td colspan="5">no records found</td>
-                </tr>
-            {% endfor %}
-        </section>
-    </div>
+            </div>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+    </section>
+    <a id="bottomArrow" href="#index" class="rounded-circle btn btn-danger float-right" style="display: none">
+        <i class="fas fa-arrow-up"></i>
+    </a>
 {% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('assets/js/homepage.js') }}"></script>
+{% endblock %}
+
