@@ -4,6 +4,7 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('assets/css/trick.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/slick/slick.css') }}">
 {% endblock %}
 
 {% block main %}
@@ -16,17 +17,34 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 <h3 class="text-center">Pictures & Videos</h3>
-                <div id="picturesAndVideos" class="row"></div>
-                <div class="row justify-content-center pictures-block">
+                <div id="picturesAndVideos"></div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="row justify-content-center">
                     <div class="col-12 col-lg-5">
-                        <div class="form-group">
-                            <input type="file" name="file" id="file" />
-                            <br />
-                            <span id="uploaded_image"></span>
+                        <h4>Upload new picture</h4>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <button class="btn input-group-text" type="button" id="upload">Upload</button>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" name="picture" id="file" />
+                                <label class="custom-file-label" for="picture">Image file</label>
+                            </div>
                         </div>
+                        <p id="uploaded_image"></p>
                     </div>
-                    <div class="col-12 col-lg-5 offset-lg-1 videos-block">
-                        <button type="button" class="btn add_video_link"><i class="fas fa-plus"></i> Add a video</button>
+                    <div class="col-12 col-lg-5 offset-lg-1">
+                        <h4>Send new video</h4>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" name="video" id="url" placeholder="Youtube, DM or Vimeo" />
+                            <div class="input-group-append">
+                                <button class="btn input-group-text" type="button" id="send">Send</button>
+                            </div>
+                        </div>
+                        <p id="video_sent"></p>
                     </div>
                 </div>
             </div>
@@ -76,4 +94,5 @@
 {% block javascripts %}
     <script src="{{ asset('assets/js/edit.js') }}"></script>
     <script src="{{ asset('assets/js/medias.js') }}"></script>
+    <script src="{{ asset('assets/slick/slick.js') }}"></script>
 {% endblock %}

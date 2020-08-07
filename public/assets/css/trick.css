@@ -5,6 +5,10 @@
     max-width: 60vw;
 }
 
+#picturesAndVideos {
+    height: 140px;
+}
+
 /* Arrows */
 .slick-prev,
 .slick-next

@@ -37,28 +37,29 @@ class FigureType extends AbstractType
             ->add('category', EntityType::class, [
                 'class' => Category::class,
             ])
-
-            ->add('videos', CollectionType::class, [
-                'entry_type' => VideoType::class,
-                'allow_add'	=> true,
-                'allow_delete' => true,
-                'label' => false,
-                'entry_options' => ['label'	=> false],
-            ])/*
-            ->add('pictures', CollectionType::class, [
-                'entry_type' => PictureType::class,
-                'allow_add'	=> true,
-                'allow_delete' => true,
-                'entry_options' => ['label'	=> false],
-                'label' => false,
-            ])*/
             ->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
                 /** @var Figure */
                 $figure = $event->getData();
                 if (null !== $figureName = $figure->getName()) {
                     $figure->setSlug($this->slugger->slug($figureName)->lower());
                 }
-            })
+            });
+            /*
+            ->add('videos', CollectionType::class, [
+                'entry_type' => VideoType::class,
+                'allow_add'	=> true,
+                'allow_delete' => true,
+                'label' => false,
+                'entry_options' => ['label'	=> false],
+            ])
+            ->add('pictures', CollectionType::class, [
+                'entry_type' => PictureType::class,
+                'allow_add'	=> true,
+                'allow_delete' => true,
+                'entry_options' => ['label'	=> false],
+                'label' => false,
+            ])
+
             ->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
                 $video = new Video;
                 $userUrl = $event->getForm()->get('url')->getNormData();
@@ -68,6 +69,7 @@ class FigureType extends AbstractType
                     $video->setPlatform($this->parser->getWebSite());
                 }
             });
+            */
     }
 
     public function configureOptions(OptionsResolver $resolver)
