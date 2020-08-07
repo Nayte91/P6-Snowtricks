@@ -4,6 +4,8 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('assets/css/trick.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/slick/slick.css') }}">
+    <!--<link rel="stylesheet" href="{{ asset('assets/slick/slick-theme.css') }}">--!>
 {% endblock %}
 
 {% block main %}
@@ -16,7 +18,7 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 <h3 class="text-center">Pictures & Videos</h3>
-                <div id="picturesAndVideos" class="row"></div>
+                <div id="picturesAndVideos" class="slider demo"></div>
             </div>
         </div>
         <div class="row justify-content-center">
@@ -59,6 +61,7 @@
 {% block javascripts %}
     <script src="{{ asset('assets/js/show.js') }}"></script>
     <script src="{{ asset('assets/js/medias.js') }}"></script>
+    <script src="{{ asset('assets/slick/slick.js') }}"></script>
 {% endblock %}
 
 
