@@ -5,9 +5,7 @@ namespace App\Controller;
 use App\Entity\Figure;
 use App\Entity\Picture;
 use App\Repository\PictureRepository;
-use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,7 +24,7 @@ class PictureController extends AbstractController
     {
         $pictures = $pictureRepository->findByFigure($figure);
 
-        $serializer = new Serializer([new ObjectNormalizer()], [new JsonEncoder()]);
+        $serializer = new Serializer([new ObjectNormalizer], [new JsonEncoder]);
 
         $jsonContent = $serializer->serialize($pictures, 'json', [AbstractNormalizer::IGNORED_ATTRIBUTES => ['figure', 'file', 'extension', 'id']]);
 

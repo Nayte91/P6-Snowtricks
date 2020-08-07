@@ -24,7 +24,7 @@ header {
 
 main {
     width: 100%;
-    min-height: auto;
+    min-height: calc(100vw*9/16);
     grid-area: mn;
     background-image: url('/../../assets/images/Snowtricks-background.jpg');
     background-size: contain;
