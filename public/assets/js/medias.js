@@ -1,6 +1,5 @@
 function listPicturesAndVideos($id, editable) {
     $.getJSON(window.location.protocol+"//"+window.location.host+"/"+$id+"/pictures", function($pictures) {
-        // noinspection JSJQueryEfficiency
         var block = document.getElementById('picturesAndVideos');
         block.removeAttribute('class');
         while(block.firstChild) block.removeChild(block.firstChild)

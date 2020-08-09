@@ -25,25 +25,12 @@
                 <div class="row justify-content-center">
                     <div class="col-12 col-lg-5">
                         <h4>Upload new picture</h4>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <button class="btn input-group-text" type="button" id="upload">Upload</button>
-                            </div>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" name="picture" id="file" />
-                                <label class="custom-file-label" for="picture">Image file</label>
-                            </div>
-                        </div>
+                        {{ include('figure/_pictureform.html.twig') }}
                         <p id="uploaded_image"></p>
                     </div>
                     <div class="col-12 col-lg-5 offset-lg-1">
                         <h4>Send new video</h4>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" name="video" id="url" placeholder="Youtube, DM or Vimeo" />
-                            <div class="input-group-append">
-                                <button class="btn input-group-text" type="button" id="send">Send</button>
-                            </div>
-                        </div>
+                        {{ include('figure/_videoform.html.twig') }}
                         <p id="video_sent"></p>
                     </div>
                 </div>
@@ -92,6 +79,7 @@
 {% endblock %}
 
 {% block javascripts %}
+    <script>var figureid = {{ figure.id }}</script>
     <script src="{{ asset('assets/js/edit.js') }}"></script>
     <script src="{{ asset('assets/js/medias.js') }}"></script>
     <script src="{{ asset('assets/slick/slick.js') }}"></script>

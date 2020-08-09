@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Figure;
 use App\Entity\Video;
+use App\Form\VideoType;
 use App\Repository\VideoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -43,15 +44,20 @@ class VideoController extends AbstractController
     /** @Route("/add", name="videos_add", methods={"POST"}) */
     public function addVideo(Request $request, Figure $figure)
     {
-        /*
-        $file = $request->files->get('file');
-        $picture = new Video;
-        $picture->setFile($file);
-        $picture->setFigure($figure);
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($picture);
-        $em->flush();
-           */
-        return $this->json("c'est Toto qui pète", 201);
+        $video = new Video;
+
+        $form = $this->createForm(VideoType::class, $video);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $video->setFigure($figure);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($video);
+            $em->flush();
+
+            return $this->json("Video added !", 201);
+        }
+
+        return $this->json("Video not added.", 201);
     }
 }

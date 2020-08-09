@@ -1,48 +1,50 @@
 function pictureUpload() {
-    $(document).on('click', '#upload', function(){
-        if (document.getElementById("file").files.length === 0) {
-            $('#uploaded_image').html("Please select a file");
+    $(document).on('click', '#upload', function(e){
+        e.preventDefault();
+        var form = document.forms.namedItem('picture');
+        //avoid action when no file is selected
+        if (document.getElementById('picture_file').files.length === 0) {
+            document.getElementById('uploaded_image').innerText = 'Please select a file';
         } else {
-            var picture_data = new FormData();
-            var oFReader = new FileReader();
-            oFReader.readAsDataURL(document.getElementById("file").files[0]);
-            picture_data.append("file", document.getElementById('file').files[0]);
+            var pictureData = new FormData(form);
             $.ajax({
-                url: window.location.protocol+"//"+window.location.host+"/"+window.location.pathname.split('/')[1]+"/pictures/add",
-                method:"POST",
-                data: picture_data,
+                url: form.action,
+                method:'POST',
+                data: pictureData,
                 contentType: false,
-                cache: false,
                 processData: false,
                 success:function(response) {
                     $('#uploaded_image').html(response);
-                    listPicturesAndVideos(window.location.pathname.split('/')[1], true);
+                    listPicturesAndVideos(figureid, true);
                 }
             });
         }
-        document.getElementById("file").value = '';
+        //some cleanup of the input file field, to chain the tests
+        document.getElementById('picture_file').value = '';
     });
 }
 
 function videoSend() {
-    $(document).on('click', '#send', function(){
-        if (document.getElementById("url").value === "") {
+    $(document).on('click', '#send', function(e){
+        e.preventDefault();
+        var form = document.forms.namedItem('video');
+
+        if (document.getElementById("video_url").value === "") {
             $('#video_sent').html("Please give a link");
         } else {
-            video_data = document.getElementById("url").value;
+            var videoData = new FormData(form);
             $.ajax({
-                url: window.location.protocol + "//" + window.location.host + "/" + window.location.pathname.split('/')[1] + "/videos/add",
+                url: form.action,
                 method: "POST",
-                data: video_data,
+                data: videoData,
                 contentType: false,
-                cache: false,
                 processData: false,
                 success: function (response) {
                     $('#video_sent').html(response);
-                    listPicturesAndVideos(window.location.pathname.split('/')[1], true);
+                    listPicturesAndVideos(figureid, true);
                 }
             });
-            document.getElementById("url").value = '';
+            document.getElementById("video_url").value = '';
         }
     });
 }
@@ -50,5 +52,5 @@ function videoSend() {
 window.onload = function() {
     pictureUpload();
     videoSend();
-    listPicturesAndVideos(window.location.pathname.split('/')[1], true);
+    listPicturesAndVideos(figureid, true);
 }

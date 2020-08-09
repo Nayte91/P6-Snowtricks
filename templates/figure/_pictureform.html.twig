@@ -1,0 +1,11 @@
+{{ form_start(pictureform) }}
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <button class="btn input-group-text" type="button" id="upload">Upload</button>
+        </div>
+        <div class="custom-file">
+            {{ form_widget(pictureform.file, {'attr': {'class': 'task_field'}}) }}
+            <label class="custom-file-label" for="picture">Image file</label>
+        </div>
+    </div>
+{{ form_end(pictureform) }}

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Figure;
 use App\Entity\Picture;
+use App\Form\PictureType;
 use App\Repository\PictureRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -43,14 +44,19 @@ class PictureController extends AbstractController
     /** @Route("/add", name="pictures_add", methods={"POST"}) */
     public function addPicture(Request $request, Figure $figure)
     {
-        $file = $request->files->get('file');
         $picture = new Picture;
-        $picture->setFile($file);
-        $picture->setFigure($figure);
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($picture);
-        $em->flush();
+        $form = $this->createForm(PictureType::class, $picture);
 
-        return $this->json("OK ?", 201);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $picture->setFigure($figure);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($picture);
+            $em->flush();
+
+            return $this->json("Picture added !", 201);
+        }
+
+        return $this->json("Picture not added.", 406);
     }
 }

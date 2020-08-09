@@ -3,7 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Figure;
+use App\Entity\Picture;
 use App\Form\FigureType;
+use App\Form\PictureType;
+use App\Form\VideoType;
 use App\Repository\FigureRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,11 +22,9 @@ class FigureController extends AbstractController
     public function index(FigureRepository $figureRepository, Profiler $profiler): Response
     {
         return $this->render(
-            'figure/index.html.twig',
-            [
+            'figure/index.html.twig', [
                 'figures' => $figureRepository->findModified(),
-            ]
-        );
+            ]);
     }
 
     /**
@@ -39,12 +40,9 @@ class FigureController extends AbstractController
 
         $this->addFlash('success', 'Your new trick is created ! Edit it and save it to make it public.');
 
-        return $this->redirectToRoute(
-            'figure_edit',
-            [
+        return $this->redirectToRoute('figure_edit', [
                 'id' => $figure->getId(),
-            ]
-        );
+            ]);
     }
 
     /**
@@ -52,12 +50,9 @@ class FigureController extends AbstractController
      */
     public function show(Figure $figure): Response
     {
-        return $this->render(
-            'figure/show.html.twig',
-            [
+        return $this->render('figure/show.html.twig', [
                 'figure' => $figure,
-            ]
-        );
+            ]);
     }
 
     /**
@@ -66,6 +61,16 @@ class FigureController extends AbstractController
      */
     public function edit(Request $request, Figure $figure): Response
     {
+        $pictureForm = $this->createForm(PictureType::class, null, [
+            'action' => $this->generateUrl('pictures_add', [
+                'id' => $figure->getId(),
+            ]),
+        ]);
+        $videoForm = $this->createForm(VideoType::class, null, [
+            'action' => $this->generateUrl('videos_add', [
+                'id' => $figure->getId(),
+            ]),
+        ]);
         $form = $this->createForm(FigureType::class, $figure);
 
         $form->handleRequest($request);
@@ -75,13 +80,12 @@ class FigureController extends AbstractController
             return $this->redirectToRoute('figure_index');
         }
 
-        return $this->render(
-            'figure/edit.html.twig',
-            [
+        return $this->render('figure/edit.html.twig', [
                 'figure' => $figure,
                 'form' => $form->createView(),
-            ]
-        );
+                'pictureform' => $pictureForm->createView(),
+                'videoform' => $videoForm->createView(),
+            ]);
     }
 
     /**
