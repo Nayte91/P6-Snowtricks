@@ -4,7 +4,7 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('assets/css/trick.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/slick/slick.css') }}">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 {% endblock %}
 
 {% block main %}
@@ -16,7 +16,7 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-12">
-                <h3 class="text-center">Pictures & Videos</h3>
+                <h3>Pictures & Videos</h3>
                 <div id="picturesAndVideos"></div>
             </div>
         </div>
@@ -58,9 +58,10 @@
 {% endblock %}
 
 {% block javascripts %}
+    <script>var figureid = {{ figure.id }}</script>
     <script src="{{ asset('assets/js/show.js') }}"></script>
     <script src="{{ asset('assets/js/medias.js') }}"></script>
-    <script src="{{ asset('assets/slick/slick.js') }}"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 {% endblock %}
 
 

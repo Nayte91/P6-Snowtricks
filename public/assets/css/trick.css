@@ -6,51 +6,5 @@
 }
 
 #picturesAndVideos {
-    height: 140px;
-}
-
-/* Arrows */
-.slick-prev,
-.slick-next
-{
-    position: absolute;
-    display: block;
-    top: 20%;
-}
-
-
-.slick-prev:hover:before,
-.slick-prev:focus:before,
-.slick-next:hover:before,
-.slick-next:focus:before
-{
-    opacity: 1;
-}
-
-.slick-prev.slick-disabled:before,
-.slick-next.slick-disabled:before
-{
-    opacity: .25;
-}
-
-.slick-prev
-{
-    left: -25px;
-}
-
-[dir='rtl'] .slick-prev
-{
-    right: -25px;
-    left: auto;
-}
-
-.slick-next
-{
-    right: -25px;
-}
-
-[dir='rtl'] .slick-next
-{
-    right: auto;
-    left: -25px;
+    /*height: 140px;*/
 }
