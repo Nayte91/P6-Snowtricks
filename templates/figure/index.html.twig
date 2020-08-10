@@ -11,10 +11,10 @@
             </a>
         </div>
     </div>
-    <section class="row py-5 mx-3" id="index">
+    <section class="row row-cols-5 py-5 mx-3" id="index">
         {% for figure in figures %}
-            <div class="col-sm-2">
-                <div class="card">
+            <div class="col">
+                <div class="card mb-3">
                     <img src="{{ asset('assets/images/card-default.jpg') }}" class="card-img-top" alt="Default" height="100" style="object-fit: cover;">
                     <div class="card-body">
                         <div class="card-title">

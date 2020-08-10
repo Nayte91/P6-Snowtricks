@@ -44,32 +44,6 @@ class FigureType extends AbstractType
                     $figure->setSlug($this->slugger->slug($figureName)->lower());
                 }
             });
-            /*
-            ->add('videos', CollectionType::class, [
-                'entry_type' => VideoType::class,
-                'allow_add'	=> true,
-                'allow_delete' => true,
-                'label' => false,
-                'entry_options' => ['label'	=> false],
-            ])
-            ->add('pictures', CollectionType::class, [
-                'entry_type' => PictureType::class,
-                'allow_add'	=> true,
-                'allow_delete' => true,
-                'entry_options' => ['label'	=> false],
-                'label' => false,
-            ])
-
-            ->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
-                $video = new Video;
-                $userUrl = $event->getForm()->get('url')->getNormData();
-                if (null !== $userUrl) {
-                    $this->parser->parseUrl($userUrl);
-                    $video->setVideoId($this->parser->getVideoId());
-                    $video->setPlatform($this->parser->getWebSite());
-                }
-            });
-            */
     }
 
     public function configureOptions(OptionsResolver $resolver)
