@@ -4,7 +4,7 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('assets/css/trick.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/slick/slick.css') }}">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 {% endblock %}
 
 {% block main %}
@@ -36,51 +36,52 @@
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center my-3">
-            <div class="col-11">
-                <h3 class="text-center mb-3">Describe it</h3>
-                <p>{{ form_widget(form.description) }}</p>
-            </div>
-        </div>
         {{ form_start(form) }}
-        <div class="row my-3">
-            <div class="col-12">
-                <h3 class="text-center">About this trick</h3>
-                <div class="row justify-content-center">
-                    <div class="col-12 col-lg-5">
-                        <p>Name</p>
-                    </div>
-                    <div class="col-12 col-lg-5 offset-lg-1">
-                        <p>Category</p>
-                    </div>
+            <div class="row justify-content-center my-3">
+                <div class="col-11">
+                    <h3 class="text-center mb-3">Describe it</h3>
+                    {{ form_widget(form.description) | raw }}
                 </div>
-                <div class="row justify-content-center">
-                    <div class="col-12 col-lg-5">
-                        {{ form_widget(form.name) }}
+            </div>
+            <div class="row my-3">
+                <div class="col-12">
+                    <h3 class="text-center">About this trick</h3>
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-lg-5">
+                            <p>Name</p>
+                        </div>
+                        <div class="col-12 col-lg-5 offset-lg-1">
+                            <p>Category</p>
+                        </div>
                     </div>
-                    <div class="col-12 col-lg-5 offset-lg-1">
-                        {{ form_widget(form.category) }}
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-lg-5">
+                            {{ form_widget(form.name) }}
+                        </div>
+                        <div class="col-12 col-lg-5 offset-lg-1">
+                            {{ form_widget(form.category) }}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="d-flex col-10">
-                <div class="mr-auto p-2">
-                    <a href="{{ path('figure_index') }}" class="btn btn-dark">Cancel</a>
-                </div>
-                <div class="p-2">
-                    <button class="btn btn-primary">Save</button>
+            <div class="row justify-content-center">
+                <div class="d-flex col-10">
+                    <div class="mr-auto p-2">
+                        <a href="{{ path('figure_index') }}" class="btn btn-dark">Cancel</a>
+                    </div>
+                    <div class="p-2">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
                 </div>
             </div>
-        </div>
         {{ form_end(form) }}
     </article>
 {% endblock %}
 
 {% block javascripts %}
+    <script src="https://cdn.ckeditor.com/ckeditor5/21.0.0/classic/ckeditor.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>var figureid = {{ figure.id }}</script>
     <script src="{{ asset('assets/js/edit.js') }}"></script>
     <script src="{{ asset('assets/js/medias.js') }}"></script>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 {% endblock %}

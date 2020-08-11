@@ -7,16 +7,19 @@ use App\Entity\Figure;
 use App\Entity\Picture;
 use App\Entity\Video;
 use App\Service\VideoPlatformParser;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class FigureType extends AbstractType
 {
@@ -33,7 +36,7 @@ class FigureType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('description')
+            ->add('description', CKEditorType::class)
             ->add('category', EntityType::class, [
                 'class' => Category::class,
             ])
