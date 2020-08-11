@@ -21,10 +21,12 @@
                             <div class="float-left">
                                 <a href="{{ path('figure_show', {'slug': figure.slug }) }}" style="text-decoration: underline;">{{ figure.name }}</a>
                             </div>
+                            {% if is_granted('ROLE_USER') %}
                             <div class="float-right" >
                                 <a href="{{ path('figure_edit', {'slug': figure.slug }) }}" style="color: black;"><i class="fas fa-pencil-alt"></i></a>
                                 <a href="#" class="pl-3" style="color: black;"><i class="fas fa-trash-alt"></i></a>
                             </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
