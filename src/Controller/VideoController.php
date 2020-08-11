@@ -15,9 +15,7 @@ use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 
-/**
- * @Route("/{id}/videos")
- */
+/** @Route("/figures/{slug}/videos") */
 class VideoController extends AbstractController
 {
     /** @Route("/", name="videos_list", methods={"GET"}) */
@@ -35,7 +33,7 @@ class VideoController extends AbstractController
         return $response;
     }
 
-    /** @Route("{video}/delete", name="videos_remove", methods={"DELETE"}) */
+    /** @Route("/{video}/delete", name="videos_remove", methods={"DELETE"}) */
     public function removeVideo(Figure $figure, Video $video)
     {
         return $this->json('ok');

@@ -3,30 +3,18 @@
 namespace App\Controller;
 
 use App\Entity\Figure;
-use App\Entity\Picture;
 use App\Form\FigureType;
 use App\Form\PictureType;
 use App\Form\VideoType;
-use App\Repository\FigureRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Profiler\Profiler;
 use Symfony\Component\Routing\Annotation\Route;
 
-/** @Route("/") */
+/** @Route("/figures") */
 class FigureController extends AbstractController
 {
-    /** @Route("/", name="figure_index", methods={"GET"}) */
-    public function index(FigureRepository $figureRepository, Profiler $profiler): Response
-    {
-        return $this->render(
-            'figure/index.html.twig', [
-                'figures' => $figureRepository->findModified(),
-            ]);
-    }
-
     /**
      * @Route("/new", name="figure_new", methods={"GET","POST"})
      * @IsGranted("ROLE_USER")
@@ -37,16 +25,18 @@ class FigureController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($figure);
         $entityManager->flush();
+        $figure->setSlug($figure->getId());
+        $entityManager->flush();
 
         $this->addFlash('success', 'Your new trick is created ! Edit it and save it to make it public.');
 
         return $this->redirectToRoute('figure_edit', [
-                'id' => $figure->getId(),
+                'slug' => $figure->getSlug(),
             ]);
     }
 
     /**
-     * @Route("/{id}", name="figure_show", methods={"GET"}, requirements={"id":"\d+"})
+     * @Route("/{slug}", name="figure_show", methods={"GET"})
      */
     public function show(Figure $figure): Response
     {
@@ -56,19 +46,19 @@ class FigureController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="figure_edit", methods={"GET","POST"}, requirements={"id":"\d+"})
+     * @Route("/{slug}/edit", name="figure_edit", methods={"GET","POST"})
      * @IsGranted("ROLE_USER")
      */
     public function edit(Request $request, Figure $figure): Response
     {
         $pictureForm = $this->createForm(PictureType::class, null, [
             'action' => $this->generateUrl('pictures_add', [
-                'id' => $figure->getId(),
+                'slug' => $figure->getSlug(),
             ]),
         ]);
         $videoForm = $this->createForm(VideoType::class, null, [
             'action' => $this->generateUrl('videos_add', [
-                'id' => $figure->getId(),
+                'slug' => $figure->getSlug(),
             ]),
         ]);
         $form = $this->createForm(FigureType::class, $figure);
@@ -89,7 +79,7 @@ class FigureController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="figure_delete", methods={"DELETE"}, requirements={"id":"\d+"})
+     * @Route("/{slug}", name="figure_delete", methods={"DELETE"})
      * @IsGranted("ROLE_USER")
      */
     public function delete(Request $request, Figure $figure): Response

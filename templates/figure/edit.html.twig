@@ -81,7 +81,7 @@
 {% block javascripts %}
     <script src="https://cdn.ckeditor.com/ckeditor5/21.0.0/classic/ckeditor.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script>var figureid = {{ figure.id }}</script>
+    <script>var figureSlug = "{{ figure.slug }}";</script>
     <script src="{{ asset('assets/js/edit.js') }}"></script>
     <script src="{{ asset('assets/js/medias.js') }}"></script>
 {% endblock %}

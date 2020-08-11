@@ -49,7 +49,6 @@ class RegistrationFormType extends AbstractType
                             'max' => 4096,
                         ]),
                     ],
-
                 ],
                 'second_options' => [
                     'label' => 'Repeat password',

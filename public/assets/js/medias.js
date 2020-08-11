@@ -10,12 +10,13 @@ function displayPicturesAndVideos (pictures, videos, editable) {
     });
 }
 
-function listPicturesAndVideos($id, editable) {
+function listPicturesAndVideos(figureSlug, editable) {
     var pictures, videos;
-    $.getJSON(window.location.protocol+"//"+window.location.host+"/"+$id+"/videos", function(v) {
+
+    $.getJSON(window.location.protocol+"//"+window.location.host+"/figures/"+figureSlug+"/videos", function(v) {
         videos = v;
     });
-    $.getJSON(window.location.protocol+"//"+window.location.host+"/"+$id+"/pictures", function (p) {
+    $.getJSON(window.location.protocol+"//"+window.location.host+"/figures/"+figureSlug+"/pictures", function (p) {
         pictures = p;
     });
 

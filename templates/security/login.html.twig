@@ -24,14 +24,10 @@
             <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" required autofocus>
             <label for="inputPassword">Password</label>
             <input type="password" name="password" id="inputPassword" class="form-control" required>
-            <input type="hidden" name="_csrf_token"
-                   value="{{ csrf_token('authenticate') }}"
-            >
-            <button class="btn btn-lg btn-primary mt-3" type="submit">
-                Sign in
-            </button>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            <button class="btn btn-lg btn-primary mt-3" type="submit">Sign in</button>
         </form>
-        <div class="mt-3 app-mobile"><a href="#">Register</a></div>
+        <div class="mt-3 app-mobile"><a href="{{ path('app_register') }}">Register</a></div>
         <div class="mt-3"><a href="{{ path('app_forgot_password_request') }}">Forgot Password ?</a></div>
     </article>
 {% endblock %}

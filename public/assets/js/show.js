@@ -1,3 +1,3 @@
 window.onload = function() {
-    listPicturesAndVideos(figureid, false);
+    listPicturesAndVideos(figureSlug, false);
 }
