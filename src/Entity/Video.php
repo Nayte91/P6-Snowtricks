@@ -40,11 +40,6 @@ class Video
      */
     private $platform;
 
-    public function __construct()
-    {
-        $this->figure = new ArrayCollection();
-    }
-
     public function getVideoId(): ?string
     {
         return $this->videoId;
@@ -83,10 +78,7 @@ class Video
         return $this;
     }
 
-    /**
-     * @return Collection|Figure[]
-     */
-    public function getFigure(): Collection
+    public function getFigure(): Figure
     {
         return $this->figure;
     }

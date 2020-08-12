@@ -33,9 +33,12 @@ class VideoController extends AbstractController
         return $response;
     }
 
-    /** @Route("/{video}/delete", name="videos_remove", methods={"DELETE"}) */
+    /** @Route("/{video}/delete", name="videos_remove", methods={"GET"}) */
     public function removeVideo(Figure $figure, Video $video)
     {
+        $figure->removeVideo($video);
+        $this->getDoctrine()->getManager()->flush();
+
         return $this->json('ok');
     }
 
@@ -43,7 +46,6 @@ class VideoController extends AbstractController
     public function addVideo(Request $request, Figure $figure)
     {
         $video = new Video;
-
         $form = $this->createForm(VideoType::class, $video);
 
         $form->handleRequest($request);

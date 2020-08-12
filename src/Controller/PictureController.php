@@ -15,9 +15,7 @@ use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 
-/**
- * @Route("/figures/{slug}/pictures")
- */
+/** @Route("/figures/{slug}/pictures") */
 class PictureController extends AbstractController
 {
     /** @Route("/", name="pictures_list", methods={"GET"}) */
@@ -35,9 +33,12 @@ class PictureController extends AbstractController
         return $response;
     }
 
-    /** @Route("/{picture}/delete", name="pictures_remove", methods={"DELETE"}) */
+    /** @Route("/{picture}/delete", name="pictures_remove", methods={"GET"}) */
     public function removePicture(Figure $figure, Picture $picture)
     {
+        $figure->removePicture($picture);
+        $this->getDoctrine()->getManager()->flush();
+
         return $this->json('ok');
     }
 
