@@ -6,6 +6,7 @@ use App\Entity\Figure;
 use App\Entity\Video;
 use App\Form\VideoType;
 use App\Repository\VideoRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,7 +34,10 @@ class VideoController extends AbstractController
         return $response;
     }
 
-    /** @Route("/{video}/delete", name="videos_remove", methods={"GET"}) */
+    /**
+     * @Route("/{video}/delete", name="videos_remove", methods={"DELETE"})
+     * @IsGranted("ROLE_USER")
+     */
     public function removeVideo(Figure $figure, Video $video)
     {
         $figure->removeVideo($video);
@@ -42,7 +46,10 @@ class VideoController extends AbstractController
         return $this->json('ok');
     }
 
-    /** @Route("/add", name="videos_add", methods={"POST"}) */
+    /**
+     * @Route("/add", name="videos_add", methods={"POST"})
+     * @IsGranted("ROLE_USER")
+     */
     public function addVideo(Request $request, Figure $figure)
     {
         $video = new Video;

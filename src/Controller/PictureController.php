@@ -6,6 +6,7 @@ use App\Entity\Figure;
 use App\Entity\Picture;
 use App\Form\PictureType;
 use App\Repository\PictureRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,7 +34,10 @@ class PictureController extends AbstractController
         return $response;
     }
 
-    /** @Route("/{picture}/delete", name="pictures_remove", methods={"GET"}) */
+    /**
+     * @Route("/{picture}/delete", name="pictures_remove", methods={"DELETE"})
+     * @IsGranted("ROLE_USER")
+     */
     public function removePicture(Figure $figure, Picture $picture)
     {
         $figure->removePicture($picture);
@@ -42,7 +46,10 @@ class PictureController extends AbstractController
         return $this->json('ok');
     }
 
-    /** @Route("/add", name="pictures_add", methods={"POST"}) */
+    /**
+     * @Route("/add", name="pictures_add", methods={"POST"})
+     * @IsGranted("ROLE_USER")
+     */
     public function addPicture(Request $request, Figure $figure)
     {
         $picture = new Picture;

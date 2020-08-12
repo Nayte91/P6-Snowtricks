@@ -118,7 +118,8 @@ class AppFixtures extends Fixture
         return [
             [
                 'name' =>'Ollie',
-                'description' => "<p>Les Ollies sont l'une des fugures les plus essentielles à apprendre en matière de snowboard. Que vous fassiez des sauts de parc, des coups latéraux, des jibs urbains ou du freeride, l'ollie est le moyen le plus efficace de prendre l'air.</p>
+                'description' => "
+<p>Les Ollies sont l'une des fugures les plus essentielles à apprendre en matière de snowboard. Que vous fassiez des sauts de parc, des coups latéraux, des jibs urbains ou du freeride, l'ollie est le moyen le plus efficace de prendre l'air.</p>
 
 <p>Les Ollies sont essentiels car ils utilisent l'énergie du flex de votre planche pour vous faire monter. Essayez de sauter sur un terrain plat ... vous n'êtes pas devenu très haut, n'est-ce pas? Maintenant, laissez-nous vous apprendre à Ollie et obtenez de la hauteur dans ce saut!</p>
 
@@ -130,7 +131,8 @@ class AppFixtures extends Fixture
 
 <h4>Une question de timing</h4>
 
-<p>Défiez le timing de vos Ollies en utilisant quelque chose comme une boule de neige, un gant ou même un bâton comme marqueur de position au sol pour sauter et chronométrer votre pop. Quand il s'agit de faire des sauts en snowpark de parc, le timing compte beaucoup, donc cet exercice vous aidera vraiment à composer votre timing!</p>",
+<p>Défiez le timing de vos Ollies en utilisant quelque chose comme une boule de neige, un gant ou même un bâton comme marqueur de position au sol pour sauter et chronométrer votre pop. Quand il s'agit de faire des sauts en snowpark de parc, le timing compte beaucoup, donc cet exercice vous aidera vraiment à composer votre timing!</p>
+                ",
                 'category' => 'Straight airs',
                 'pictures' => []
             ],
@@ -142,7 +144,10 @@ class AppFixtures extends Fixture
             ],
             [
                 'name' => 'Melon',
-                'description' => "<h4>L’approche</h4><p>Commencez directement derrière le kicker à un point qui vous permettra d'atterrir en toute sécurité sur le dessus de la table ou juste au-dessus de l'articulation. Recréez une forme d'entonnoir avec vos virages en vous concentrant sur la conduite droite au centre du kicker.</p>
+                'description' => "
+<h4>L’approche</h4>
+
+<p>Commencez directement derrière le kicker à un point qui vous permettra d'atterrir en toute sécurité sur le dessus de la table ou juste au-dessus de l'articulation. Recréez une forme d'entonnoir avec vos virages en vous concentrant sur la conduite droite au centre du kicker.</p>
 
 <h4>Décollage</h4>
 
@@ -158,24 +163,29 @@ class AppFixtures extends Fixture
 
 <p>Points à vérifier</p>
 
-<ul><li>Préparez-vous à saisir en montant légèrement plus bas que la normale</li>
+<ul>
+    <li>Préparez-vous à saisir en montant légèrement plus bas que la normale</li>
 	<li>Faites un Pop ou un ollie pour bien mettre la planche en place</li>
-</ul>",
+</ul>
+                ",
                 'category' => 'Grabs',
                 'pictures' => []
             ],
             [
                 'name' =>'Cork',
-                'description' => "<p>Un cork est une rotation verticale mais aussi horizontale plus ou moins désaxée, selon un mouvement d'épaules effectué juste au moment du saut.</p>
+                'description' => "
+<p>Un cork est une rotation verticale mais aussi horizontale plus ou moins désaxée, selon un mouvement d'épaules effectué juste au moment du saut.</p>
 
-<p>Fondamentalement, c'est un flip hors axe lancé en arrière avec un spin (le plus souvent 540º ou Rodeo 5). Tire-bouchon ou «Cork»: Le skieur effectue une rotation hors axe ou inversée horizontale distincte. À aucun moment, les pieds du skieur ne doivent être au-dessus de leur tête. Double Cork ou «Dub Cork»: Le skieur effectue deux rotations hors axe distinctes.</p>",
+<p>Fondamentalement, c'est un flip hors axe lancé en arrière avec un spin (le plus souvent 540º ou Rodeo 5). Tire-bouchon ou «Cork»: Le skieur effectue une rotation hors axe ou inversée horizontale distincte. À aucun moment, les pieds du skieur ne doivent être au-dessus de leur tête. Double Cork ou «Dub Cork»: Le skieur effectue deux rotations hors axe distinctes.</p>
+                ",
                 'category' => 'Flips',
                 'pictures' => []
             ],
             [
                 'name' => 'Frontside 180',
                 'category' => 'Spins',
-                'description' => "<p>Le Frontside 180 est une des rotations la plus facile à apprendre sur un snowboard. Pour bien le réaliser il y a une astuce devenue intemporelle qui, lorsqu'elle est exécutée avec le bon style, résiste bien aux triplés le plus noueux.</p>
+                'description' => "
+<p>Le Frontside 180 est une des rotations la plus facile à apprendre sur un snowboard. Pour bien le réaliser il y a une astuce devenue intemporelle qui, lorsqu'elle est exécutée avec le bon style, résiste bien aux triplés le plus noueux.</p>
 
 <h4>Par où commencer ?</h4>
 
@@ -218,7 +228,8 @@ class AppFixtures extends Fixture
             ],
             [
                 'name' =>'Canadian Bacon',
-                'description' => "<h4>Le grab</h4>
+                'description' => "
+<h4>Le grab</h4>
 
 <p>Cette prise vous oblige à passer par derrière pour&nbsp;saisir la planche entre les jambes. Ne vous focalisez pas&nbsp;trop sur cette dernière phrase. Le bacon canadien n'est pas aussi compliqué qu'il y paraît - même s'il semble quand même bizarre au début !&nbsp;</p>
 
@@ -244,7 +255,8 @@ class AppFixtures extends Fixture
             ],
             [
                 'name' => 'Frontside 50-50',
-                'description' => "<p>Le 50-50 est probablement le plus simple de tous les tricks et le premier que vous apprendrez. Son nom signifie littéralement : glisser sur une rampe ou un rail. En soi, ce n'est pas le mouvement le plus excitant du monde, mais lorsque vous le liez dans un combo, les choses deviennent plus intéressantes. Ses trois variantes sont idéales pour les rampes plates que vous trouverez dans la plupart des parcs et des dômes de neige, alors pourquoi ne pas donner une chance aux 50-50 ?</p>
+                'description' => "
+<p>Le 50-50 est probablement le plus simple de tous les tricks et le premier que vous apprendrez. Son nom signifie littéralement : glisser sur une rampe ou un rail. En soi, ce n'est pas le mouvement le plus excitant du monde, mais lorsque vous le liez dans un combo, les choses deviennent plus intéressantes. Ses trois variantes sont idéales pour les rampes plates que vous trouverez dans la plupart des parcs et des dômes de neige, alors pourquoi ne pas donner une chance aux 50-50 ?</p>
 
 <h4>L'approche</h4>
 
@@ -266,6 +278,52 @@ class AppFixtures extends Fixture
 
 <p>La partie la plus délicate. Restez concentré et confiant, prêt à vous lancer. Lorsque vous approchez de l'extrémité du rail, donnez-lui un peu de pop et rapprochez un peu vos genoux pour absorber l'impact. Vous devriez atterrir avec la planche à plat mais légèrement sur le bord afin de garder le contrôle.</p>",
                 'category' => 'Slides',
+            ],
+            [
+                'name' => 'Japan Air',
+                'description' => "
+<p>Un Japan Air est super divertissant à regarder et encore plus amusant à piétiner. Ajouter du Japon à vos tours est un moyen sûr d'obtenir des accessoires de vos amis.</p>
+
+<h4>Trois billets pour Tokyo</h4>
+
+<ol>
+    <li>Prenez un Mute et lancez-vous en avant en jetant votre autre bras en arrière</li>
+	<li>Gardez votre bras à l'extérieur de votre genou, en dehors du genou mais à l'intérieur des fixations.</li>
+	<li>Pliez les genoux et cambrez le dos.</li>
+</ol>
+
+<p>Ce trick necessiterait de prendre quelques cours de yoga&nbsp;</p>
+
+<p>Ce trick est un peu plus avancé, vous devriez donc avoir de l'expérience avec la plupart des grabs de base avant de prendre votre envol.</p>
+                ",
+                'category' => 'Grabs',
+            ],
+            [
+                'name' => 'Backside Rodeo 540 Melon',
+                'description' => "
+<p>Rotation désaxée de 3 tours effectuée tête en bas. Rotation mélangée à un backflip avec une implusion sur les talons.</p>
+                                
+<h4>1. La préparation</h4>
+
+<p>Cela pourrait être une astuce plus difficile, mais vous devriez prendre la course et la transition exactement de la même manière que les 180 et 360, en mettant en place votre poids centré, votre planche à plat et un peu de pression sur le bord de vos orteils.</p>
+
+<h4>2. Le pop</h4>
+
+<p>Maintenant pour la partie amusante! Lorsque vous atteignez la lèvre, vous voulez faire éclater comme vous le feriez pour un 540 arrière afin que vous soyez sûr d'obtenir suffisamment de rotation pour vous déplacer. Pendant l'éclatement, cependant, vous devrez jeter votre tête sur votre épaule arrière afin de lancer l'élément hors axe du tour.</p>
+
+<h4>3. Le grab</h4>
+
+<p>Vous avez vraiment besoin de vous présenter le tableau si vous voulez saisir cette astuce. Si vous deviez même essayer de tendre la main, vous êtes dans un monde en difficulté et vous atterrirez très probablement sur votre cou! Pas beaucoup de plaisir et un bon tracas pour la patrouille de ski vous gratter de la pente. Dans cette photo, je prends du melon - je trouve que c'est la prise la plus facile pour aider à faire tourner la rotation - mais encore une fois, si vous trouvez d'autres prises plus faciles avec des backflips droits et 540, essayez-les.</p>
+
+<h4>4. Continuez à saisir</h4>
+
+<p>Continuez à tenir la benne aussi longtemps que vous le pouvez, mais sur cette astuce, je dirais que c'est encore plus important de le faire, car l'ouverture arrêtera la rotation et vous risquez bien de la tourner, ce qui ne sera pas joli.</p>
+
+<h4>5. L’atterissage</h4>
+
+<p>Parce que vous venez sur un axe étrange, vous pouvez voir votre atterrissage très loin, ce qui aide. La seule partie difficile est que vous atterrissez aveugle comme vous le feriez sur un arrière 180 ou 540, donc les mêmes règles d'atterrissage s'appliquent: regardez entre vos fixations au sol, repérez votre atterrissage et plantez les deux pieds en même temps –Avec un peu de pression sur le bord des orteils pour arrêter la rotation. Il est trop facile de revenir immédiatement si vous ne faites pas attention et que la pression sur le bord des orteils est la clé pour l'arrêter. Après vous être assuré que vous avez fait tout ce que vous devriez être en mesure de désactiver l'interrupteur, juste à temps pour le dernier appel!</p>
+                ",
+                'category' => 'Spins',
             ],
         ];
     }
