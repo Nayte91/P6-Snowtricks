@@ -51,6 +51,20 @@ article {
     border: 1px solid whitesmoke;
 }
 
+#trickForm {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 60vw;
+}
+
+#securityForm {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 40vw;
+}
+
 /* Here for large screens like computer */
 @media (min-width: 1280px)
 {

@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Entity\Video;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
+use phpDocumentor\Reflection\Types\This;
 
 /**
  * Class VideoPlatformParser
@@ -99,5 +100,10 @@ class VideoPlatformParser
             'website' => $this->website,
             'videoId' => $this->videoId,
         ];
+    }
+
+    public function hasParsedRight(): bool
+    {
+        return $this->hasParsedRight;
     }
 }

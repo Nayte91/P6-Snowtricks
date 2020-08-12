@@ -11,7 +11,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\FigureRepository")
- * @ORM\HasLifecycleCallbacks()
+ * @ORM\EntityListeners({"App\Event\FigureListener"})
  * @UniqueEntity("id")
  */
 class Figure
@@ -195,10 +195,11 @@ class Figure
         return $this->createdAt;
     }
 
-    /** @ORM\PrePersist */
-    public function setCreatedAt(): void
+    public function setCreatedAt(\DateTimeInterface $dateTime): self
     {
-        $this->createdAt = new \DateTimeImmutable;
+        $this->createdAt = $dateTime;
+
+        return $this;
     }
 
     public function getLastModified(): ?\DateTimeInterface
@@ -206,9 +207,10 @@ class Figure
         return $this->lastModified;
     }
 
-    /** @ORM\PreUpdate */
-    public function setLastModified(): void
+    public function setLastModified(\DateTimeInterface $dateTime): self
     {
-        $this->lastModified = new \DateTimeImmutable;
+        $this->lastModified = $dateTime;
+
+        return $this;
     }
 }

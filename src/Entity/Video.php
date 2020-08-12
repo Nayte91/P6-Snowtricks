@@ -108,7 +108,7 @@ class Video
         } elseif ($this->platform == self::VIMEO) {
             return 'https://player.vimeo.com/video/'.$this->videoId;
         } elseif ($this->platform == self::DAILYMOTION) {
-            return 'https://www.dailymotion.com/video/'.$this->videoId;
+            return 'https://www.dailymotion.com/embed/video/'.$this->videoId;
         }
 
         return null;

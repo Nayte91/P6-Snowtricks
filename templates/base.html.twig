@@ -16,7 +16,6 @@
             <a class="navbar-brand app-computer" href="{{ path('figure_index') }}">
                 <img src="{{ asset('assets/images/Snowtricks-logo.jpg') }}"  height="35" class="align-top" alt="logo">
             </a>
-
             <ul class="navbar-nav flex-fill justify-content-around app-mobile">
                 <li class="nav-item" style="font-size: 45px">
                     <a class="nav-link {% if app.request.get('_route') == 'figure_index' %}active{% endif %}" href="{{ path('figure_index') }}"><i class="fas fa-home"></i></a>
@@ -75,7 +74,6 @@
         </footer>
 
         <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-        {% block javascripts %}
-        {% endblock %}
+        {% block javascripts %}{% endblock %}
     </body>
 </html>

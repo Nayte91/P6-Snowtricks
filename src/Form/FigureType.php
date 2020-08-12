@@ -35,11 +35,7 @@ class FigureType extends AbstractType
             ])
             ->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
                 $figure = $event->getData();
-                if (null !== $figureName = $figure->getName()) {
-                    $figure->setSlug($this->slugger->slug($figureName)->lower());
-                } else {
-                    $figure->setSlug($figure->getId());
-                }
+                $figure->setLastModified(new \DateTime);
             });
     }
 

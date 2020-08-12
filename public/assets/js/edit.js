@@ -15,7 +15,7 @@ function pictureUpload() {
                 processData: false,
                 success:function(response) {
                     $('#uploaded_image').html(response);
-                    listPicturesAndVideos(figureid, true);
+                    listPicturesAndVideos(figureSlug, true);
                 }
             });
         }
@@ -41,7 +41,7 @@ function videoSend() {
                 processData: false,
                 success: function (response) {
                     $('#video_sent').html(response);
-                    listPicturesAndVideos(figureid, true);
+                    listPicturesAndVideos(figureSlug, true);
                 }
             });
             document.getElementById("video_url").value = '';

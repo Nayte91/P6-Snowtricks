@@ -6,6 +6,8 @@ use App\Entity\Category;
 use App\Entity\Figure;
 use App\Entity\Picture;
 use App\Entity\User;
+use App\Entity\Video;
+use App\Service\VideoPlatformParser;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use phpDocumentor\Reflection\Types\This;
@@ -16,17 +18,20 @@ class AppFixtures extends Fixture
 {
     private $passwordEncoder;
     private $slugger;
+    private $parser;
 
-    public function __construct(UserPasswordEncoderInterface $passwordEncoder, SluggerInterface $slugger)
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder, SluggerInterface $slugger, VideoPlatformParser $parser)
     {
         $this->passwordEncoder = $passwordEncoder;
         $this->slugger = $slugger;
+        $this->parser = $parser;
     }
 
     public function load(ObjectManager $manager): void
     {
         $this->loadCategories($manager);
         $this->loadFigures($manager);
+        $this->loadVideos($manager);
         $this->loadUsers($manager);
     }
 
@@ -47,11 +52,35 @@ class AppFixtures extends Fixture
         foreach ($this->getFiguresData() as $figureData) {
             $figure = new Figure;
             $category = $manager->getRepository(Category::class)->findOneByName($figureData['category']);
-            $figure->setName($figureData['name'])->setSlug($this->slugger->slug($figureData['name'])->lower());
+            $figure
+                ->setName($figureData['name'])
+                ->setDescription($figureData['description'])
+                ->setCategory($category)
+                ->setLastModified(new \DateTime);
             $manager->persist($figure);
-            $manager->flush();
-            $figure->setDescription($figureData['description'])->setCategory($category);
-            $manager->persist($figure);
+        }
+
+        $manager->flush();
+    }
+
+    private function loadVideos(ObjectManager $manager)
+    {
+        foreach ($this->getFiguresData() as $figureData) {
+            if (array_key_exists('videos', $figureData)) {
+                $figure = $manager->getRepository(Figure::class)->findOneByName($figureData['name']);
+                foreach ($figureData['videos'] as $videoData) {
+                    $video = new Video;
+                    dump($videoData);
+                    $this->parser->parseUrl($videoData);
+                    if ($this->parser->hasParsedRight()) {
+                        $video->setVideoId($this->parser->getVideoId());
+                        $video->setPlatform($this->parser->getWebSite());
+                        $figure->addVideo($video);
+
+                        $manager->persist($video);
+                    }
+                }
+            }
         }
 
         $manager->flush();
