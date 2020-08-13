@@ -1,3 +1,12 @@
+function refreshPictureUploadLabel() {
+    $('#picture_file').on('change',function(e){
+        //get the file name
+        var fileName = e.target.files[0].name;
+        //replace the "Choose a file" label
+        $('.custom-file-label').text(fileName);
+    })
+}
+
 function pictureUpload() {
     $(document).on('click', '#upload', function(e){
         e.preventDefault();
@@ -21,6 +30,20 @@ function pictureUpload() {
         }
 
         document.getElementById('picture_file').value = '';
+    });
+}
+
+function pictureDelete() {
+    $(document).on('click', 'a[class="picture-delete"]' , function(e){
+        e.preventDefault();
+        let link = this.getAttribute('data-link');
+        $.ajax({
+            url: link,
+            method:'DELETE',
+            success: function () {
+                listPicturesAndVideos(figureSlug, true);
+            }
+        });
     });
 }
 
@@ -50,7 +73,9 @@ function videoSend() {
 }
 
 window.onload = function() {
+    refreshPictureUploadLabel();
     pictureUpload();
+    pictureDelete();
     videoSend();
     listPicturesAndVideos(figureSlug, true);
 }

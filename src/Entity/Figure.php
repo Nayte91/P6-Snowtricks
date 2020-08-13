@@ -41,8 +41,8 @@ class Figure
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Picture", cascade={"persist", "remove"})
-    private $displayPicture;
      */
+    private $displayPicture;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Picture", mappedBy="figure", cascade={"persist", "remove"}, orphanRemoval=true)
@@ -145,7 +145,6 @@ class Figure
         return $this;
     }
 
-    /*
     public function getDisplayPicture(): ?Picture
     {
         return $this->displayPicture;
@@ -157,7 +156,6 @@ class Figure
 
         return $this;
     }
-    */
 
     /**
      * @return Collection|Picture[]
@@ -171,6 +169,9 @@ class Figure
     {
         if (!$this->pictures->contains($picture)) {
             $this->pictures[] = $picture;
+            if (!$this->displayPicture) {
+                $this->displayPicture = $picture;
+            }
             $picture->setFigure($this);
         }
 
@@ -181,10 +182,10 @@ class Figure
     {
         if ($this->pictures->contains($picture)) {
             $this->pictures->removeElement($picture);
-            // set the owning side to null (unless already changed)
-            if ($picture->getFigure() === $this) {
-                $picture->setFigure(null);
-            }
+        }
+
+        if ($this->displayPicture === $picture) {
+            $this->displayPicture = null;
         }
 
         return $this;

@@ -24,7 +24,7 @@ class Picture
      * @ORM\ManyToOne(targetEntity="App\Entity\Figure", inversedBy="pictures")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $figure;
+    private Figure $figure;
 
     /**
      * Extension of the file as the user originally uploaded.
@@ -45,12 +45,12 @@ class Picture
      */
     private $file;
 
-    public function getFigure(): ?Figure
+    public function getFigure(): Figure
     {
         return $this->figure;
     }
 
-    public function setFigure(?Figure $figure): self
+    public function setFigure(Figure $figure): self
     {
         $this->figure = $figure;
 

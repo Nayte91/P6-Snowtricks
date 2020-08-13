@@ -26,7 +26,7 @@ class PictureController extends AbstractController
 
         $serializer = new Serializer([new ObjectNormalizer], [new JsonEncoder]);
 
-        $jsonContent = $serializer->serialize($pictures, 'json', [AbstractNormalizer::IGNORED_ATTRIBUTES => ['figure', 'file', 'extension', 'id']]);
+        $jsonContent = $serializer->serialize($pictures, 'json', [AbstractNormalizer::IGNORED_ATTRIBUTES => ['figure', 'file', 'extension']]);
 
         $response = new Response($jsonContent);
         $response->headers->set('Content-Type', 'application/json');
@@ -41,9 +41,12 @@ class PictureController extends AbstractController
     public function removePicture(Figure $figure, Picture $picture)
     {
         $figure->removePicture($picture);
-        $this->getDoctrine()->getManager()->flush();
+        $figure->setLastModified(new \DateTime);
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($picture);
+        $em->flush();
 
-        return $this->json('ok');
+        return $this->json($figure->getPictures()->count());
     }
 
     /**
@@ -57,7 +60,8 @@ class PictureController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $picture->setFigure($figure);
+            $figure->addPicture($picture);
+            $figure->setLastModified(new \DateTime);
             $em = $this->getDoctrine()->getManager();
             $em->persist($picture);
             $em->flush();
@@ -66,5 +70,17 @@ class PictureController extends AbstractController
         }
 
         return $this->json("Picture not added.", 406);
+    }
+
+    /**
+     * @Route("/{picture}/choose", name="pictures_choose", methods={"GET"})
+     * @IsGranted("ROLE_USER")
+     */
+    public function chooseDisplayPicture(Figure $figure, Picture $picture)
+    {
+        $figure->setDisplayPicture($picture);
+        $this->getDoctrine()->getManager()->flush();
+
+        return $this->json('ok');
     }
 }

@@ -19,7 +19,7 @@ class FigureController extends AbstractController
      * @Route("/new", name="figure_new", methods={"GET","POST"})
      * @IsGranted("ROLE_USER")
      */
-    public function new(Request $request): Response
+    public function new(): Response
     {
         $figure = new Figure;
         $entityManager = $this->getDoctrine()->getManager();
@@ -66,6 +66,8 @@ class FigureController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+
+            $this->addFlash('success', 'Trick saved, modifications are now published online !');
 
             return $this->redirectToRoute('figure_index');
         }

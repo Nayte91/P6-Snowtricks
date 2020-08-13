@@ -2,8 +2,19 @@ $.ajaxSetup({ async: false });
 
 function displayPicturesAndVideos (pictures, videos, editable) {
     $.each( pictures, function( i, picture ) {
-        var path = window.location.protocol+"//"+window.location.host+"/"+picture.webPath;
-        $('#picturesAndVideos').append('<div><img src="'+path+'" alt="'+picture.alt+'" height="150" class=""></div>');
+        let linkPath = window.location.protocol+"//"+window.location.host+"/"+picture.webPath;
+        let deletePath = window.location.protocol+"//"+window.location.host+"/figures/"+figureSlug+"/pictures/"+picture.id+"/delete";
+        let $pictureMarkup =
+            '<div style="position: relative;">' +
+            '<img src="'+linkPath+'" alt="'+picture.alt+'" height="150" style="display: block;">';
+        if (editable === true) {
+            $pictureMarkup +=
+                '<a href="#" data-link="'+deletePath+'" class="picture-delete" style="color: black;">' +
+                    '<i class="fas fa-trash-alt" style="position: absolute; bottom:0; left:0;"></i>' +
+                '</a>';
+        }
+        $pictureMarkup += '</div>';
+        $('#picturesAndVideos').append($pictureMarkup);
     });
     $.each( videos, function( i, video ) {
         $('#picturesAndVideos').append('<iframe height="150" src="'+video.url+'" frameborder="0" allowfullscreen></iframe>');
@@ -29,7 +40,7 @@ function listPicturesAndVideos(figureSlug, editable) {
         return;
     }
 
-    displayPicturesAndVideos(pictures, videos, true);
+    displayPicturesAndVideos(pictures, videos, editable);
 
     if (Object.keys(pictures).length+Object.keys(videos).length > 4 ) {
         $('#picturesAndVideos').slick({

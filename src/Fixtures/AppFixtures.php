@@ -70,7 +70,6 @@ class AppFixtures extends Fixture
                 $figure = $manager->getRepository(Figure::class)->findOneByName($figureData['name']);
                 foreach ($figureData['videos'] as $videoData) {
                     $video = new Video;
-                    dump($videoData);
                     $this->parser->parseUrl($videoData);
                     if ($this->parser->hasParsedRight()) {
                         $video->setVideoId($this->parser->getVideoId());
