@@ -185,7 +185,11 @@ class Figure
         }
 
         if ($this->displayPicture === $picture) {
-            $this->displayPicture = null;
+            if ($this->pictures->count() > 0) {
+                $this->displayPicture = $this->pictures->first();
+            } else {
+                $this->displayPicture = null;
+            }
         }
 
         return $this;
