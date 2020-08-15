@@ -10,7 +10,11 @@
     <article id="trickForm">
         <div class="row justify-content-center">
             <div class="col-12">
-                <img src="{{ asset('assets/images/card-default.jpg') }}" alt="default" class="img-fluid mx-auto d-block">
+                {% if figure.displayPicture %}
+                    <img src="{{ asset('/') }}{{ figure.displayPicture.webPath }}" alt="default" class="img-fluid mx-auto d-block">
+                {% else %}
+                    <img src="{{ asset('assets/images/card-default.jpg') }}" alt="default" class="img-fluid mx-auto d-block">
+                {% endif %}
             </div>
         </div>
         <div class="row justify-content-center">

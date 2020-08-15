@@ -15,7 +15,11 @@
         {% for figure in figures %}
             <div class="col">
                 <div class="card mb-3">
-                    <img src="{{ asset('assets/images/card-default.jpg') }}" class="card-img-top" alt="Default" height="100" style="object-fit: cover;">
+                    {% if figure.displayPicture %}
+                        <img src="{{ asset('/') }}{{ figure.displayPicture.webPath }}" alt="default" class="img-fluid mx-auto d-block">
+                    {% else %}
+                        <img src="{{ asset('assets/images/card-default.jpg') }}" alt="default" class="img-fluid mx-auto d-block"class="card-img-top" alt="Default" height="100" style="object-fit: cover;">
+                    {% endif %}
                     <div class="card-body">
                         <div class="card-title">
                             <div class="float-left">
