@@ -10,11 +10,7 @@
     <article id="trickForm">
         <div class="row justify-content-center">
             <div class="col-12" id="displayPicture">
-                {% if figure.displayPicture %}
-                    <img src="{{ asset('/') }}{{ figure.displayPicture.webPath }}" alt="default" class="img-fluid mx-auto d-block">
-                {% else %}
-                    <img src="{{ asset('assets/images/card-default.jpg') }}" alt="default" class="img-fluid mx-auto d-block">
-                {% endif %}
+                <img src="{{ asset('assets/images/card-default.jpg') }}" alt="default" class="img-fluid mx-auto d-block">
             </div>
         </div>
         <div class="row justify-content-center">
@@ -96,7 +92,10 @@
 {% block javascripts %}
     <script src="https://cdn.ckeditor.com/ckeditor5/21.0.0/classic/ckeditor.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script>var figureSlug = "{{ figure.slug }}";</script>
+    <script>
+        var figureSlug = "{{ figure.slug }}";
+        var defaultPicture = "{{ asset('assets/images/card-default.jpg') }}";
+    </script>
     <script src="{{ asset('assets/js/edit.js') }}"></script>
     <script src="{{ asset('assets/js/medias.js') }}"></script>
 {% endblock %}

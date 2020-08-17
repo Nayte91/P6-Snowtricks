@@ -9,12 +9,8 @@
 {% block main %}
     <article id="trickForm">
         <div class="row justify-content-center">
-            <div class="col-12">
-                {% if figure.displayPicture %}
-                    <img src="{{ asset('/') }}{{ figure.displayPicture.webPath }}" alt="default" class="img-fluid mx-auto d-block">
-                {% else %}
-                    <img src="{{ asset('assets/images/card-default.jpg') }}" alt="default" class="img-fluid mx-auto d-block">
-                {% endif %}
+            <div class="col-12" id="displayPicture">
+                <img src="{{ asset('assets/images/card-default.jpg') }}" alt="default" class="img-fluid mx-auto d-block">
             </div>
         </div>
         <div class="row justify-content-center">
@@ -80,6 +76,7 @@
 {% block javascripts %}
     <script>
         var figureSlug = "{{ figure.slug }}";
+        var defaultPicture = "{{ asset('assets/images/card-default.jpg') }}";
     </script>
     <script src="{{ asset('assets/js/show.js') }}"></script>
     <script src="{{ asset('assets/js/medias.js') }}"></script>

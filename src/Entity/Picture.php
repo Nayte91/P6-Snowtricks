@@ -45,6 +45,11 @@ class Picture
      */
     private $file;
 
+    /**
+     * @var bool
+     */
+    private $isDisplayPicture = false;
+
     public function getFigure(): Figure
     {
         return $this->figure;
@@ -135,5 +140,15 @@ class Picture
         $this->id = $id;
 
         return $this;
+    }
+
+    public function getIsDisplayPicture()
+    {
+        return $this->isDisplayPicture;
+    }
+
+    public function setIsDisplayPicture(bool $isDisplayPicture): void
+    {
+        $this->isDisplayPicture = $isDisplayPicture;
     }
 }

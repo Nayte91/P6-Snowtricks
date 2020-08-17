@@ -24,6 +24,10 @@ class PictureController extends AbstractController
     {
         $pictures = $pictureRepository->findByFigure($figure);
 
+        if ($dp = $figure->getDisplayPicture()) {
+            $dp->setIsDisplayPicture(true);
+        }
+
         $serializer = new Serializer([new ObjectNormalizer], [new JsonEncoder]);
 
         $jsonContent = $serializer->serialize($pictures, 'json', [AbstractNormalizer::IGNORED_ATTRIBUTES => ['figure', 'file', 'extension']]);
