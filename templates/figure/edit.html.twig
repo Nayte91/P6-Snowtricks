@@ -50,19 +50,31 @@
                 <div class="col-12">
                     <h3 class="text-center">About this trick</h3>
                     <div class="row justify-content-center">
-                        <div class="col-12 col-lg-5">
+                        <div class="col-12 col-lg-3">
                             <p>Name</p>
                         </div>
-                        <div class="col-12 col-lg-5 offset-lg-1">
+                        <div class="col-12 col-lg-3">
                             <p>Category</p>
+                        </div>
+                        <div class="col-12 col-lg-3">
+                            Creation date
+                        </div>
+                        <div class="col-12 col-lg-3">
+                            Last modification date
                         </div>
                     </div>
                     <div class="row justify-content-center">
-                        <div class="col-12 col-lg-5">
+                        <div class="col-12 col-lg-3">
                             {{ form_widget(form.name) }}
                         </div>
-                        <div class="col-12 col-lg-5 offset-lg-1">
+                        <div class="col-12 col-lg-3">
                             {{ form_widget(form.category) }}
+                        </div>
+                        <div class="col-12 col-lg-3">
+                            {{ figure.createdAt|date("m/d/Y") }}
+                        </div>
+                        <div class="col-12 col-lg-3">
+                            {{ figure.lastModified|date("m/d/Y") }}
                         </div>
                     </div>
                 </div>
