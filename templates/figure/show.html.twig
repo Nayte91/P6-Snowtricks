@@ -55,6 +55,11 @@
                 <div class="mr-auto p-2">
                     <a href="{{ path('figure_index') }}" class="btn btn-dark">Return to index</a>
                 </div>
+                {% if is_granted('ROLE_USER') %}
+                    <div class="p-2">
+                        <a href="{{ path('figure_edit', { slug: figure.slug }) }}" class="btn btn-primary">Edit this trick</a>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </article>
