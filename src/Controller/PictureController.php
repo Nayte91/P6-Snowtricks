@@ -77,7 +77,7 @@ class PictureController extends AbstractController
     }
 
     /**
-     * @Route("/{picture}/choose", name="pictures_choose", methods={"GET"})
+     * @Route("/{picture}/choose", name="pictures_choose", methods={"PUT"})
      * @IsGranted("ROLE_USER")
      */
     public function chooseDisplayPicture(Figure $figure, Picture $picture)

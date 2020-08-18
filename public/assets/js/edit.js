@@ -47,6 +47,20 @@ function pictureDelete() {
     });
 }
 
+function pictureChoose() {
+    $(document).on('click', 'a[class="picture-choose"]' , function(e){
+        e.preventDefault();
+        let link = this.getAttribute('data-link');
+        $.ajax({
+            url: link,
+            method:'PUT',
+            success: function () {
+                listPicturesAndVideos(figureSlug, true);
+            }
+        });
+    });
+}
+
 function videoSend() {
     $(document).on('click', '#send', function(e){
         e.preventDefault();
@@ -76,6 +90,7 @@ window.onload = function() {
     refreshPictureUploadLabel();
     pictureUpload();
     pictureDelete();
+    pictureChoose();
     videoSend();
     listPicturesAndVideos(figureSlug, true);
 }

@@ -1,18 +1,21 @@
 $.ajaxSetup({ async: false });
 
 function displayPicturesAndVideos (pictures, videos, editable) {
-
     $.each( pictures, function( i, picture ) {
         let linkPath = window.location.protocol+"//"+window.location.host+"/"+picture.webPath;
         let deletePath = window.location.protocol+"//"+window.location.host+"/figures/"+figureSlug+"/pictures/"+picture.id+"/delete";
+        let choosePath = window.location.protocol+"//"+window.location.host+"/figures/"+figureSlug+"/pictures/"+picture.id+"/choose";
 
         let $pictureMarkup =
             '<div style="position: relative;">' +
             '<img src="'+linkPath+'" alt="'+picture.alt+'" height="150" style="display: block;">';
         if (editable === true) {
             $pictureMarkup +=
-                '<a href="#" data-link="'+deletePath+'" class="picture-delete" style="color: black;">' +
-                    '<i class="fas fa-trash-alt" style="position: absolute; bottom:0; left:0;"></i>' +
+                '<a title="Choose as display picture" href="#" data-link="'+choosePath+'" class="picture-choose" style="color: black;">' +
+                    '<i class="fas fa-pencil-alt" style="position: absolute; bottom:2; left:20;"></i>' +
+                '</a>'+
+                '<a title="Delete this picture" href="#" data-link="'+deletePath+'" class="picture-delete" style="color: black;">' +
+                    '<i class="fas fa-trash-alt" style="position: absolute; bottom:2; left:0;"></i>' +
                 '</a>';
         }
         $pictureMarkup += '</div>';

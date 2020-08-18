@@ -29,7 +29,11 @@ class FigureType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('description', CKEditorType::class)
+            ->add('description', CKEditorType::class, [
+                'config' => [
+                    'toolbar' => 'standard',
+                ],
+            ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
             ])
