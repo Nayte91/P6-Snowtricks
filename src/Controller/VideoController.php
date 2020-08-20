@@ -41,8 +41,9 @@ class VideoController extends AbstractController
     public function removeVideo(Figure $figure, Video $video)
     {
         $figure->removeVideo($video);
-        $this->getDoctrine()->getManager()->flush();
-
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($video);
+        $em->flush();
         return $this->json('ok');
     }
 
@@ -58,6 +59,7 @@ class VideoController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $video->setFigure($figure);
+            $figure->addVideo($video);
             $em = $this->getDoctrine()->getManager();
             $em->persist($video);
             $em->flush();

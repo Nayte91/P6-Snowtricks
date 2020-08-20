@@ -64,10 +64,16 @@ class Figure
      */
     private $lastModified;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Discussion::class, mappedBy="figure", orphanRemoval=true)
+     */
+    private $discussions;
+
     public function __construct()
     {
         $this->videos = new ArrayCollection();
         $this->pictures = new ArrayCollection();
+        $this->discussions = new ArrayCollection();
     }
 
     public function getName(): ?string
@@ -215,6 +221,37 @@ class Figure
     public function setLastModified(\DateTimeInterface $dateTime): self
     {
         $this->lastModified = $dateTime;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Discussion[]
+     */
+    public function getDiscussions(): Collection
+    {
+        return $this->discussions;
+    }
+
+    public function addDiscussion(Discussion $discussion): self
+    {
+        if (!$this->discussions->contains($discussion)) {
+            $this->discussions[] = $discussion;
+            $discussion->setFigure($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDiscussion(Discussion $discussion): self
+    {
+        if ($this->discussions->contains($discussion)) {
+            $this->discussions->removeElement($discussion);
+            // set the owning side to null (unless already changed)
+            if ($discussion->getFigure() === $this) {
+                $discussion->setFigure(null);
+            }
+        }
 
         return $this;
     }

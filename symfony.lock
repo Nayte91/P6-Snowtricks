@@ -38,6 +38,9 @@
     "laminas/laminas-zendframework-bridge": {
         "version": "1.0.3"
     },
+    "nikic/php-parser": {
+        "version": "v4.9.0"
+    },
     "php": {
         "version": "7.4"
     },
@@ -106,6 +109,15 @@
         "files": [
             "./config/packages/mailer.yaml"
         ]
+    },
+    "symfony/maker-bundle": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "fadbfe33303a76e25cb63401050439aa9b1a9c7f"
+        }
     },
     "symfony/options-resolver": {
         "version": "v5.0.8"
