@@ -42,7 +42,7 @@
                         Creation date
                     </div>
                     <div class="col-12 col-lg-3">
-                        Last modification date
+                        Last modified
                     </div>
                 </div>
                 <div class="row justify-content-center">
@@ -61,21 +61,19 @@
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center">
-            <div class="d-flex col-10">
-                <div class="mr-auto p-2">
-                    <a href="{{ path('figure_index') }}" class="btn btn-dark">Return to index</a>
-                </div>
-                {% if is_granted('ROLE_USER') %}
-                    <div class="p-2">
-                        <a href="{{ path('figure_edit', { slug: figure.slug }) }}" class="btn btn-primary">Edit this trick</a>
-                    </div>
-                {% endif %}
-            </div>
+        <hr>
+        <div class="justify-content-center">
+            {% if is_granted('ROLE_USER') %}
+                {{ include('figure/_discussionform.html.twig') }}
+                <p id="discussion_added"></p>
+            {% else %}
+                <p>You must be logged in order to join the discussion.</p>
+            {% endif %}
         </div>
-        <div class="row justify-content-center">
-            {{ form(discussionform) }}
-            <button type="submit" class="btn btn-primary">Leave a comment</button>
+        <hr>
+        <div>
+            <h3 class="text-center">List of comments</h3>
+            <div id="discussions"></div>
         </div>
     </article>
 {% endblock %}
@@ -84,9 +82,11 @@
     <script>
         var figureSlug = "{{ figure.slug }}";
         var defaultPicture = "{{ asset('assets/images/card-default.jpg') }}";
+        var defaultUser = "{{ asset('assets/images/user-default.png') }}";
     </script>
-    <script src="{{ asset('assets/js/show.js') }}"></script>
+    <script src="{{ asset('assets/js/discussions.js') }}"></script>
     <script src="{{ asset('assets/js/medias.js') }}"></script>
+    <script src="{{ asset('assets/js/show.js') }}"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 {% endblock %}
 

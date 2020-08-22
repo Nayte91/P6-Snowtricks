@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Figure;
-use App\Form\DiscussionFormType;
+use App\Form\DiscussionType;
 use App\Form\FigureType;
 use App\Form\PictureType;
 use App\Form\VideoType;
@@ -41,7 +41,7 @@ class FigureController extends AbstractController
      */
     public function show(Figure $figure): Response
     {
-        $discussionForm = $this->createForm(DiscussionFormType::class, null, [
+        $discussionForm = $this->createForm(DiscussionType::class, null, [
             'action' => $this->generateUrl('discussions_add', [
                 'slug' => $figure->getSlug(),
                 ]),

@@ -5,7 +5,7 @@ namespace App\Controller;
 
 use App\Entity\Discussion;
 use App\Entity\Figure;
-use App\Form\DiscussionFormType;
+use App\Form\DiscussionType;
 use App\Repository\DiscussionRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,10 +13,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 
-/** @Route("/figures/{slug}/discussion") */
+/** @Route("/figures/{slug}/discussions") */
 class DiscussionController extends AbstractController
 {
     /** @Route("/", name="discussions_list", methods={"GET"}) */
@@ -26,7 +27,7 @@ class DiscussionController extends AbstractController
 
         $serializer = new Serializer([new ObjectNormalizer], [new JsonEncoder]);
 
-        $jsonContent = $serializer->serialize($discussions, 'json');
+        $jsonContent = $serializer->serialize($discussions, 'json',  [AbstractNormalizer::IGNORED_ATTRIBUTES => ['figure']]);
 
         $response = new Response($jsonContent);
         $response->headers->set('Content-Type', 'application/json');
@@ -53,11 +54,12 @@ class DiscussionController extends AbstractController
     public function addDiscussion(Request $request, Figure $figure)
     {
         $discussion = new Discussion;
-        $form = $this->createForm(DiscussionFormType::class, $discussion);
+        $form = $this->createForm(DiscussionType::class, $discussion);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $discussion->setFigure($figure);
+            $discussion->setAuthor($this->getUser());
             $figure->addDiscussion($discussion);
             $em = $this->getDoctrine()->getManager();
             $em->persist($discussion);
