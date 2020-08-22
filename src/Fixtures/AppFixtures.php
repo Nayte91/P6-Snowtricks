@@ -4,13 +4,11 @@ namespace App\Fixtures;
 
 use App\Entity\Category;
 use App\Entity\Figure;
-use App\Entity\Picture;
 use App\Entity\User;
 use App\Entity\Video;
 use App\Service\VideoPlatformParser;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
-use phpDocumentor\Reflection\Types\This;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
@@ -323,6 +321,13 @@ class AppFixtures extends Fixture
 <p>Parce que vous venez sur un axe étrange, vous pouvez voir votre atterrissage très loin, ce qui aide. La seule partie difficile est que vous atterrissez aveugle comme vous le feriez sur un arrière 180 ou 540, donc les mêmes règles d'atterrissage s'appliquent: regardez entre vos fixations au sol, repérez votre atterrissage et plantez les deux pieds en même temps –Avec un peu de pression sur le bord des orteils pour arrêter la rotation. Il est trop facile de revenir immédiatement si vous ne faites pas attention et que la pression sur le bord des orteils est la clé pour l'arrêter. Après vous être assuré que vous avez fait tout ce que vous devriez être en mesure de désactiver l'interrupteur, juste à temps pour le dernier appel!</p>
                 ",
                 'category' => 'Spins',
+            ],
+            [
+              'category' => 'Inverted hand plants',
+              'name' => 'J-Tear',
+              'description' => "
+              <p>Inverted frontside 540 with a hand plant in the middle. Originally a variation on the Jacoby Terror Air. This trick was invented by Mike Jacoby for a contest that didn't allow inverted aerials; inverted handplants, however, were acceptable.</p>
+              ",
             ],
         ];
     }

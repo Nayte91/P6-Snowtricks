@@ -26,7 +26,7 @@ class DiscussionRepository extends ServiceEntityRepository
             ->andWhere('d.figure = :val')
             ->setParameter('val', $figure->getId())
             ->orderBy('d.createdAt', 'ASC')
-            ->setMaxResults(15)
+            ->setMaxResults(10)
             ->getQuery()
             ->getResult()
             ;
