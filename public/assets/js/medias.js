@@ -93,7 +93,7 @@ function displayPicturesAndVideos (pictures, videos, editable) {
         let choosePath = window.location.protocol+"//"+window.location.host+"/figures/"+figureSlug+"/pictures/"+picture.id+"/choose";
 
         let $pictureMarkup =
-            '<div style="position: relative;">' +
+            '<div style="position: relative;" class="col-3 mx-auto">' +
             '<img src="'+linkPath+'" alt="'+picture.alt+'" height="150" style="display: block;">';
         if (editable === true) {
             $pictureMarkup +=
@@ -120,6 +120,7 @@ function listPicturesAndVideos(figureSlug, editable) {
     var pictures, videos;
     var block = document.getElementById('picturesAndVideos');
     block.removeAttribute('class');
+    block.classList.add("row");
     while(block.firstChild) block.removeChild(block.firstChild);
 
     $.getJSON(window.location.protocol+"//"+window.location.host+"/figures/"+figureSlug+"/videos", function(v) {
@@ -138,6 +139,7 @@ function listPicturesAndVideos(figureSlug, editable) {
     displayPicturesAndVideos(pictures, videos, editable);
 
     if (Object.keys(pictures).length+Object.keys(videos).length > 4 ) {
+        block.removeAttribute('class');
         $('#picturesAndVideos').slick({
             dots: false,
             infinite: false,

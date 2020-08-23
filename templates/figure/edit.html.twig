@@ -19,7 +19,7 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 <h3>Pictures & Videos</h3>
-                <div id="picturesAndVideos"></div>
+                <div id="picturesAndVideos" class="row"></div>
             </div>
         </div>
         <div class="row justify-content-center">
@@ -99,6 +99,6 @@
         var figureSlug = "{{ figure.slug }}";
         var defaultPicture = "{{ asset('assets/images/card-default.jpg') }}";
     </script>
-    <script src="{{ asset('assets/js/edit.js') }}"></script>
     <script src="{{ asset('assets/js/medias.js') }}"></script>
+    <script src="{{ asset('assets/js/edit.js') }}"></script>
 {% endblock %}

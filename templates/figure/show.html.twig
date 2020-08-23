@@ -8,13 +8,23 @@
 
 {% block main %}
     <article id="trickForm">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center" style="position: relative;">
             <div class="col-12" id="displayPicture">
                 <img src="{{ asset('assets/images/card-default.jpg') }}" alt="default" class="img-fluid mx-auto d-block">
             </div>
             <div style="position: absolute; top: 50%;">
                 <h1 class="font-weight-bold" style="color:red;">{{ figure.name }}</h1>
             </div>
+            {% if is_granted('ROLE_USER') %}
+                <div class="px-1" style="position: absolute; top: 5px; right: 20px; background-color: white; border: 1px solid whitesmoke;">
+                    <a title="Edit this trick" href="{{ path('figure_edit', {'slug': figure.slug }) }}" class="mx-1" style="color: black;">
+                        <i class="fas fa-pencil-alt"></i>
+                    </a>
+                    <a title="Delete this trick" href="#" class="mx-1" style="color: black;">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                </div>
+            {% endif %}
         </div>
         <div class="row justify-content-center">
             <div class="col-12">
