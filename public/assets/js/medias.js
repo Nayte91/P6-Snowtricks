@@ -138,14 +138,14 @@ function listPicturesAndVideos(figureSlug, editable) {
 
     displayPicturesAndVideos(pictures, videos, editable);
 
-    if (Object.keys(pictures).length+Object.keys(videos).length > 4 ) {
+    if (Object.keys(pictures).length+Object.keys(videos).length > 3 ) {
         block.removeAttribute('class');
         $('#picturesAndVideos').slick({
             dots: false,
             infinite: false,
             accessibility: false,
-            slidesToShow: 4,
-            slidesToScroll: 4,
+            slidesToShow: 3,
+            slidesToScroll: 3,
             prevArrow: '<button type="button" class="slick-prev rounded-circle btn btn-danger"><i class="fas fa-arrow-left"></i></button>',
             nextArrow: '<button type="button" class="slick-next rounded-circle btn btn-danger"><i class="fas fa-arrow-right"></i></button>'
         });
