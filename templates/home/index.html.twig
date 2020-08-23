@@ -30,7 +30,7 @@
                             {% if is_granted('ROLE_USER') %}
                             <div class="float-right" >
                                 <a href="{{ path('figure_edit', {'slug': figure.slug }) }}" style="color: black;"><i class="fas fa-pencil-alt"></i></a>
-                                <a href="#" class="pl-3" style="color: black;"><i class="fas fa-trash-alt"></i></a>
+                                <a href="#" class="pl-3" data-toggle="modal" data-target="#delete_figure" data-slug="{{ figure.slug }}" style="color: black;"><i class="fas fa-trash-alt"></i></a>
                             </div>
                             {% endif %}
                         </div>
@@ -46,6 +46,9 @@
     <a id="bottomArrow" href="#index" class="rounded-circle btn btn-danger float-right" style="display: none">
         <i class="fas fa-arrow-up"></i>
     </a>
+{% endblock %}
+
+{% block modal %}
 {% endblock %}
 
 {% block javascripts %}

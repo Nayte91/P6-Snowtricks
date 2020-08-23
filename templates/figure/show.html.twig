@@ -20,9 +20,7 @@
                     <a title="Edit this trick" href="{{ path('figure_edit', {'slug': figure.slug }) }}" class="mx-1" style="color: black;">
                         <i class="fas fa-pencil-alt"></i>
                     </a>
-                    <a title="Delete this trick" href="#" class="mx-1" style="color: black;">
-                        <i class="fas fa-trash-alt"></i>
-                    </a>
+                    <a title="Delete this trick" class="pl-3" data-toggle="modal" data-target="#delete_figure" data-slug="{{ figure.slug }}" style="color: black;"><i class="fas fa-trash-alt"></i></a>
                 </div>
             {% endif %}
         </div>

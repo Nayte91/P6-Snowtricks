@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     /** @Route("/", name="figure_index", methods={"GET"}) */
-    public function index(FigureRepository $figureRepository, Profiler $profiler): Response
+    public function index(FigureRepository $figureRepository): Response
     {
         return $this->render('home/index.html.twig', [
             'figures' => $figureRepository->findModified(),

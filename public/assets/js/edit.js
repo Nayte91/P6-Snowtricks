@@ -5,4 +5,5 @@ window.onload = function() {
     pictureChoose();
     videoSend();
     listPicturesAndVideos(figureSlug, true);
+    linkModal();
 }

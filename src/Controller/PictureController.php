@@ -45,7 +45,6 @@ class PictureController extends AbstractController
     public function removePicture(Figure $figure, Picture $picture)
     {
         $figure->removePicture($picture);
-        $figure->setLastModified(new \DateTime);
         $em = $this->getDoctrine()->getManager();
         $em->remove($picture);
         $em->flush();
@@ -65,7 +64,6 @@ class PictureController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $figure->addPicture($picture);
-            $figure->setLastModified(new \DateTime);
             $em = $this->getDoctrine()->getManager();
             $em->persist($picture);
             $em->flush();

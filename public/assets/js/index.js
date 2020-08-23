@@ -4,4 +4,5 @@ function showArrow() {
 
 window.onload = function() {
     showArrow();
+    linkModal();
 }

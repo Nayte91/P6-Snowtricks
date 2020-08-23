@@ -93,14 +93,14 @@ class FigureController extends AbstractController
      * @Route("/{slug}", name="figure_delete", methods={"DELETE"})
      * @IsGranted("ROLE_USER")
      */
-    public function delete(Request $request, Figure $figure): Response
+    public function delete(Figure $figure): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$figure->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($figure);
-            $entityManager->flush();
-        }
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($figure);
+        $entityManager->flush();
 
-        return $this->redirectToRoute('figure_index');
+        $this->addFlash('danger', 'Figure '.$figure->getName().' was deleted. Farewell !');
+
+        return $this->json("figure deleted");
     }
 }

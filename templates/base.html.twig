@@ -8,7 +8,6 @@
         <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
         <link rel="stylesheet" href="{{ asset('assets/css/snowtricks.css') }}" />
         {% block stylesheets %}{% endblock %}
-        <script defer src="{{ asset('assets/js/fontawesome-5.13.1.js') }}"></script>
     </head>
 
     <body>
@@ -73,7 +72,36 @@
             <div class="col-12">Copyright Julien Robic © 2020</div>
         </footer>
 
-        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+        {% if is_granted('ROLE_USER') %}
+            <div class="modal fade" id="delete_figure" tabindex="-1" aria-labelledby="logged" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Delete a trick</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="modal-title" id="exampleModalLabel">Are you sure you want to delete <span class="slug"></span> ?</p>
+                            <p>Be careful, there is no going back.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">no, thanks</button>
+                            <button type="button" class="btn btn-danger figure-delete">Delete it</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        {% block modal %}{% endblock %}
+
+        <script src="{{ asset('assets/js/figure.js') }}"></script>
+        <script src="{{ asset('assets/js/fontawesome-5.13.1.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery-3.5.1.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>
