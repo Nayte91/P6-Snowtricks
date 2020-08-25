@@ -131,7 +131,7 @@ function listPicturesAndVideos(figureSlug, editable) {
     });
 
     if (Object.keys(pictures).length === 0 && Object.keys(videos).length === 0) {
-        $("#displayPicture").html('<img src="'+defaultPicture+'" alt="default" height="500" class=" mx-auto d-block">');
+        $("#displayPicture").html('<img src="'+defaultPicture+'" alt="default" class="mx-auto d-block" style="object-fit: cover">');
         $('#picturesAndVideos').append("No picture nor video yet.");
         return;
     }
