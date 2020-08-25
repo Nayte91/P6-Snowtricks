@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'OpenSans';
+    src: url('../fonts/OpenSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -9,6 +16,8 @@ body {
     grid-template-areas:
             "mn"
             "hd";
+    background-color: whitesmoke;
+    font-family: 'OpenSans', sans-serif;
 }
 
 header {
@@ -47,9 +56,14 @@ article {
     display: inherit;
 }
 
-#description {
-    border: 1px solid whitesmoke;
+#description > p {
+
+    text-align: justify;
 }
+#description > h4 {
+    margin-top: 70px;
+}
+
 
 #trickForm {
     text-align: center;
@@ -63,6 +77,12 @@ article {
     margin-left: auto;
     margin-right: auto;
     max-width: 40vw;
+}
+
+#displayPicture > img {
+    object-fit: cover;
+    width: 100%;
+    max-height: 500px;
 }
 
 /* Here for large screens like computer */

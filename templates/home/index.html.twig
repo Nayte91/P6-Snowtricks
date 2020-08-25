@@ -5,22 +5,25 @@
 {% block main %}
     <div style="height: calc(100vw*9/16);">
         <div class="text-center" style="position: relative; top: 40%;">
-            <h1 class="font-weight-bold" style="color:red;">Come and find your style</h1>
+            <h1 class="font-weight-bold text-white">Come and find your style</h1>
             <a href="#index" class="rounded-circle btn btn-danger">
                 <i class="fas fa-arrow-down"></i>
             </a>
         </div>
     </div>
-    <section class="row row-cols-5 py-5 mx-3" id="index">
+    <section class="row row-cols-1 row-cols-lg-5 py-5 mx-3" id="index">
         {% for figure in figures %}
             <div class="col">
                 <div class="card mb-3">
                     <a href="{{ path('figure_show', {'slug': figure.slug }) }}" style="text-decoration: underline;">
+                        <picture>
                         {% if figure.displayPicture %}
-                            <img src="{{ asset('/') }}{{ figure.displayPicture.webPath }}" alt="{{ figure.displayPicture.alt }}" class="card-img-top" height="200" style="object-fit: cover;">
+                            <img src="{{ asset('/') }}{{ figure.displayPicture.webPath }}"
+                                 alt="{{ figure.displayPicture.alt }}" class="card-img-top" height="200" style="object-fit: cover;">
                         {% else %}
                             <img src="{{ asset('assets/images/card-default.jpg') }}" alt="default" class="card-img-top" height="200" style="object-fit: cover;">
                         {% endif %}
+                        </picture>
                     </a>
                     <div class="card-body">
                         <div class="card-title">
