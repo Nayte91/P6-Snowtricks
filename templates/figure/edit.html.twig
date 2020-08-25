@@ -13,12 +13,12 @@
                 <img src="{{ asset('assets/images/card-default.jpg') }}" alt="default" class="img-fluid mx-auto d-block">
             </div>
             <div style="position: absolute; top: 50%;">
-                <h1 class="font-weight-bold" style="color:red;">{{ figure.name }}</h1>
+                <h1 class="regular text-white">{{ figure.name }}</h1>
             </div>
         </div>
         <div class="row justify-content-center">
             <div class="col-12">
-                <h3>Pictures & Videos</h3>
+                <h3 class="regular">Pictures & Videos</h3>
                 <div id="picturesAndVideos" class="row"></div>
             </div>
         </div>
@@ -26,12 +26,12 @@
             <div class="col-12">
                 <div class="row justify-content-center">
                     <div class="col-12 col-lg-5">
-                        <h4>Upload new picture</h4>
+                        <h4 class="regular">Upload new picture</h4>
                         {{ include('figure/_pictureform.html.twig') }}
                         <p id="uploaded_image"></p>
                     </div>
                     <div class="col-12 col-lg-5 offset-lg-1">
-                        <h4>Send new video</h4>
+                        <h4 class="regular">Send new video</h4>
                         {{ include('figure/_videoform.html.twig') }}
                         <p id="video_sent"></p>
                     </div>
@@ -41,14 +41,14 @@
         {{ form_start(form) }}
             <div class="row justify-content-center my-3">
                 <div class="col-11">
-                    <h3 class="text-center mb-3">Describe it</h3>
+                    <h3 class="text-center mb-3 regular">Describe it</h3>
                     {{ form_widget(form.description) | raw }}
                 </div>
             </div>
             <div class="row my-3">
                 <div class="col-12">
-                    <h3 class="text-center">About this trick</h3>
-                    <div class="row justify-content-center">
+                    <h3 class="text-center regular">About this trick</h3>
+                    <div class="row justify-content-center regular">
                         <div class="col-12 col-lg-3">
                             <p>Name</p>
                         </div>
