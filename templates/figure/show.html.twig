@@ -13,7 +13,7 @@
                 <img src="{{ asset('assets/images/card-default.jpg') }}" alt="default" class="mx-auto d-block" style="object-fit: cover">
             </picture>
             <div class="position-absolute" style="top: 50%;">
-                <h1 class="regular text-white">{{ figure.name }}</h1>
+                <h1 class="text-white">{{ figure.name }}</h1>
             </div>
             {% if is_granted('ROLE_USER') %}
                 <div class="px-1" style="position: absolute; top: 5px; right: 20px; background-color: white; border: 1px solid whitesmoke;">
@@ -28,19 +28,19 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-12">
-                <h3 class="regular">Pictures & Videos</h3>
+                <h3>Pictures & Videos</h3>
                 <div id="picturesAndVideos"></div>
             </div>
         </div>
         <div class="row justify-content-center">
             <div class="col-11">
-                <h3 class="regular">Description</h3>
+                <h3>Description</h3>
                 <div id="description">{{ figure.description|raw }}</div>
             </div>
         </div>
         <div class="row">
             <div class="col-12">
-                <h3 class="text-center regular">About this trick</h3>
+                <h3 class="text-center">About this trick</h3>
                 <div class="row justify-content-center regular">
                     <div class="col-12 col-lg-3">
                         <p>Name</p>
@@ -82,7 +82,7 @@
         </div>
         <hr>
         <div>
-            <h3 class="text-center regular">List of comments</h3>
+            <h3 class="text-center">List of comments</h3>
             <div id="discussions"></div>
         </div>
     </article>

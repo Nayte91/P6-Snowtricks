@@ -7,6 +7,7 @@ use App\Form\DiscussionType;
 use App\Form\FigureType;
 use App\Form\PictureType;
 use App\Form\VideoType;
+use App\Repository\FigureRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,13 +21,12 @@ class FigureController extends AbstractController
      * @Route("/new", name="figure_new", methods={"GET","POST"})
      * @IsGranted("ROLE_USER")
      */
-    public function new(): Response
+    public function new(FigureRepository $figureRepository): Response
     {
         $figure = new Figure;
         $entityManager = $this->getDoctrine()->getManager();
+        $figure->setName('new figure '. (string) $figureRepository->findLastId());
         $entityManager->persist($figure);
-        $entityManager->flush();
-        $figure->setSlug($figure->getId());
         $entityManager->flush();
 
         $this->addFlash('success', 'Your new trick is created ! Edit it and save it to make it public.');

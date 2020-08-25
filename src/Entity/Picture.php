@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use App\Entity\traits\EntityIdTrait;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PictureRepository")
@@ -24,7 +24,7 @@ class Picture
      * @ORM\ManyToOne(targetEntity="App\Entity\Figure", inversedBy="pictures")
      * @ORM\JoinColumn(nullable=false)
      */
-    private Figure $figure;
+    private $figure;
 
     /**
      * Extension of the file as the user originally uploaded.
@@ -41,7 +41,7 @@ class Picture
     private $alt;
 
     /**
-     * @var UploadedFile $file
+     * @var File $file
      */
     private $file;
 
@@ -99,7 +99,7 @@ class Picture
         return $this->file;
     }
 
-    public function setFile(UploadedFile $file): self
+    public function setFile(File $file): self
     {
         $this->file = $file;
 

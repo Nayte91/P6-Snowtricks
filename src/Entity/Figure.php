@@ -12,7 +12,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\FigureRepository")
  * @ORM\EntityListeners({"App\Event\FigureListener"})
- * @UniqueEntity("id")
+ * @UniqueEntity("name")
  */
 class Figure
 {

@@ -132,7 +132,7 @@ function listPicturesAndVideos(figureSlug, editable) {
 
     if (Object.keys(pictures).length === 0 && Object.keys(videos).length === 0) {
         $("#displayPicture").html('<img src="'+defaultPicture+'" alt="default" height="500" class=" mx-auto d-block">');
-        $('#picturesAndVideos').append("No picture or video yet.");
+        $('#picturesAndVideos').append("No picture nor video yet.");
         return;
     }
 

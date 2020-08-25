@@ -33,6 +33,17 @@ class FigureRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findLastId(): int
+    {
+            $lastFigure = $this->createQueryBuilder('f')
+            ->orderBy('f.id', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult();
+
+            return $lastFigure[0]->getId();
+    }
+
     /*
     public function findOneBySomeField($value): ?Figure
     {

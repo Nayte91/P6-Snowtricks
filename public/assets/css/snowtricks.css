@@ -44,7 +44,7 @@ header {
 
 main {
     width: 100%;
-    min-height: calc(100vw*9/16);
+    min-height: calc(100vw * 9 / 16);
     grid-area: mn;
     background-image: url('/../../assets/images/Snowtricks-background.jpg');
     background-size: contain;
@@ -68,9 +68,9 @@ article {
 }
 
 #description > p {
-
     text-align: justify;
 }
+
 #description > h4 {
     margin-top: 70px;
 }
@@ -96,13 +96,12 @@ article {
     max-height: 500px;
 }
 
-.regular {
+.regular, h1, h2, h3 {
     font-family: 'OpenSans', sans-serif;
 }
 
 /* Here for large screens like computer */
-@media (min-width: 1280px)
-{
+@media (min-width: 1280px) {
     body {
         grid-template-rows: 50px 1fr 50px;
         grid-template-areas:
