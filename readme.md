@@ -1,4 +1,7 @@
 #P6 : Snowtricks
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/bbd6df8b30ac4180b2831cb796579cfa)](https://app.codacy.com/manual/Nayte91/P6-snowtricks?utm_source=github.com&utm_medium=referral&utm_content=Nayte91/P6-snowtricks&utm_campaign=Badge_Grade_Settings)
+
 ##How to install
 1. Run a "composer install" command.
 2. Create a carbon copy of ".env" named ".env.local".
