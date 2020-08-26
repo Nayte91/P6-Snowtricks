@@ -21,14 +21,13 @@ html {
 }
 
 body {
-    display: grid;
+    font-family: 'OpenSans-Light', sans-serif;
     min-height: 100vh;
+    display: grid;
     grid-template-rows: 1fr 60px;
     grid-template-areas:
             "mn"
             "hd";
-    background-color: lightgrey;
-    font-family: 'OpenSans-Light', sans-serif;
 }
 
 header {
@@ -46,10 +45,11 @@ main {
     width: 100%;
     min-height: calc(100vw * 9 / 16);
     grid-area: mn;
-    background-image: url('/../../assets/images/Snowtricks-background.jpg');
-    background-size: contain;
-    background-position: top;
-    background-repeat: no-repeat;
+    background: url(/../../assets/images/Snowtricks-background.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 article {
@@ -98,6 +98,10 @@ article {
 
 .regular, h1, h2, h3 {
     font-family: 'OpenSans', sans-serif;
+}
+
+h2, h3 {
+    margin-top: 50px;
 }
 
 /* Here for large screens like computer */

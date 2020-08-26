@@ -120,7 +120,6 @@ function listPicturesAndVideos(figureSlug, editable) {
     var pictures, videos;
     var block = document.getElementById('picturesAndVideos');
     block.removeAttribute('class');
-    block.classList.add("row");
     while(block.firstChild) block.removeChild(block.firstChild);
 
     $.getJSON(window.location.protocol+"//"+window.location.host+"/figures/"+figureSlug+"/videos", function(v) {
@@ -135,7 +134,7 @@ function listPicturesAndVideos(figureSlug, editable) {
         $('#picturesAndVideos').append("No picture nor video yet.");
         return;
     }
-
+    block.classList.add("row");
     displayPicturesAndVideos(pictures, videos, editable);
 
     if (Object.keys(pictures).length+Object.keys(videos).length > 3 ) {
