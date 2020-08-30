@@ -132,12 +132,14 @@ function displayPicturesAndVideos (pictures, videos, editable) {
                 '</a>';
         if (editable === true) {
             $pictureMarkup +=
-                '<a title="Choose as display picture" href="#" data-link="'+choosePath+'" class="picture-choose" style="color: black;">' +
-                    '<i class="fas fa-pencil-alt" style="position: absolute; bottom:2px; left:20px;"></i>' +
-                '</a>'+
-                '<a title="Delete this picture" href="#" data-link="'+deletePath+'" class="picture-delete" style="color: black;">' +
-                    '<i class="fas fa-trash-alt" style="position: absolute; bottom:2px; left:0;"></i>' +
-                '</a>';
+                '<div class="position-absolute" style="bottom:2px; left:20px;">' +
+                    '<a title="Choose as display picture" href="#" data-link="'+choosePath+'" class="picture-choose" style="color: black;">' +
+                        '<i class="fas fa-pencil-alt mx-1"></i>' +
+                    '</a>'+
+                    '<a title="Delete this picture" href="#" data-link="'+deletePath+'" class="picture-delete" style="color: black;">' +
+                        '<i class="fas fa-trash-alt"></i>' +
+                    '</a>' +
+                '</div>';
         }
         $pictureMarkup += '</div>';
         $('#picturesAndVideos').append($pictureMarkup);
@@ -155,7 +157,7 @@ function displayPicturesAndVideos (pictures, videos, editable) {
         if (editable === true) {
             $videoMarkup +=
                 '<a title="Delete this video" href="#" data-link="'+deletePath+'" class="video-delete" style="color: black;">' +
-                    '<i class="fas fa-trash-alt" style="position: absolute; bottom:2px; left:0;"></i>' +
+                    '<i class="fas fa-trash-alt" style="position: absolute; bottom:0; left:0;"></i>' +
                 '</a>';
         }
         $videoMarkup += '</div>';

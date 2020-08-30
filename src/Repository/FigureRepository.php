@@ -27,7 +27,7 @@ class FigureRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('f')
             ->andWhere('f.lastModified IS NOT NULL')
             ->orderBy('f.id', 'ASC')
-            ->setMaxResults(10)
+            //->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
