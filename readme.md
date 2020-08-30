@@ -40,4 +40,10 @@ Enjoy by launching your PHP server !
 * with symfony CLI, run a "symfony serve -d" command.
 * With raw PHP, run a "php -S 127.0.0.1:8000 -t public/" command.
 
+##To use the website ?
+
+Simply create an account with "sign-in" menu, or use the built-in account :
+* username : usertest
+* password : azerty
+
 Julien "Nayte" Robic.

@@ -4,6 +4,7 @@ window.onload = function() {
     pictureDelete();
     pictureChoose();
     videoSend();
+    videoDelete();
     listPicturesAndVideos(figureSlug, true);
     linkModal();
 }

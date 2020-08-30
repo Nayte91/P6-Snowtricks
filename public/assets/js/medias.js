@@ -105,6 +105,20 @@ function videoSend() {
     });
 }
 
+function videoDelete() {
+    $(document).on('click', 'a[class="video-delete"]' , function(e){
+        e.preventDefault();
+        let link = this.getAttribute('data-link');
+        $.ajax({
+            url: link,
+            method:'DELETE',
+            success: function () {
+                listPicturesAndVideos(figureSlug, true);
+            }
+        });
+    });
+}
+
 function displayPicturesAndVideos (pictures, videos, editable) {
     $.each( pictures, function( i, picture ) {
         let linkPath = window.location.protocol+"//"+window.location.host+"/"+picture.webPath;
@@ -133,7 +147,19 @@ function displayPicturesAndVideos (pictures, videos, editable) {
         }
     });
     $.each( videos, function( i, video ) {
-        $('#picturesAndVideos').append('<iframe height="150" src="'+video.url+'" allowfullscreen></iframe>');
+        let deletePath = window.location.protocol+"//"+window.location.host+"/figures/"+figureSlug+"/videos/"+video.id+"/delete";
+        let $videoMarkup =
+            '<div style="position: relative;" class="col-3 mx-auto">' +
+                '<iframe height="150" src="'+video.url+'" allowfullscreen>' +
+                '</iframe>';
+        if (editable === true) {
+            $videoMarkup +=
+                '<a title="Delete this video" href="#" data-link="'+deletePath+'" class="video-delete" style="color: black;">' +
+                    '<i class="fas fa-trash-alt" style="position: absolute; bottom:2px; left:0;"></i>' +
+                '</a>';
+        }
+        $videoMarkup += '</div>';
+        $('#picturesAndVideos').append($videoMarkup);
     });
 }
 

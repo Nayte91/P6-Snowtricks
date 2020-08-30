@@ -26,7 +26,7 @@ class VideoController extends AbstractController
 
         $serializer = new Serializer([new ObjectNormalizer], [new JsonEncoder]);
 
-        $jsonContent = $serializer->serialize($videos, 'json', [AbstractNormalizer::IGNORED_ATTRIBUTES => ['figure', 'file', 'extension', 'id']]);
+        $jsonContent = $serializer->serialize($videos, 'json', [AbstractNormalizer::IGNORED_ATTRIBUTES => ['figure']]);
 
         $response = new Response($jsonContent);
         $response->headers->set('Content-Type', 'application/json');
