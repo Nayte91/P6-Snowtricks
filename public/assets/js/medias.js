@@ -31,6 +31,7 @@ function pictureUpload() {
         e.preventDefault();
         var form = document.forms.namedItem('picture');
         //avoid action when no file is selected
+
         if (document.getElementById('picture_file').files.length === 0) {
             document.getElementById('uploaded_image').innerText = 'Please select a file';
         } else {
@@ -44,11 +45,12 @@ function pictureUpload() {
                 success:function(response) {
                     $('#uploaded_image').html(response);
                     listPicturesAndVideos(figureSlug, true);
+
                 }
             });
         }
-
-        document.getElementById('picture_file').value = '';
+        console.log(document.getElementById('picture_file_label'));
+        document.getElementById('picture_file_label').innerHTML = '';
     });
 }
 

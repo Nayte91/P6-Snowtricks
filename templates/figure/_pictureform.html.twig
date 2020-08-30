@@ -4,7 +4,10 @@
             <button class="btn input-group-text" type="button" id="upload">Upload</button>
         </div>
         <div class="custom-file">
-            {{ form_widget(pictureform.file, {'attr': {'class': 'task_field'}}) }}
+            {{ form_widget(pictureform.file, {
+                'attr': {'class': 'task_field'},
+                'label_attr': {'id': 'picture_file_label'}
+            }) }}
         </div>
     </div>
 {{ form_end(pictureform) }}
