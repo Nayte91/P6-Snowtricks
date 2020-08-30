@@ -10,7 +10,11 @@
     <article id="trickForm">
         <div class="row justify-content-center" style="position: relative;">
             <picture class="col-12" id="displayPicture">
-                <img src="{{ asset('assets/images/card-default.jpg') }}" alt="default" class="mx-auto d-block" style="object-fit: cover">
+                {% if figure.displayPicture %}
+                    <img src="../{{ figure.displayPicture.webPath }}" alt="{{ figure.displayPicture.alt }}" class="img-fluid mx-auto d-block">
+                {% else %}
+                    <img src="{{ asset('assets/images/card-default.jpg') }}" alt="default" class="img-fluid mx-auto d-block">
+                {% endif %}
             </picture>
             <div class="position-absolute" style="top: 50%;">
                 <h1 class="text-white">{{ figure.name }}</h1>
@@ -41,32 +45,22 @@
         <div class="row">
             <div class="col-12">
                 <h3 class="text-center">About this trick</h3>
-                <div class="row justify-content-center regular">
-                    <div class="col-12 col-lg-3">
-                        <p>Name</p>
-                    </div>
-                    <div class="col-12 col-lg-3">
-                        <p>Category</p>
-                    </div>
-                    <div class="col-12 col-lg-3">
-                        <p>Creation date</p>
-                    </div>
-                    <div class="col-12 col-lg-3">
-                        <p>Last modified</p>
-                    </div>
-                </div>
                 <div class="row justify-content-center">
                     <div class="col-12 col-lg-3">
-                        {{ figure.name }}
+                        <p class="regular">Name</p>
+                        <p>{{ figure.name }}</p>
                     </div>
                     <div class="col-12 col-lg-3">
-                        {{ figure.category }}
+                        <p class="regular">Category</p>
+                        <p>{{ figure.category }}</p>
                     </div>
                     <div class="col-12 col-lg-3">
-                        {{ figure.createdAt|date("m/d/Y") }}
+                        <p class="regular">Creation date</p>
+                        <p>{{ figure.createdAt|date("m/d/Y") }}</p>
                     </div>
                     <div class="col-12 col-lg-3">
-                        {{ figure.lastModified|date("m/d/Y") }}
+                        <p class="regular">Last modified</p>
+                        <p>{{ figure.lastModified|date("m/d/Y") }}</p>
                     </div>
                 </div>
             </div>
@@ -87,6 +81,17 @@
         </div>
     </article>
 {% endblock %}
+
+
+{% block modal %}
+    <!-- Modal de galerie photos -->
+    <div class="modal fade" id="image-gallery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <img id="image-gallery-image" class="img-fluid" src="" alt="">
+        </div>
+    </div>
+{% endblock %}
+
 
 {% block javascripts %}
     <script>

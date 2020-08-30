@@ -54,7 +54,7 @@ main {
 
 article {
     margin: 15vh auto;
-    padding: 4em;
+    padding: 2vw;
     background-color: white;
     border: 1px solid whitesmoke;
 }
@@ -93,7 +93,11 @@ article {
 #displayPicture > img {
     object-fit: cover;
     width: 100%;
-    max-height: 500px;
+    max-height: calc(60vw * 9 / 16);
+}
+
+#picturesAndVideos {
+    min-height: 150px;
 }
 
 .regular, h1, h2, h3 {

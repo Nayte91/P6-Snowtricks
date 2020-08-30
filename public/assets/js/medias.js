@@ -1,5 +1,24 @@
 $.ajaxSetup({ async: false });
 
+function enlargePicture(setIDs, setClickAttr){
+    var current_image,
+        counter = 0;
+
+    if(setIDs === true){
+        $('[data-image-id]').each(function(){
+            counter++;
+            $(this).attr('data-image-id',counter);
+        });
+    }
+
+    $(setClickAttr).on('click',function(){
+        var $sel = $(this);
+        current_image = $sel.data('image-id');
+        $('#image-gallery-image').attr('src', $sel.data('image')).attr('alt', $sel.data('alt'));
+        disableButtons(counter, $sel.data('image-id'));
+    });
+}
+
 function refreshPictureUploadLabel() {
     $('#picture_file').on('change',function(e){
         var fileName = e.target.files[0].name;
@@ -94,7 +113,9 @@ function displayPicturesAndVideos (pictures, videos, editable) {
 
         let $pictureMarkup =
             '<div style="position: relative;" class="col-3 mx-auto">' +
-            '<img src="'+linkPath+'" alt="'+picture.alt+'" height="150" style="display: block;">';
+                '<a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-image="'+linkPath+'" data-alt="'+picture.alt+'" data-target="#image-gallery">' +
+                    '<img src="'+linkPath+'" alt="'+picture.alt+'" height="150" style="display: block;">' +
+                '</a>';
         if (editable === true) {
             $pictureMarkup +=
                 '<a title="Choose as display picture" href="#" data-link="'+choosePath+'" class="picture-choose" style="color: black;">' +
