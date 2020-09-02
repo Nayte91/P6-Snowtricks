@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" />
         <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="{{ asset('assets/css/snowtricks.css') }}" />
         {% block stylesheets %}{% endblock %}
     </head>
@@ -98,9 +98,9 @@
         {% block modal %}{% endblock %}
 
         <script src="{{ asset('assets/js/figure.js') }}"></script>
-        <script src="{{ asset('assets/js/fontawesome-5.13.1.js') }}"></script>
-        <script src="{{ asset('assets/js/jquery-3.5.1.js') }}"></script>
-        <script src="{{ asset('assets/js/bootstrap.bundle.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/js/all.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>
