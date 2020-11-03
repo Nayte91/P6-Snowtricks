@@ -57,6 +57,7 @@ class DiscussionController extends AbstractController
         $form = $this->createForm(DiscussionType::class, $discussion);
 
         $form->handleRequest($request);
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $discussion->setFigure($figure);
             $discussion->setAuthor($this->getUser());
