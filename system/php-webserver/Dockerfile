@@ -7,5 +7,7 @@ LABEL maintainer="Nayte"
 ARG APP_ENV
 
 COPY apache.conf /etc/apache2/sites-available/000-default.conf
+COPY php-overrides.ini /usr/local/etc/php/conf.d/99-overrides.ini
+
 # Install selected extensions and other stuff
 RUN if [ ${APP_ENV} = "dev" ]; then pecl install xdebug >/dev/null ; docker-php-ext-enable xdebug >/dev/null ; fi
