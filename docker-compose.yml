@@ -1,0 +1,24 @@
+services:
+  server:
+    container_name: Caddy
+    depends_on:
+      - backend
+    image: caddy
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/app
+      - ./system/server/Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+
+  backend:
+    container_name: php
+    image: php:fpm-alpine
+    volumes:
+      - .:/app
+      - ./system/backend/php-custom.ini:/usr/local/etc/php/php.ini
+
+volumes:
+  caddy_data:
+  caddy_config:
