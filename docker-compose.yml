@@ -1,20 +1,28 @@
+version: "3.3"
+
 services:
   server:
-    container_name: Caddy
+    container_name: snowtricks-caddy
+    image: caddy:alpine
     depends_on:
       - backend
-    image: caddy
-    ports:
-      - "80:80"
     volumes:
       - ./:/app
       - ./system/server/Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data
       - caddy_config:/config
+    labels:
+      traefik.enable: true
+      traefik.http.routers.blog.rule: Host(`snowtricks.freelooser.net`)
+      traefik.http.routers.blog.entrypoints: web
 
   backend:
-    container_name: php
-    image: php:fpm-alpine
+    container_name: snowtricks-php
+    build:
+      context: .
+      dockerfile: system/backend/Dockerfile
+    depends_on:
+      - database
     volumes:
       - .:/app
       - ./system/backend/php-custom.ini:/usr/local/etc/php/php.ini
@@ -22,3 +30,8 @@ services:
 volumes:
   caddy_data:
   caddy_config:
+
+networks:
+  default:
+    external:
+      name: proxy
