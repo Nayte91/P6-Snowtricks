@@ -1,6 +1,6 @@
 :80
 
 root * /app/public
-php_fastcgi snowtricks_php:9000
+php_fastcgi snowtricks-php:9000
 
 file_server
