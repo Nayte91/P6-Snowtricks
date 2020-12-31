@@ -20,4 +20,4 @@
 /.idea
 
 ### SQLite ###
-/data/Snowtricks.sqlite
+/system/database/Snowtricks.sqlite
