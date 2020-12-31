@@ -1,7 +1,8 @@
-version: "3.4"
+version: "3.5"
 
 services:
   server:
+    container_name: snowtricks-caddy
     image: caddy:alpine
     depends_on:
       - backend
@@ -12,27 +13,22 @@ services:
       - caddy_config:/config
     labels:
       traefik.enable: true
-      traefik.http.routers.blog.rule: Host(`snowtricks.anagraph.org`)
-      traefik.http.routers.blog.entrypoints: web
-    networks:
-      - proxy
-      - snowtricks
+      traefik.http.routers.snowtricks.rule: Host(`snowtricks.localhost`)
 
   backend:
+    container_name: snowtricks-php
     build:
       context: .
       dockerfile: system/backend/Dockerfile
     volumes:
       - .:/app
       - ./system/backend/php-custom.ini:/usr/local/etc/php/php.ini
-    networks:
-      - snowtricks
 
 volumes:
   caddy_data:
   caddy_config:
 
 networks:
-  snowtricks:
-  proxy:
+  default:
     external: true
+    name: proxy
