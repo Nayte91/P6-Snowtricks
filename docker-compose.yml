@@ -14,6 +14,8 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.snowtricks.rule: Host(`snowtricks.localhost`)
+    ports:
+      - 8000:80
 
   backend:
     container_name: snowtricks-php
@@ -28,7 +30,7 @@ volumes:
   caddy_data:
   caddy_config:
 
-networks:
-  default:
-    external: true
-    name: proxy
+#networks:
+#  default:
+#    external: true
+#    name: proxy
