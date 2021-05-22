@@ -2,7 +2,6 @@ version: "3.5"
 
 services:
   server:
-    container_name: snowtricks-caddy
     image: caddy:alpine
     depends_on:
       - backend
@@ -15,13 +14,15 @@ services:
       traefik.enable: true
       traefik.http.routers.snowtricks.rule: Host(`snowtricks.localhost`)
     ports:
-      - 8000:80
+      - 443:443
 
   backend:
-    container_name: snowtricks-php
     build:
       context: .
       dockerfile: system/backend/Dockerfile
+      args:
+        PHP_VERSION: 7.4
+        COMPOSER_VERSION: 1
     volumes:
       - .:/app
       - ./system/backend/php-custom.ini:/usr/local/etc/php/php.ini

@@ -1,6 +1,13 @@
-:80
+:80 {
+    root * /app/public
+    php_fastcgi backend:9000
 
-root * /app/public
-php_fastcgi snowtricks-php:9000
+    file_server
+}
 
-file_server
+localhost:443 {
+    root * /app/public
+    php_fastcgi backend:9000
+
+    file_server
+}
