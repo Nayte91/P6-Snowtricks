@@ -18,7 +18,7 @@
                 {% if figure.displayPicture %}
                     <img src="../{{ figure.displayPicture.webPath }}" alt="{{ figure.displayPicture.alt }}" class="img-fluid mx-auto d-block">
                 {% else %}
-                    <img src="{{ asset('assets/images/card-default.jpg') }}" alt="default" class="img-fluid mx-auto d-block">
+                    <img src="{{ asset('build/images/card-default.jpg') }}" alt="default" class="img-fluid mx-auto d-block">
                 {% endif %}
             </picture>
             <div class="position-absolute" style="top: 50%;">
@@ -105,7 +105,7 @@
         var defaultPicture = "{{ asset('assets/images/card-default.jpg') }}";
         var defaultUser = "{{ asset('assets/images/user-default.png') }}";
     </script>
-    {{ encore_entry_script_tags('figure-show.js') }}
+    {{ encore_entry_script_tags('figure-show') }}
     <script src="{{ asset('assets/js/discussions.js') }}"></script>
     <script src="{{ asset('assets/js/medias.js') }}"></script>
     <script src="{{ asset('assets/js/show.js') }}"></script>

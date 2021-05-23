@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" />
+        <link rel="shortcut icon" href="{{ asset('build/images/favicon.png') }}" />
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
@@ -16,7 +16,7 @@
     <body>
         <header class="navbar navbar-expand navbar-light flex-row">
             <a class="navbar-brand app-computer" href="{{ path('figure_index') }}">
-                <img src="{{ asset('assets/images/logo.png') }}"  height="35" class="align-top" alt="logo">
+                <img src="{{ asset('build/images/logo.png') }}"  height="35" class="align-top" alt="logo">
             </a>
             <ul class="navbar-nav flex-fill justify-content-around app-mobile">
                 <li class="nav-item" style="font-size: 45px">
@@ -99,6 +99,5 @@
         {% endif %}
 
         {% block modal %}{% endblock %}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/js/all.min.js"></script>
     </body>
 </html>

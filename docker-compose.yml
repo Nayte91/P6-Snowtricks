@@ -1,13 +1,13 @@
 version: "3.5"
 
 services:
-  frontend:
-    image: node:12-alpine
-    depends_on:
-      - server
-    volumes:
-      - ./:/app
-    working_dir: /app
+#  frontend:
+#    image: node:12-alpine
+#    depends_on:
+#      - server
+#    volumes:
+#      - ./:/app
+#    working_dir: /app
 
   server:
     image: caddy:alpine
