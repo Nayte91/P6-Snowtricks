@@ -3,8 +3,13 @@
 {% block title %}{{ figure.name }}{% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    {{ parent() }}
+    {{ encore_entry_link_tags('figure-show') }}
 {% endblock %}
+{#{% block stylesheets %}#}
+{#    {{ parent() }}#}
+{#    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>#}
+{#{% endblock %}#}
 
 {% block main %}
     <article id="trickForm">
@@ -94,11 +99,13 @@
 
 
 {% block javascripts %}
+    {{ parent() }}
     <script>
         var figureSlug = "{{ figure.slug }}";
         var defaultPicture = "{{ asset('assets/images/card-default.jpg') }}";
         var defaultUser = "{{ asset('assets/images/user-default.png') }}";
     </script>
+    {{ encore_entry_script_tags('figure-show.js') }}
     <script src="{{ asset('assets/js/discussions.js') }}"></script>
     <script src="{{ asset('assets/js/medias.js') }}"></script>
     <script src="{{ asset('assets/js/show.js') }}"></script>
