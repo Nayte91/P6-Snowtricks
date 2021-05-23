@@ -6,10 +6,19 @@
     {{ parent() }}
     {{ encore_entry_link_tags('figure-show') }}
 {% endblock %}
-{#{% block stylesheets %}#}
-{#    {{ parent() }}#}
-{#    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>#}
-{#{% endblock %}#}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        var figureSlug = "{{ figure.slug }}";
+        var defaultPicture = "{{ asset('build/images/card-default.jpg') }}";
+        var defaultUser = "{{ asset('build/images/user-default.png') }}";
+    </script>
+    {{ encore_entry_script_tags('figure-show') }}
+    <script src="{{ asset('assets/js/discussions.js') }}"></script>
+    <script src="{{ asset('assets/js/medias.js') }}"></script>
+    <script src="{{ asset('assets/js/show.js') }}"></script>
+{% endblock %}
 
 {% block main %}
     <article id="trickForm">
@@ -87,7 +96,6 @@
     </article>
 {% endblock %}
 
-
 {% block modal %}
     <!-- Modal de galerie photos -->
     <div class="modal fade" id="image-gallery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -96,20 +104,3 @@
         </div>
     </div>
 {% endblock %}
-
-
-{% block javascripts %}
-    {{ parent() }}
-    <script>
-        var figureSlug = "{{ figure.slug }}";
-        var defaultPicture = "{{ asset('assets/images/card-default.jpg') }}";
-        var defaultUser = "{{ asset('assets/images/user-default.png') }}";
-    </script>
-    {{ encore_entry_script_tags('figure-show') }}
-    <script src="{{ asset('assets/js/discussions.js') }}"></script>
-    <script src="{{ asset('assets/js/medias.js') }}"></script>
-    <script src="{{ asset('assets/js/show.js') }}"></script>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-{% endblock %}
-
-

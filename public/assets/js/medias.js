@@ -45,7 +45,6 @@ function pictureUpload() {
                 success:function(response) {
                     $('#uploaded_image').html(response);
                     listPicturesAndVideos(figureSlug, true);
-
                 }
             });
         }

@@ -2,15 +2,21 @@
 
 {% block title %}Figure index{% endblock %}
 
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('index') }}
+{% endblock %}
+
 {% block main %}
     <div style="height: calc(100vw*9/16);">
         <div class="text-center" style="position: relative; top: 40%;">
             <h1 class="text-white">Come and find your style</h1>
-            <a href="#index" class="rounded-circle btn btn-danger">
+            <a href="#index" class="rounded-circle btn btn-danger" id="arrow-down">
                 <i class="fas fa-arrow-down"></i>
             </a>
         </div>
     </div>
+
     <section class="row row-cols-1 row-cols-lg-5 py-5 mx-3" id="index">
         {% for figure in figures %}
             <div class="col">
@@ -25,6 +31,7 @@
                         {% endif %}
                         </picture>
                     </a>
+
                     <div class="card-body">
                         <div class="card-title">
                             <div class="float-left">
@@ -33,7 +40,7 @@
                             {% if is_granted('ROLE_USER') %}
                             <div class="float-right" >
                                 <a href="{{ path('figure_edit', {'slug': figure.slug }) }}" style="color: black;"><i class="fas fa-pencil-alt"></i></a>
-                                <a href="#" class="pl-3" data-toggle="modal" data-target="#delete_figure" data-slug="{{ figure.slug }}" style="color: black;"><i class="fas fa-trash-alt"></i></a>
+                                <a href="#index" class="pl-3 delete-button" data-toggle="modal" data-target="#delete_figure" data-slug="{{ figure.slug }}" style="color: black;"><i class="fas fa-trash-alt"></i></a>
                             </div>
                             {% endif %}
                         </div>
@@ -46,15 +53,11 @@
             </tr>
         {% endfor %}
     </section>
-    <a id="bottomArrow" href="#index" class="rounded-circle btn btn-danger float-right" style="display: none">
-        <i class="fas fa-arrow-up"></i>
-    </a>
 {% endblock %}
 
 {% block modal %}
-{% endblock %}
-
-{% block javascripts %}
-    <script src="{{ asset('assets/js/index.js') }}"></script>
+    {% if is_granted('ROLE_USER') %}
+        {{ include('figure/_delete_modal.html.twig') }}
+    {% endif %}
 {% endblock %}
 
