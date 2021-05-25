@@ -32,6 +32,14 @@ php bin/console ckeditor:install
 ```bash
 php bin/console assets:install public
 ```
+9. Yarn Install Javascripts dependencies
+```bash
+docker run --rm -it -v $PWD:/app -w /app node yarn install
+```
+10. build JS
+```bash
+docker run --rm -it -v $PWD:/app -w /app node yarn build
+```
 
 Enjoy by launching your PHP server !
 
