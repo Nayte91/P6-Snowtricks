@@ -1,18 +1,6 @@
 version: "3.5"
 
 services:
-  frontend:
-    image: node:12-alpine
-    depends_on:
-      - server
-    volumes:
-      - ./:/app
-    working_dir: /app
-#    Command below is for dev, you can restart it with 'docker-compose restart frontend'
-    command: "npm run watch"
-#    Command below is for production
-#    command: "npm run build"
-
   server:
     image: caddy:alpine
     depends_on:
@@ -24,9 +12,9 @@ services:
       - caddy_config:/config
     labels:
       traefik.enable: true
-      traefik.http.routers.snowtricks.rule: Host(`snowtricks.localhost`)
-    ports:
-      - 443:443
+      traefik.http.routers.snowtricks.rule: Host(`snowtricks.anagraph.org`)
+#    ports:
+#      - 443:443
 
   backend:
     build:
