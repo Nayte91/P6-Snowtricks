@@ -15,7 +15,7 @@ function discussionAdd() {
                 processData: false,
                 success: function (response) {
                     $('#discussion_added').html(response);
-                    listDiscussions(figureSlug);
+                    listDiscussions(figurePath);
                 }
             });
             document.getElementById("discussion_content").value = '';
@@ -23,10 +23,13 @@ function discussionAdd() {
     });
 }
 
-function listDiscussions(figureSlug) {
+function listDiscussions(figurePath) {
     let block = document.getElementById('discussions');
+    let discussionsPath = figurePath+"/discussions";
+
     while(block.firstChild) block.removeChild(block.firstChild);
-    $.getJSON(window.location.protocol+"//"+window.location.host+"/figures/"+figureSlug+"/discussions", function(discussions) {
+
+    $.getJSON(discussionsPath, function(discussions) {
         if (Object.keys(discussions).length === 0) {
             $('#discussions').append("<p>There is no discussion currently. Launch one !</p>");
             return;

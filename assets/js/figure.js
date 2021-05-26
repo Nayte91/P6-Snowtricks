@@ -1,5 +1,14 @@
-import '../styles/figure-show.css';
+import '../styles/figure.css';
 import 'slick-carousel/slick/slick.min';
+import 'ckeditor5/src/engine';
+
+window.onload = function() {
+    listPicturesAndVideos(figurePath, false);
+    listDiscussions(figurePath);
+    discussionAdd();
+    enlargePicture(false, 'a.thumbnail');
+}
+
 //
 // function linkModal() {
 //     $('#delete_figure').on('show.bs.modal', function (event) {

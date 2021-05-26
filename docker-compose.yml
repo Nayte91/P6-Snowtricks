@@ -13,8 +13,8 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.snowtricks.rule: Host(`snowtricks.anagraph.org`)
-#    ports:
-#      - 443:443
+    ports:
+      - 443:443
 
   backend:
     build:

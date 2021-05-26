@@ -122,14 +122,14 @@ function videoDelete() {
 
 function displayPicturesAndVideos (pictures, videos, editable) {
     $.each( pictures, function( i, picture ) {
-        let linkPath = window.location.protocol+"//"+window.location.host+"/"+picture.webPath;
+        let pictureLinkPath = window.location.protocol+"//"+window.location.host+"/"+picture.webPath;
         let pictureDeletePath = figurePath+"/pictures/"+picture.id+"/delete";
         let pictureChoosePath = figurePath+"/pictures/"+picture.id+"/choose";
 
         let $pictureMarkup =
             '<div style="position: relative;" class="col-3 mx-auto">' +
-                '<a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-image="'+linkPath+'" data-alt="'+picture.alt+'" data-target="#image-gallery">' +
-                    '<img src="'+linkPath+'" alt="'+picture.alt+'" height="150" style="display: block;">' +
+                '<a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-image="'+pictureLinkPath+'" data-alt="'+picture.alt+'" data-target="#image-gallery">' +
+                    '<img src="'+pictureLinkPath+'" alt="'+picture.alt+'" height="150" style="display: block;">' +
                 '</a>';
         if (editable) {
             $pictureMarkup +=
@@ -145,7 +145,7 @@ function displayPicturesAndVideos (pictures, videos, editable) {
         $pictureMarkup += '</div>';
         $('#picturesAndVideos').append($pictureMarkup);
         if (picture.isDisplayPicture) {
-            $("#displayPicture").html('<img src="'+window.location.protocol+"//"+window.location.host+"/"+picture.webPath+'" alt="default" class="img-fluid mx-auto d-block">');
+            $("#displayPicture").html('<img src="'+pictureLinkPath+'" alt="default" class="img-fluid mx-auto d-block">');
             hasDisplayPicture = true;
         }
     });
@@ -167,15 +167,18 @@ function displayPicturesAndVideos (pictures, videos, editable) {
 }
 
 function listPicturesAndVideos(figurePath, editable) {
-    var pictures, videos;
-    var block = document.getElementById('picturesAndVideos');
+    let pictures, videos;
+    let videosPath = figurePath+"/videos";
+    let picturePath = figurePath+"/pictures";
+    let block = document.getElementById('picturesAndVideos');
+
     block.removeAttribute('class');
     while(block.firstChild) block.removeChild(block.firstChild);
 
-    $.getJSON(figurePath+"/videos", function(v) {
+    $.getJSON(videosPath, function(v) {
         videos = v;
     });
-    $.getJSON(figurePath+"/pictures", function (p) {
+    $.getJSON(picturePath, function (p) {
         pictures = p;
     });
 
@@ -184,7 +187,7 @@ function listPicturesAndVideos(figurePath, editable) {
         $('#picturesAndVideos').append("No picture nor video yet.");
         return;
     }
-
+    
     block.classList.add("row");
     displayPicturesAndVideos(pictures, videos, editable);
 

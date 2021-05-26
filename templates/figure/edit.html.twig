@@ -7,6 +7,25 @@
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 {% endblock %}
 
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdn.ckeditor.com/ckeditor5/21.0.0/classic/ckeditor.js"></script>
+    {{ encore_entry_script_tags('figure') }}
+    <script>
+        var figureSlug = "{{ figure.slug }}";
+        var defaultPicture = "{{ asset('assets/images/card-default.jpg') }}";
+    </script>
+    <script>
+        ClassicEditor
+        .create( document.querySelector( '#figure_description' ) )
+        .catch( error => {
+        console.error( error );
+        } );
+    </script>
+    <script src="{{ asset('assets/js/medias.js') }}"></script>
+    <script src="{{ asset('assets/js/edit.js') }}"></script>
+{% endblock %}
+
 {% block main %}
     <article id="trickForm">
         <div class="row justify-content-center" style="position: relative;">
@@ -85,16 +104,4 @@
             </div>
         {{ form_end(form) }}
     </article>
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
-    <script src="https://cdn.ckeditor.com/ckeditor5/21.0.0/classic/ckeditor.js"></script>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script>
-        var figureSlug = "{{ figure.slug }}";
-        var defaultPicture = "{{ asset('assets/images/card-default.jpg') }}";
-    </script>
-    <script src="{{ asset('assets/js/medias.js') }}"></script>
-    <script src="{{ asset('assets/js/edit.js') }}"></script>
 {% endblock %}

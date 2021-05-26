@@ -4,20 +4,20 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    {{ encore_entry_link_tags('figure-show') }}
+    {{ encore_entry_link_tags('figure') }}
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
+    {{ encore_entry_script_tags('figure') }}
     <script>
-        var figureSlug = "{{ figure.slug }}";
+        var figurePath = "{{ app.request.uri }}";
         var defaultPicture = "{{ asset('build/images/card-default.jpg') }}";
         var defaultUser = "{{ asset('build/images/user-default.png') }}";
     </script>
-    {{ encore_entry_script_tags('figure-show') }}
+    {{ encore_entry_script_tags('figure') }}
     <script src="{{ asset('assets/js/discussions.js') }}"></script>
     <script src="{{ asset('assets/js/medias.js') }}"></script>
-    <script src="{{ asset('assets/js/show.js') }}"></script>
 {% endblock %}
 
 {% block main %}
