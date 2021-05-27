@@ -209,4 +209,9 @@ function listPicturesAndVideos(figurePath, editable) {
 $(document).ready(() => {
     listPicturesAndVideos(figurePath, false);
     refreshPictureUploadLabel();
+    pictureUpload();
+    pictureDelete();
+    pictureChoose();
+    videoSend();
+    videoDelete();
 });
