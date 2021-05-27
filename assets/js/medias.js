@@ -1,23 +1,23 @@
 $.ajaxSetup({ async: false });
 
-function enlargePicture(setIDs, setClickAttr){
-    var current_image,
-        counter = 0;
-
-    if(setIDs === true){
-        $('[data-image-id]').each(function(){
-            counter++;
-            $(this).attr('data-image-id',counter);
-        });
-    }
-
-    $(setClickAttr).on('click',function(){
-        var $sel = $(this);
-        current_image = $sel.data('image-id');
-        $('#image-gallery-image').attr('src', $sel.data('image')).attr('alt', $sel.data('alt'));
-        disableButtons(counter, $sel.data('image-id'));
-    });
-}
+// function enlargePicture(setIDs, setClickAttr){
+//     var current_image;
+//     var counter = 0;
+//
+//     if(setIDs){
+//         $('[data-image-id]').each(function(){
+//             counter++;
+//             $(this).attr('data-image-id',counter);
+//         });
+//     }
+//
+//     $(setClickAttr).on('click',function(){
+//         var $sel = $(this);
+//         current_image = $sel.data('image-id');
+//         $('#image-gallery-image').attr('src', $sel.data('image')).attr('alt', $sel.data('alt'));
+//         disableButtons(counter, $sel.data('image-id'));
+//     });
+// }
 
 function refreshPictureUploadLabel() {
     $('#picture_file').on('change',function(e){
@@ -185,6 +185,7 @@ function listPicturesAndVideos(figurePath, editable) {
     if (Object.keys(pictures).length === 0 && Object.keys(videos).length === 0) {
         $("#displayPicture").html('<img src="'+defaultPicture+'" alt="default" class="mx-auto d-block" style="object-fit: cover">');
         $('#picturesAndVideos').append("No picture nor video yet.");
+
         return;
     }
     
@@ -204,3 +205,8 @@ function listPicturesAndVideos(figurePath, editable) {
         });
     }
 }
+
+$(document).ready(() => {
+    listPicturesAndVideos(figurePath, false);
+    refreshPictureUploadLabel();
+});

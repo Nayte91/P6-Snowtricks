@@ -50,3 +50,8 @@ function listDiscussions(figurePath) {
         })
     });
 }
+
+$(document).ready(() => {
+    listDiscussions(figurePath);
+    discussionAdd();
+});

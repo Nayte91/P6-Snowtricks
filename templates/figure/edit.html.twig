@@ -8,22 +8,13 @@
 {% endblock %}
 
 {% block javascripts %}
+    <script>
+        var figurePath = "{{ path('figure_show', {slug: figure.slug}) }}";
+        var defaultPicture = "{{ asset('build/images/card-default.jpg') }}";
+    </script>
     {{ parent() }}
-    <script src="https://cdn.ckeditor.com/ckeditor5/21.0.0/classic/ckeditor.js"></script>
     {{ encore_entry_script_tags('figure') }}
-    <script>
-        var figureSlug = "{{ figure.slug }}";
-        var defaultPicture = "{{ asset('assets/images/card-default.jpg') }}";
-    </script>
-    <script>
-        ClassicEditor
-        .create( document.querySelector( '#figure_description' ) )
-        .catch( error => {
-        console.error( error );
-        } );
-    </script>
-    <script src="{{ asset('assets/js/medias.js') }}"></script>
-    <script src="{{ asset('assets/js/edit.js') }}"></script>
+    {{ encore_entry_script_tags('edit') }}
 {% endblock %}
 
 {% block main %}
@@ -33,7 +24,7 @@
                 {% if figure.displayPicture %}
                     <img src="../../../{{ figure.displayPicture.webPath }}" alt="{{ figure.displayPicture.alt }}" class="img-fluid mx-auto d-block">
                 {% else %}
-                    <img src="{{ asset('assets/images/card-default.jpg') }}" alt="default" class="img-fluid mx-auto d-block">
+                    <img src="{{ asset('build/images/card-default.jpg') }}" alt="default" class="img-fluid mx-auto d-block">
                 {% endif %}
             </picture>
             <div class="position-absolute" style="top: 50%;">

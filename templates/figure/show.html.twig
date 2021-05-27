@@ -8,16 +8,13 @@
 {% endblock %}
 
 {% block javascripts %}
+    <script>
+        var figurePath = "{{ path('figure_show', {slug: figure.slug}) }}";
+        var defaultPicture = "{{ asset('build/images/card-default.jpg') }}";
+    </script>
     {{ parent() }}
     {{ encore_entry_script_tags('figure') }}
-    <script>
-        var figurePath = "{{ app.request.uri }}";
-        var defaultPicture = "{{ asset('build/images/card-default.jpg') }}";
-        var defaultUser = "{{ asset('build/images/user-default.png') }}";
-    </script>
-    {{ encore_entry_script_tags('figure') }}
-    <script src="{{ asset('assets/js/discussions.js') }}"></script>
-    <script src="{{ asset('assets/js/medias.js') }}"></script>
+    {{ encore_entry_script_tags('show') }}
 {% endblock %}
 
 {% block main %}
